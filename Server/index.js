@@ -1,5 +1,6 @@
 // This is Jon's change for the first time on my very own branch of awesomeness. 
-console.log('this was jons'); 
+console.log('this was jons');
+let jon = 'this is my second change'; 
 // This is my change for the first time on my very own branch of awesomeness. 
 //who is my?! ^
 let ryan = 'The very best like no one ever was!!!';
