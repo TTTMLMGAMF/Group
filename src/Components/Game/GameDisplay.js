@@ -10,7 +10,7 @@ class GameDisplay extends Component{
 
             <div>
                 <h1>Game Display</h1>
-                <p>This is where the gmae will be displayed.    💩  🔫  🚽</p>
+                <p>This is where the game will be displayed.    💩  🔫  🚽</p>
             </div>
         )
 
