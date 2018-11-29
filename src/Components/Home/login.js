@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NewUser from './NewUser';
 import { Modal, Button, Form, Icon, Input, Checkbox } from 'antd';
 import '../../scss/App.scss';
 
@@ -44,6 +45,11 @@ class Login extends Component {
         });
     }
 
+    // handleRegister = () => {
+    //     this.setState({ visible: false })
+    //     setTimeout(this.props.handleSwitch(), 1000)
+    // }
+
     render() {
         const { getFieldDecorator } = this.props.form;
         return (
@@ -85,18 +91,19 @@ class Login extends Component {
                                 <Button type="primary" htmlType="submit" className="login-form-button">
                                     Log in
                             </Button>
-                                </div>
-                                <div>
-                                    Or <a href="">register now!</a>
-                                </div>
+                                <NewUser />
+                            </div>
+                            {/* <div>
+                                Or <a onClick={() => this.props.handleRegister()} href=''>register now!</a>
+                            </div> */}
                         </FormItem>
                     </Form>
                 </Modal>
             </div>
-                );
-            }
-        }
-        
-        const WrappedNormalLoginForm = Form.create()(Login);
-        
-        export default WrappedNormalLoginForm
+        );
+    }
+}
+
+const WrappedNormalLoginForm = Form.create()(Login);
+
+export default WrappedNormalLoginForm
