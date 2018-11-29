@@ -1,16 +1,16 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 
 
-class GameDisplay extends Component{
+class GameDisplay extends Component {
 
-    render(){
-    
-        return(
+    render() {
+
+        return (
 
             <div>
                 <h1>Game Display</h1>
-                <p>This is where the gmae will be displayed.    💩  🔫  🚽</p>
+                {/* <p>This is where the gmae will be displayed.    💩  🔫  🚽</p> */}
             </div>
         )
 
