@@ -1,7 +1,9 @@
 @import 'reset'; 
 @import '~antd/dist/antd.css';
+@import 'variables';
 @import './scssComponents/home';
 @import './scssComponents/login';
+@import './scssComponents/UserHome';
 @import './scssComponents/GameDisplay';
 
 
