@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import '../../scss/App.scss';
+
 
 class GameDisplay extends Component {
   render() {
@@ -34,19 +36,19 @@ class GameDisplay extends Component {
         <div className='gdTeamContainer'>
           <div className='gdTeam'>
             <div className='gdTeamName'>TEAM 1</div>
-            <div gdTeamScore>SCORE: </div>
+            <div className='gdTeamScore'>1500</div>
           </div>
           <div className='gdTeam'>
             <div className='gdTeamName'>TEAM 2</div>
-            <div gdTeamScore>SCORE: </div>
+            <div className='gdTeamScore'>-600</div>
           </div>
           <div className='gdTeam'>
             <div className='gdTeamName'>TEAM 3</div>
-            <div gdTeamScore>SCORE: </div>
+            <div className='gdTeamScore'>500</div>
           </div>
           <div className='gdTeam'>
             <div className='gdTeamName'>TEAM 4</div>
-            <div gdTeamScore>SCORE: </div>
+            <div className='gdTeamScore'>100</div>
           </div>
         </div>
       </div>
