@@ -1,0 +1,99 @@
+.gdContainer {
+  background-color: cornflowerblue;
+  color: blue;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    // background-color: gold;
+    width: 100%;
+    height: 10%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .gdCategoryContainer {
+    // background-color: gray;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: space-around;
+
+    .gdCategory {
+      background-color: aliceblue;
+      width: 20%;
+
+      border-radius: 5px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+
+      .gdQuestion {
+        background-color: cornflowerblue;
+        width: 85%;
+        height: 15%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 5px;
+      }
+    }
+  }
+  .gdTeamContainer {
+    // background-color: #fff;
+    width: 100%;
+    height: 10%;
+    margin: 5px;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: space-evenly;
+
+    .gdTeam {
+    //   background-color: red;
+      width: 20%;
+
+      border-radius: 5px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+
+      .gdTeamName {
+        background-color: violet;
+        height: 100%;
+        width: 70%;
+
+        border-radius: 5px 0 0 5px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .gdTeamScore {
+        background-color: aquamarine;
+        width: 30%;
+        height: 100%;
+
+        border-radius: 0 5px 5px 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}

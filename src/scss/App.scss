@@ -1,12 +1,9 @@
-$color1: #FF9502;
-$color2: #048BA8;
-$color3: #2E4057;
-$color4: #99C24D;
-$color5: #2F2D2E;
-@import 'reset';
+@import 'reset'; 
 @import '~antd/dist/antd.css';
+@import 'variables';
+@import './scssComponents/home';
+@import './scssComponents/login';
+@import './scssComponents/UserHome';
+@import './scssComponents/GameDisplay';
 @import 'gameControl';
 
-
-
-// SCSS Variables
