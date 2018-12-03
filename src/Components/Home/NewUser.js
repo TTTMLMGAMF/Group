@@ -9,6 +9,7 @@ class NewUser extends Component {
         super();
         this.state = {
             visible: false,
+            loading: false,
             email: '',
             password: '',
             confirmDirty: false,
@@ -23,6 +24,10 @@ class NewUser extends Component {
                 console.log('Received values of form: ', values);
             }
         });
+        this.setState({ loading: true });
+        setTimeout(() => {
+            this.setState({ loading: false, visible: false});
+        }, 3000);
     }
 
     handleConfirmBlur = (e) => {
@@ -48,24 +53,22 @@ class NewUser extends Component {
     }
 
     showModal = () => {
-        this.setState({
-            visible: true,
-        });
+        // this.props.handleSwitch()
+        this.setState({visible: true})
     }
 
     handleOk = (e) => {
-        console.log(e);
-        this.setState({
-            visible: false,
-        });
+        this.setState({ loading: true });
+        setTimeout(() => {
+            this.setState({ loading: false, visible: false});
+        }, 3000);
         //axios request to create new user with bcrypt
     }
 
     handleCancel = (e) => {
         console.log(e);
-        this.setState({
-            visible: false,
-        });
+        // this.props.handleSwitch()
+        this.setState({visible: false})
     }
 
     render() {
@@ -93,7 +96,7 @@ class NewUser extends Component {
                 },
             },
         };
-      
+
         return (
             <div>
                 <Button type="primary" onClick={this.showModal}>
@@ -102,8 +105,9 @@ class NewUser extends Component {
                 <Modal
                     title="Register"
                     visible={this.state.visible}
-                    onOk={this.handleOk}
+                    // onOk={this.handleOk}
                     onCancel={this.handleCancel}
+                    footer={null}
                 >
                     <Form onSubmit={this.handleSubmit}>
                         <FormItem
@@ -149,7 +153,7 @@ class NewUser extends Component {
                             )}
                         </FormItem>
                         <FormItem {...tailFormItemLayout}>
-                            <Button type="primary" htmlType="submit">Register</Button>
+                            <Button type="primary" htmlType="submit" loading={this.state.loading}>Register</Button>
                         </FormItem>
                     </Form>
                 </Modal>

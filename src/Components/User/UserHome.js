@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import { Modal, Button } from "antd";
+import { Modal, Button, Card, Icon, Avatar, Form } from "antd";
 import StartGame from "./StartGame";
 import "../../scss/App.scss";
+import GameList from "./GameList";
+import GameWizard from './GameWizard';
+// import { Card, Icon, Avatar } from 'antd';
 
 class UserHome extends Component {
   constructor(props) {
@@ -28,15 +31,25 @@ class UserHome extends Component {
     });
   };
 
+  // const { Meta } = Card;
+
   render() {
+    
+
     return (
       <div>
+
         <div>
-          <h1>User Home</h1>
-          
+          <h1>MY GAMES</h1>
+          <GameList />
+
         </div>
         <div>
-          <StartGame/>
+          <h3>CREATE NEW GAME</h3>
+          <GameWizard/>
+        </div>
+        <div>
+          <StartGame />
         </div>
       </div>
     );
