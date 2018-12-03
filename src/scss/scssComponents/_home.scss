@@ -1,11 +1,27 @@
+// #components-layout-demo-top .logo {
+//   width: 120px;
+//   height: 31px;
+//   background: #99c24d;
+//   margin: 16px 24px 16px 0;
+//   float: left;
+// }
+
 .ant-carousel .slick-slide {
     text-align: center;
-    height: 60vh;
+    height: 65vh;
     line-height: 160px;
     background: #2e4057;
-    // overflow: hidden;
+    overflow: hidden;
   }
   
-  .ant-carousel .slick-slide h3 {
-    color: #99c24d;
+  // .ant-carousel .slick-slide h3 {
+  //   color: #99c24d;
+  // }
+
+  .ant-carousel .slick-dots {
+    color: #99c24d
+  }
+
+  .ant-carousel img {
+    margin: auto;
   }
