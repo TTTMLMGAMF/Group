@@ -1,4 +1,4 @@
-const require bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 
 module.exports = {
     register: (req, res) => {
