@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import NewUser from './NewUser';
 import { Modal, Button, Form, Icon, Input, Checkbox } from 'antd';
 import '../../scss/App.scss';
+import axios from 'axios';
 
 const FormItem = Form.Item;
 
@@ -42,7 +43,24 @@ class Login extends Component {
             if (!err) {
                 console.log('Received values of form: ', values);
             }
+            this.setState({email: values.username, password: values.password})
         });
+        const {email, password} = this.state;
+        if(email && password){
+        axios.post('/auth/login', {email, password})
+        .then(res => {
+            const user = res.data;
+            if (user.id) {
+                // this.props.updateUser(user);
+                this.props.history.push('/userhome')
+            } else {
+                alert('Please enter a valid email and password')
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        });
+        }
     }
 
     // handleRegister = () => {
@@ -62,6 +80,7 @@ class Login extends Component {
                     visible={this.state.visible}
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
+                    footer={null}
                 >
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <FormItem>
@@ -88,7 +107,7 @@ class Login extends Component {
                                 <a className="login-form-forgot" href="">Forgot password</a>
                             </div>
                             <div>
-                                <Button type="primary" htmlType="submit" className="login-form-button">
+                                <Button type="primary" htmlType="submit" className="login-form-button" onClick={this.handleSubmit}>
                                     Log in
                             </Button>
                                 <NewUser />

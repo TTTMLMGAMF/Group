@@ -17,18 +17,6 @@ class NewUser extends Component {
         }
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.form.validateFieldsAndScroll((err, values) => {
-            if (!err) {
-                console.log('Received values of form: ', values);
-            }
-        });
-        this.setState({ loading: true });
-        setTimeout(() => {
-            this.setState({ loading: false, visible: false });
-        }, 3000);
-    }
 
     handleConfirmBlur = (e) => {
         const value = e.target.value;
@@ -69,6 +57,36 @@ class NewUser extends Component {
         console.log(e);
         // this.props.handleSwitch()
         this.setState({ visible: false })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.form.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+                console.log('Received values of form: ', values);
+            }
+            this.setState({ email: values.username, password: values.password })
+        });
+        const { email, password } = this.state;
+        if (email && password) {
+            axios.post('/auth/register', { email, password })
+                .then(res => {
+                    const user = res.data;
+                    if (user.id) {
+                        // this.props.updateUser(user);
+                        this.props.history.push('/userhome')
+                    } else {
+                        alert('Please enter a valid email and password')
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        }
+        this.setState({ loading: true });
+        setTimeout(() => {
+            this.setState({ loading: false, visible: false });
+        }, 3000);
     }
 
     render() {

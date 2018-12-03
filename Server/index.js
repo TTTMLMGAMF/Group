@@ -3,6 +3,8 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const massive = require('massive');
+const bcrypt = require('bcryptjs');
+const authCtrl = require('./authCtrl');
 
 
 const app = express();
@@ -25,12 +27,18 @@ massive(CONNECTION_STRING)
         console.log(err);
     })
 
-    app.use(session({
-        secret: SECRET,
-        resave: false,
-        saveUninitialized: false
-    }))
+app.use(session({
+    secret: SECRET,
+    resave: false,
+    saveUninitialized: false
+}))
 
-    app.listen(SERVER_PORT, () => {
-        console.log(`Port ${SERVER_PORT} is ready to teach!!!`)
-    });
+
+// Auth endpoints
+app.post(`/auth/register`, authCtrl.register);
+app.post(`/auth/login`, authCtrl.login);
+app.delete(`/auth/logout`, authCtrl.logout);
+
+app.listen(SERVER_PORT, () => {
+    console.log(`Port ${SERVER_PORT} is ready to teach!!!`)
+});

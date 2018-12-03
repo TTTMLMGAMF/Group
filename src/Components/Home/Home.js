@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Carousel, Layout, Menu, Breadcrumb, Affix, Divider } from 'antd';
+import { Carousel, Layout, Menu, Breadcrumb, Affix } from 'antd';
 import Login from './login';
 import '../../scss/App.scss';
 
@@ -41,10 +41,10 @@ class Home extends Component {
                     </Breadcrumb>
                     <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
                         <Carousel autoplay>
-                            <div><img src='https://onelittleproject.com/wp-content/uploads/2017/01/penguin-craft.jpg' alt="It's a penguin!" /></div>
-                            <div><img src='https://www.sciencemag.org/sites/default/files/styles/article_main_large/public/images/sn-penguins_3.jpg?itok=rvjLuG8R' alt="It's a penguin!" /></div>
-                            <div><img src='http://themepack.me/i/c/749x468/media/g/502/emperor-penguin-theme-1.jpg' alt="It's a penguin!" /></div>
-                            <div><img src='https://www.sciencemag.org/sites/default/files/styles/article_main_large/public/images/sn-penguins_3.jpg?itok=rvjLuG8R' alt="It's a penguin!"/>
+                            <div><img src='https://vignette.wikia.nocookie.net/fantendo/images/4/4f/DededeSmash3.png/revision/latest?cb=20180212213706' alt="It's a penguin!" /></div>
+                            <div><img src='https://www.smashbros.com/wiiu-3ds/sp/images/character/little_mac/main.png' alt="It's a penguin!" /></div>
+                            <div><img src='https://vignette.wikia.nocookie.net/zelda/images/2/2c/Link_%28Super_Smash_Bros._Melee%29.png/revision/latest?cb=20100126010707' alt="It's a penguin!" /></div>
+                            <div><img src='https://pre00.deviantart.net/ba9b/th/pre/i/2016/145/8/0/sbb4_leo_corrin_alt__by_4ourside-da3sqrb.png' alt="It's a penguin!"/>
                             </div>
                         </Carousel>
                     </div>
@@ -66,7 +66,7 @@ class Home extends Component {
                     </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
-                    TTTMLMGAMF ©2018 Created by Gamf
+                    T3MLMGAMF ©2018 Created by Gamf
                 </Footer>
             </Layout>
         )

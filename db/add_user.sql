@@ -1,4 +1,4 @@
 insert into account (
-account_name, account_pass, account_image
+account_name, account_pass
 )
-values ($1, $2, $3)
+values ($1, $2)
