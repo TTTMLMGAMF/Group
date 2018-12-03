@@ -4,6 +4,7 @@ import StartGame from "./StartGame";
 import "../../scss/App.scss";
 import GameList from "./GameList";
 import GameWizard from './GameWizard';
+import SideDrawer from './../SideDrawer';
 // import { Card, Icon, Avatar } from 'antd';
 
 class UserHome extends Component {
@@ -38,11 +39,15 @@ class UserHome extends Component {
 
     return (
       <div>
+        <div className='uhMain'>
+          <div className='sd'>
+            <SideDrawer />
+          </div>
+          <div className='uhBody'>
+            <h1 id='uhHeader'>MY GAMES</h1>
+            <GameList />
 
-        <div>
-          <h1>MY GAMES</h1>
-          <GameList />
-
+          </div>
         </div>
         <div>
           <h3>CREATE NEW GAME</h3>

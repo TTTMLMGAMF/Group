@@ -32,6 +32,20 @@ class GameControl extends Component {
                     points: 300
                 },
                 {
+                    question: "How do you code?",
+                    answer: "Yes",
+                    catagory: 1,
+                    cn: "Things",
+                    points: 400
+                },
+                {
+                    question: "How do you code?",
+                    answer: "Yes",
+                    catagory: 1,
+                    cn: "Things",
+                    points: 500
+                },
+                {
                     question: "What is the best cohort ever?",
                     answer: "42",
                     catagory: 2,
@@ -39,11 +53,67 @@ class GameControl extends Component {
                     points: 100
                 },
                 {
+                    question: "What is the best cohort ever?",
+                    answer: "42",
+                    catagory: 2,
+                    cn: "Stuff",
+                    points: 200
+                },
+                {
+                    question: "What is the best cohort ever?",
+                    answer: "42",
+                    catagory: 2,
+                    cn: "Stuff",
+                    points: 300
+                },
+                {
+                    question: "What is the best cohort ever?",
+                    answer: "42",
+                    catagory: 2,
+                    cn: "Stuff",
+                    points: 400
+                },
+                {
+                    question: "What is the best cohort ever?",
+                    answer: "42",
+                    catagory: 2,
+                    cn: "Stuff",
+                    points: 500
+                },
+                {
                     question: "Can we actually make this game?",
                     answer: "Try again later",
                     catagory: 3,
                     cn: "Other",
                     points: 100
+                },
+                {
+                    question: "Can you print Hello World?",
+                    answer: "No",
+                    catagory: 3,
+                    cn: "Other",
+                    points: 200
+                },
+                {
+                    question: "Can we actually make this game?",
+                    answer: "Try again later",
+                    catagory: 3,
+                    cn: "Other",
+                    points: 300
+                },
+                {
+                    question: "Can we actually make this game?",
+                    answer: "Try again later",
+                    catagory: 3,
+                    cn: "Other",
+                    points: 400
+                },
+                {
+                    question: "Can we actually make this game?",
+                    answer: "Try again later",
+                    catagory: 3,
+                    cn: "Other",
+                    points: 500
                 }
             ],
             team: [

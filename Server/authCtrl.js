@@ -1,27 +1,31 @@
 const bcrypt = require('bcryptjs');
 
 module.exports = {
-    register: (req, res) => {
+    register: async (req, res) => {
         const db = req.app.get('db');
-        const {name, user} = req.body;
-        var pwd = bcrypt.hashSync(user.password, 10);
-        user.password = pwd;
-        db.add_user([name, pwd])
-            .catch(err =>{
-                res.status(500).send(err);
-            })
+        let { user, password } = req.body;
+        let pwd = bcrypt.hashSync(password, 10);
+        password = pwd;
+        let account = await db.user_login([user])
+        if (!account[0]) {
+            db.add_user([user, pwd])
+            res.sendStatus(200)
+        } else {
+            res.send("Account Already Exists")
+        }
+
     },
-    login: (req, res)=>{
+    login: (req, res) => {
         const db = req.app.get('db');
-        const {username, password} = req.body;
+        const { username, password } = req.body;
         db.user_login(username)
-            .then(([user])=>{
-                if (bcrypt.compareSync(password, user.account_pass)){
+            .then(([user]) => {
+                if (bcrypt.compareSync(password, user.account_pass)) {
                     delete user.account_pass;
                     req.session.user = user;
                     res.status(200).send(user);
                 } else {
-                    res.status(401).send({error: "Invalid Username or password."});
+                    res.status(401).send({ error: "Invalid Username or password." });
                 }
             })
             .catch(err => {
@@ -29,9 +33,9 @@ module.exports = {
             })
     },
     logout: (req, res) => {
-        if (req.session.user){
+        if (req.session.user) {
             req.session.destroy();
-            res.status(200).send({message: "Successfully logged out."})
+            res.status(200).send({ message: "Successfully logged out." })
         }
     }
 }
