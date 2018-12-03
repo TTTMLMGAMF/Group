@@ -27,18 +27,18 @@ massive(CONNECTION_STRING)
         console.log(err);
     })
 
-    app.use(session({
-        secret: SECRET,
-        resave: false,
-        saveUninitialized: false
-    }))
+app.use(session({
+    secret: SECRET,
+    resave: false,
+    saveUninitialized: false
+}))
 
 
-    // Auth endpoints
-    app.post(`/auth/register`, authCtrl.register);
-    app.post(`/auth/login`, authCtrl.login);
-    app.delete(`/auth/logout`, authCtrl.delete);
+// Auth endpoints
+app.post(`/auth/register`, authCtrl.register);
+app.post(`/auth/login`, authCtrl.login);
+app.delete(`/auth/logout`, authCtrl.logout);
 
-    app.listen(SERVER_PORT, () => {
-        console.log(`Port ${SERVER_PORT} is ready to teach!!!`)
-    });
+app.listen(SERVER_PORT, () => {
+    console.log(`Port ${SERVER_PORT} is ready to teach!!!`)
+});
