@@ -89,6 +89,19 @@ class NewUser extends Component {
         }, 3000);
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.form.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+                console.log('Received values of form: ', values);
+            }
+        });
+        this.setState({ loading: true });
+        setTimeout(() => {
+            this.setState({ loading: false, visible: false });
+        }, 3000);
+    }
+
     render() {
 
         const { getFieldDecorator } = this.props.form;
