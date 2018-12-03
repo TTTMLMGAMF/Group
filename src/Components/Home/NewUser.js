@@ -17,24 +17,12 @@ class NewUser extends Component {
         }
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.form.validateFieldsAndScroll((err, values) => {
-            if (!err) {
-                console.log('Received values of form: ', values);
-            }
-        });
-        this.setState({ loading: true });
-        setTimeout(() => {
-            this.setState({ loading: false, visible: false});
-        }, 3000);
-    }
-
+    
     handleConfirmBlur = (e) => {
         const value = e.target.value;
         this.setState({ confirmDirty: this.state.confirmDirty || !!value });
     }
-
+    
     compareToFirstPassword = (rule, value, callback) => {
         const form = this.props.form;
         if (value && value !== form.getFieldValue('password')) {
@@ -43,7 +31,7 @@ class NewUser extends Component {
             callback();
         }
     }
-
+    
     validateToNextPassword = (rule, value, callback) => {
         const form = this.props.form;
         if (value && this.state.confirmDirty) {
@@ -51,12 +39,12 @@ class NewUser extends Component {
         }
         callback();
     }
-
+    
     showModal = () => {
         // this.props.handleSwitch()
         this.setState({visible: true})
     }
-
+    
     handleOk = (e) => {
         this.setState({ loading: true });
         setTimeout(() => {
@@ -71,6 +59,19 @@ class NewUser extends Component {
         this.setState({visible: false})
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.form.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+                console.log('Received values of form: ', values);
+            }
+        });
+        this.setState({ loading: true });
+        setTimeout(() => {
+            this.setState({ loading: false, visible: false});
+        }, 3000);
+    }
+    
     render() {
         const { getFieldDecorator } = this.props.form;
         
