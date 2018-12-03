@@ -26,7 +26,7 @@ class NewUser extends Component {
         });
         this.setState({ loading: true });
         setTimeout(() => {
-            this.setState({ loading: false, visible: false});
+            this.setState({ loading: false, visible: false });
         }, 3000);
     }
 
@@ -54,13 +54,13 @@ class NewUser extends Component {
 
     showModal = () => {
         // this.props.handleSwitch()
-        this.setState({visible: true})
+        this.setState({ visible: true })
     }
 
     handleOk = (e) => {
         this.setState({ loading: true });
         setTimeout(() => {
-            this.setState({ loading: false, visible: false});
+            this.setState({ loading: false, visible: false });
         }, 3000);
         //axios request to create new user with bcrypt
     }
@@ -68,12 +68,13 @@ class NewUser extends Component {
     handleCancel = (e) => {
         console.log(e);
         // this.props.handleSwitch()
-        this.setState({visible: false})
+        this.setState({ visible: false })
     }
 
     render() {
+
         const { getFieldDecorator } = this.props.form;
-        
+
         const formItemLayout = {
             labelCol: {
                 xs: { span: 24 },
