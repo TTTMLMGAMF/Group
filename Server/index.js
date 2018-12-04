@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const massive = require('massive');
 const bcrypt = require('bcryptjs');
 const authCtrl = require('./authCtrl');
+const socket = require('socket.io');
 const endpointCtrl = require('./endpointCtrl');
 
 
@@ -48,6 +49,24 @@ app.post(`/api/students`, endpointCtrl.addStudents);
 app.get(`/api/game/:game-id`, endpointCtrl.getGame);
 app.delete(`/api/game/:game-id`, endpointCtrl.deleteGame);
 
-app.listen(SERVER_PORT, () => {
+const io = socket(app.listen(SERVER_PORT, () => {
     console.log(`Port ${SERVER_PORT} is ready to teach!!!`)
-});
+}));
+
+
+io.on('connection', socket => {
+    socket.on('join room', data => {
+        // console.log(socket.id)
+        console.log('room joined', data.room)
+        socket.join(data.room);
+        io.to(data.room).emit('room joined');
+    })
+
+    socket.on('question click', data => {
+        console.log(data)
+        io.to(data.room).emit('question open', data)
+    })
+    socket.on('question close', data => {
+        io.to(data.room).emit('question close')
+    })
+})
