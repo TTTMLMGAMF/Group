@@ -2,14 +2,14 @@ module.exports = {
     retrieveGames: (req, res) => {
         //retrieves list of games for fames list 
         console.log('retrieveGames has been hit')
-    //     const db = req.app.get('db');
-    //     const {account_id} = req.params;
-    //     db.retrieve_games_list(account_id)
-    //     .then(game => res.status(200).send(game))
-    //     .catch(err => {
-    //         res.status(500).send({ errorMessage: "that's not a moon" });
-    //         console.log(err);
-    //     })
+        const db = req.app.get('db');
+        const {account_id} = req.params;
+        db.retrieve_games_list(account_id)
+        .then(game => res.status(200).send(game))
+        .catch(err => {
+            res.status(500).send({ errorMessage: "that's not a moon" });
+            console.log(err);
+        })
     },
     retrieveAccountInfo: (req, res) => {
         //retrieves account info from db
