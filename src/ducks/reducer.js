@@ -2,7 +2,7 @@ const initialState = {
     teams: [],
     roomName: '',
     gameTitle: '',
-    qa: []
+    qa: [],
 }
 
 const UPDATE_TEAMS = 'UPDATE_TEAMS';

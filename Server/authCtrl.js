@@ -8,8 +8,10 @@ module.exports = {
         password = pwd;
         let account = await db.user_login([user])
         if (!account[0]) {
-            db.add_user([user, pwd])
-            res.sendStatus(200)
+            let createdCustomer = await db.add_user([user, pwd])
+            req.session.user = createdCustomer[0];
+            console.log("session user: ", req.session.user);
+            res.send(req.session.user)
         } else {
             res.send("Account Already Exists")
         }
