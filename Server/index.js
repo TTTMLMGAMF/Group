@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const massive = require('massive');
 const bcrypt = require('bcryptjs');
 const authCtrl = require('./authCtrl');
+const endpointCtrl = require('./endpointCtrl');
 
 
 const app = express();
@@ -43,6 +44,9 @@ app.get(`/api/games/:account-id`, endpointCtrl.retriveGames)
 app.get(`/api/accountInfo/:account-id`, endpointCtrl.retrieveAccountInfo)
 app.put(`/api/class/:classroom-id`, endpointCtrl.updateClassroom)
 app.delete(`/api/class/:classroom-id`, endpointCtrl.removeClassroom)
+app.post(`/api/students`, endpointCtrl.addStudents);
+app.get(`/api/game/:game-id`, endpointCtrl.getGame);
+app.delete(`/api/game/:game-id`, endpointCtrl.deleteGame);
 
 app.listen(SERVER_PORT, () => {
     console.log(`Port ${SERVER_PORT} is ready to teach!!!`)
