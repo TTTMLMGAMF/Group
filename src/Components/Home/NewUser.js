@@ -17,12 +17,12 @@ class NewUser extends Component {
         }
     }
 
-    
+
     handleConfirmBlur = (e) => {
         const value = e.target.value;
         this.setState({ confirmDirty: this.state.confirmDirty || !!value });
     }
-    
+
     compareToFirstPassword = (rule, value, callback) => {
         const form = this.props.form;
         if (value && value !== form.getFieldValue('password')) {
@@ -31,7 +31,7 @@ class NewUser extends Component {
             callback();
         }
     }
-    
+
     validateToNextPassword = (rule, value, callback) => {
         const form = this.props.form;
         if (value && this.state.confirmDirty) {
@@ -39,16 +39,16 @@ class NewUser extends Component {
         }
         callback();
     }
-    
+
     showModal = () => {
         // this.props.handleSwitch()
-        this.setState({visible: true})
+        this.setState({ visible: true })
     }
-    
+
     handleOk = (e) => {
         this.setState({ loading: true });
         setTimeout(() => {
-            this.setState({ loading: false, visible: false});
+            this.setState({ loading: false, visible: false });
         }, 3000);
         //axios request to create new user with bcrypt
     }
@@ -56,7 +56,7 @@ class NewUser extends Component {
     handleCancel = (e) => {
         console.log(e);
         // this.props.handleSwitch()
-        this.setState({visible: false})
+        this.setState({ visible: false })
     }
 
     handleSubmit = (e) => {
@@ -66,17 +66,48 @@ class NewUser extends Component {
             if (!err) {
                 console.log('Received values of form: ', values);
             }
+            this.setState({ email: values.username, password: values.password })
         });
+        const { email, password } = this.state;
+        if (email && password) {
+            axios.post('/auth/register', { email, password })
+                .then(res => {
+                    const user = res.data;
+                    if (user.id) {
+                        // this.props.updateUser(user);
+                        this.props.history.push('/userhome')
+                    } else {
+                        alert('Please enter a valid email and password')
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        }
         this.setState({ loading: true });
         setTimeout(() => {
-            this.setState({ loading: false, visible: false});
+            this.setState({ loading: false, visible: false });
         }, 3000);
         console.log('after: ', this.state)
     }
-    
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        this.props.form.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+                console.log('Received values of form: ', values);
+            }
+        });
+        this.setState({ loading: true });
+        setTimeout(() => {
+            this.setState({ loading: false, visible: false });
+        }, 3000);
+    }
+
     render() {
+
         const { getFieldDecorator } = this.props.form;
-        
+
         const formItemLayout = {
             labelCol: {
                 xs: { span: 24 },

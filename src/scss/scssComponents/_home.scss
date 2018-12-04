@@ -25,3 +25,21 @@
   .ant-carousel img {
     margin: auto;
   }
+
+  .homeContent {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "left right"
+  }
+
+  .column-a {
+    grid-area: left;
+    padding: 5px;
+  }
+
+  .column-b {
+    grid-area: right;
+    padding: 5px;
+  }
