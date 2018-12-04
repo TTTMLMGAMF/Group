@@ -6,6 +6,7 @@ const massive = require('massive');
 const bcrypt = require('bcryptjs');
 const authCtrl = require('./authCtrl');
 const socket = require('socket.io');
+const endpointCtrl = require('./endpointCtrl');
 
 
 const app = express();
@@ -39,6 +40,14 @@ app.use(session({
 app.post(`/auth/register`, authCtrl.register);
 app.post(`/auth/login`, authCtrl.login);
 app.delete(`/auth/logout`, authCtrl.logout);
+
+app.get(`/api/games/:account-id`, endpointCtrl.retrieveGames)
+app.get(`/api/accountInfo/:account-id`, endpointCtrl.retrieveAccountInfo)
+app.put(`/api/class/:classroom-id`, endpointCtrl.updateClassroom)
+app.delete(`/api/class/:classroom-id`, endpointCtrl.removeClassroom)
+app.post(`/api/students`, endpointCtrl.addStudents);
+app.get(`/api/game/:game-id`, endpointCtrl.getGame);
+app.delete(`/api/game/:game-id`, endpointCtrl.deleteGame);
 
 const io = socket(app.listen(SERVER_PORT, () => {
     console.log(`Port ${SERVER_PORT} is ready to teach!!!`)

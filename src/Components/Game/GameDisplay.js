@@ -33,7 +33,8 @@ class GameDisplay extends Component {
       console.log(data)
       this.setState({
         qa: data.qa,
-        visible: true
+        visible: true,
+        countDown: 10
       })
     })
     this.socket.on('question close', data => {

@@ -61,6 +61,7 @@ class NewUser extends Component {
     }
 
     handleSubmit = (e) => {
+        console.log('before', this.state)
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
@@ -88,6 +89,7 @@ class NewUser extends Component {
         setTimeout(() => {
             this.setState({ loading: false, visible: false });
         }, 3000);
+        console.log('after: ', this.state)
     }
 
     handleSubmit = (e) => {
