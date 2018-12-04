@@ -40,7 +40,7 @@ app.post(`/auth/register`, authCtrl.register);
 app.post(`/auth/login`, authCtrl.login);
 app.delete(`/auth/logout`, authCtrl.logout);
 
-app.get(`/api/games/:account-id`, endpointCtrl.retriveGames)
+app.get(`/api/games/:account-id`, endpointCtrl.retrieveGames)
 app.get(`/api/accountInfo/:account-id`, endpointCtrl.retrieveAccountInfo)
 app.put(`/api/class/:classroom-id`, endpointCtrl.updateClassroom)
 app.delete(`/api/class/:classroom-id`, endpointCtrl.removeClassroom)
