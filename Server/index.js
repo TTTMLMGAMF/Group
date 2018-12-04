@@ -39,6 +39,11 @@ app.post(`/auth/register`, authCtrl.register);
 app.post(`/auth/login`, authCtrl.login);
 app.delete(`/auth/logout`, authCtrl.logout);
 
+app.get(`/api/games/:account-id`)
+app.get(`/api/accountInfo/:account-id`)
+app.put(`/api/class/:classroom-id`)
+app.delete(`/api/class/:classroom-id`)
+
 app.listen(SERVER_PORT, () => {
     console.log(`Port ${SERVER_PORT} is ready to teach!!!`)
 });
