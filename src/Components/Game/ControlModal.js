@@ -1,22 +1,64 @@
 import React, { Component } from 'react';
 import { Modal, Button } from 'antd';
+import io from 'socket.io-client';
+import { connect } from 'react-redux'
+import { updateTeam, updateRoomName, updateGameTitle, updateQa } from '../../ducks/reducer'
 import '../../scss/App.scss'
 
+
 class ControlModal extends Component {
-    state = {
-        disabled: false,
-        visible: false,
+    constructor() {
+        super();
+        this.state = {
+            disabled: false,
+            visible: false,
+            room: 'things',
+            joined: false
+        }
     }
+
+    async componentDidMount() {
+        await this.setState({
+            room: this.props.room
+        })
+        this.socket = io('http://localhost:4000');
+        this.joinRoom()
+        this.socket.on('room joined', data => {
+            this.joinSuccess()
+        })
+    }
+
+
+
+    joinRoom() {
+        if (this.state.room) {
+            this.socket.emit('join room', {
+                room: this.state.room
+            })
+        }
+    }
+    joinSuccess() {
+        this.setState({ joined: true })
+    }
+
 
     showModal = () => {
         this.setState({
             visible: true
         });
+        this.socket.emit('question click', {
+            room: this.state.room,
+            qa: this.props.qa,
+            i: this.props.i
+        })
     }
 
     handleAdd = (i) => {
         this.props.handleScore(this.props.qa.points, i)
         this.setState({ visible: false, disabled: true });
+        this.socket.emit('question close', {
+            room: this.state.room
+        })
 
     }
 
@@ -26,6 +68,9 @@ class ControlModal extends Component {
 
     handleCancel = () => {
         this.setState({ visible: false })
+        this.socket.emit('question close', {
+            room: this.state.room
+        })
     }
 
     render() {
@@ -63,5 +108,13 @@ class ControlModal extends Component {
     }
 }
 
-export default ControlModal
+function mapStateToProps(state) {
+    return {
+        gameName: state.gameTitle,
+        team: state.teams,
+        room: state.roomName
+    }
+}
+
+export default connect(mapStateToProps, { updateTeam, updateRoomName, updateGameTitle })(ControlModal)
 
