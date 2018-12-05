@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import io from 'socket.io-client';
 import { connect } from 'react-redux'
-import { updateTeam, updateRoomName, updateGameTitle, updateQa } from '../../ducks/reducer'
+import { updateTeams, updateRoomName, updateGameTitle, updateQa } from '../../ducks/reducer'
 import { Modal } from "antd";
 
 
@@ -84,5 +84,5 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { updateTeam, updateRoomName, updateGameTitle, updateQa })(DisplayModal)
+export default connect(mapStateToProps, { updateTeams, updateRoomName, updateGameTitle, updateQa })(DisplayModal)
 
