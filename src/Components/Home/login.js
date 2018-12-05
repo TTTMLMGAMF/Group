@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NewUser from './NewUser';
-import { Modal, Button, Form, Icon, Input, Checkbox } from 'antd';
+import { Modal, Button, Form, Icon, Input } from 'antd';
 import '../../scss/App.scss';
 import axios from 'axios';
 import {withRouter} from 'react-router-dom';
@@ -103,14 +103,14 @@ class Login extends Component {
                             )}
                         </FormItem>
                         <FormItem>
-                            <div>{getFieldDecorator('remember', {
+                            {/* <div>{getFieldDecorator('remember', {
                                 valuePropName: 'checked',
                                 initialValue: true,
                             })(
                                 <Checkbox>Remember me</Checkbox>
                             )}
                                 <a className="login-form-forgot" href="">Forgot password</a>
-                            </div>
+                            </div> */}
                             <div>
                                 <Button type="primary" htmlType="submit" className="login-form-button" onClick={this.handleSubmit}>
                                     Log in

@@ -62,7 +62,7 @@ class NewUser extends Component {
     }
 
     handleSubmit = async (e) => {
-        console.log('before', this.state)
+        // console.log('before', this.state)
         e.preventDefault();
         await this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
@@ -74,8 +74,9 @@ class NewUser extends Component {
         if (email && password) {
             axios.post('/auth/register', { email, password })
                 .then(res => {
+                    // console.log('THIS ONE RIGHT HERE:', res)
                     const user = res.data;
-                    if (user.account_id) {
+                    if (user) {
                         // this.props.updateUser(user);
                         this.props.history.push('/userhome')
                     } else {
@@ -90,7 +91,7 @@ class NewUser extends Component {
         setTimeout(() => {
             this.setState({ loading: false, visible: false });
         }, 3000);
-        console.log('after: ', this.state)
+        // console.log('after: ', this.state)
     }
 
 
