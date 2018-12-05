@@ -3,6 +3,7 @@ import NewUser from './NewUser';
 import { Modal, Button, Form, Icon, Input, Checkbox } from 'antd';
 import '../../scss/App.scss';
 import axios from 'axios';
+import {withRouter} from 'react-router-dom';
 
 const FormItem = Form.Item;
 
@@ -37,20 +38,21 @@ class Login extends Component {
         });
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = async (e) => {
         e.preventDefault();
-        this.props.form.validateFields((err, values) => {
+        await this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
             }
-            this.setState({email: values.username, password: values.password})
+            this.setState({email: values.userName, password: values.password});
         });
         const {email, password} = this.state;
         if(email && password){
         axios.post('/auth/login', {email, password})
         .then(res => {
+            // console.log('LOOK HERE:', res)
             const user = res.data;
-            if (user.id) {
+            if (user.account_id) {
                 // this.props.updateUser(user);
                 this.props.history.push('/userhome')
             } else {
@@ -69,6 +71,8 @@ class Login extends Component {
     // }
 
     render() {
+        // console.log(this.props)
+        // console.log('this one',this.state)
         const { getFieldDecorator } = this.props.form;
         return (
             <div>
@@ -80,6 +84,7 @@ class Login extends Component {
                     visible={this.state.visible}
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
+                    onSubmit={this.handleSubmit}
                     footer={null}
                 >
                     <Form onSubmit={this.handleSubmit} className="login-form">
@@ -125,4 +130,4 @@ class Login extends Component {
 
 const WrappedNormalLoginForm = Form.create()(Login);
 
-export default WrappedNormalLoginForm
+export default withRouter(WrappedNormalLoginForm)
