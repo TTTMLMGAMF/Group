@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button, Form, Input } from 'antd';
-import '../../scss/App.scss';
 import axios from 'axios';
+import '../../scss/App.scss';
 import {withRouter} from 'react-router-dom';
 
 const FormItem = Form.Item;
