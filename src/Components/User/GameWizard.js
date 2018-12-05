@@ -25,7 +25,9 @@ export default class StartGame extends Component {
   constructor(props) {
       super(props);
       this.state = {
-        visible: false
+        visible: false,
+        gameCategories: 1,
+        categories: []
       };
     }
     showModal = () => {
@@ -65,7 +67,8 @@ export default class StartGame extends Component {
             >
               <h2>GAME TITLE:</h2><Input/>
               <h4>SUBJECT:</h4><Input/>
-              <h4>IMAGE:</h4><Upload {...props}><Button><Icon type="upload" /> Click to Upload</Button></Upload>
+              <h4>IMAGE URL:</h4><Input/>
+              {/* <h4>IMAGE:</h4><Upload {...props}><Button><Icon type="upload" /> Click to Upload</Button></Upload> */}
               <hr/>
               <h5>CATEGORY ONE</h5><Input/>
               <p>Q1:</p><Input placeholder='easiest question here'/>
