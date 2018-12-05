@@ -3,7 +3,7 @@ import ControlModal from './ControlModal';
 import TeamDisplay from './TeamDisplay';
 import io from 'socket.io-client'
 import { connect } from 'react-redux'
-import { updateTeam, updateRoomName, updateGameTitle, updateQa } from '../../ducks/reducer'
+import { updateTeams, updateRoomName, updateGameTitle, updateQa } from '../../ducks/reducer'
 import '../../scss/App.scss'
 
 
@@ -150,4 +150,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { updateTeam, updateRoomName, updateGameTitle, updateQa })(GameControl)
+export default connect(mapStateToProps, { updateTeams, updateRoomName, updateGameTitle, updateQa })(GameControl)

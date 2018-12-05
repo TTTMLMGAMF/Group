@@ -10,6 +10,10 @@ module.exports = {
         password = pwd;
         let account = await db.user_login(email)
         if (!account[0]) {
+            let createdCustomer = await db.add_user([user, pwd])
+            req.session.user = createdCustomer[0];
+            console.log("session user: ", req.session.user);
+            res.send(req.session.user)
             db.add_user(email, pwd)
             res.sendStatus(200)
         } else {
