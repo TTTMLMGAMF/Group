@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import ControlModal from './ControlModal';
+import TeamDisplay from './TeamDisplay';
+import io from 'socket.io-client'
+import { connect } from 'react-redux'
+import { updateTeams, updateRoomName, updateGameTitle, updateQa } from '../../ducks/reducer'
 import '../../scss/App.scss'
-
 
 
 class GameControl extends Component {
@@ -9,113 +12,7 @@ class GameControl extends Component {
         super()
         this.state = {
             gameName: "The Questions!",
-            qa: [
-                {
-                    question: "How many cups of sugar does it take to get to the moon?",
-                    answer: "3",
-                    catagory: 1,
-                    cn: "Things",
-                    points: 100
-                },
-                {
-                    question: "How many cups of salt does it take to get to the moon?",
-                    answer: "17",
-                    catagory: 1,
-                    cn: "Things",
-                    points: 200
-                },
-                {
-                    question: "How do you code?",
-                    answer: "Yes",
-                    catagory: 1,
-                    cn: "Things",
-                    points: 300
-                },
-                {
-                    question: "How do you code?",
-                    answer: "Yes",
-                    catagory: 1,
-                    cn: "Things",
-                    points: 400
-                },
-                {
-                    question: "How do you code?",
-                    answer: "Yes",
-                    catagory: 1,
-                    cn: "Things",
-                    points: 500
-                },
-                {
-                    question: "What is the best cohort ever?",
-                    answer: "42",
-                    catagory: 2,
-                    cn: "Stuff",
-                    points: 100
-                },
-                {
-                    question: "What is the best cohort ever?",
-                    answer: "42",
-                    catagory: 2,
-                    cn: "Stuff",
-                    points: 200
-                },
-                {
-                    question: "What is the best cohort ever?",
-                    answer: "42",
-                    catagory: 2,
-                    cn: "Stuff",
-                    points: 300
-                },
-                {
-                    question: "What is the best cohort ever?",
-                    answer: "42",
-                    catagory: 2,
-                    cn: "Stuff",
-                    points: 400
-                },
-                {
-                    question: "What is the best cohort ever?",
-                    answer: "42",
-                    catagory: 2,
-                    cn: "Stuff",
-                    points: 500
-                },
-                {
-                    question: "Can we actually make this game?",
-                    answer: "Try again later",
-                    catagory: 3,
-                    cn: "Other",
-                    points: 100
-                },
-                {
-                    question: "Can you print Hello World?",
-                    answer: "No",
-                    catagory: 3,
-                    cn: "Other",
-                    points: 200
-                },
-                {
-                    question: "Can we actually make this game?",
-                    answer: "Try again later",
-                    catagory: 3,
-                    cn: "Other",
-                    points: 300
-                },
-                {
-                    question: "Can we actually make this game?",
-                    answer: "Try again later",
-                    catagory: 3,
-                    cn: "Other",
-                    points: 400
-                },
-                {
-                    question: "Can we actually make this game?",
-                    answer: "Try again later",
-                    catagory: 3,
-                    cn: "Other",
-                    points: 500
-                }
-            ],
+            qa: [],
             team: [
                 {
                     name: "Team 1",
@@ -124,10 +21,46 @@ class GameControl extends Component {
                 {
                     name: "Team Firelords",
                     points: 0
+                },
+                {
+                    name: "Bob Rossians",
+                    points: 0
                 }
-            ]
+            ],
+            room: 'things',
+            joined: false
+        }
+        this.joinSuccess = this.joinSuccess.bind(this);
+        this.joinRoom = this.joinRoom.bind(this);
+
+    }
+
+
+    async componentDidMount() {
+        await this.setState({
+            room: this.props.room,
+            qa: this.props.qa
+        })
+        this.socket = io('http://localhost:4000');
+        await this.joinRoom()
+        await this.socket.on('room joined', data => {
+            this.joinSuccess()
+        })
+    }
+
+
+
+    joinRoom() {
+        if (this.state.room) {
+            this.socket.emit('join room', {
+                room: this.props.room
+            })
         }
     }
+    joinSuccess() {
+        this.setState({ joined: true })
+    }
+
 
     handleScore = (x, i) => {
         let newState = Object.assign({}, this.state);
@@ -137,9 +70,13 @@ class GameControl extends Component {
 
 
     render() {
-        let cOne = this.state.qa.filter(el => el.catagory === 1)
-        let cTwo = this.state.qa.filter(el => el.catagory === 2)
-        let cThree = this.state.qa.filter(el => el.catagory === 3)
+        let cOne = this.props.qa.filter(el => el.catagoryNum === 1)
+        let cTwo = this.props.qa.filter(el => el.catagoryNum === 2)
+        let cThree = this.props.qa.filter(el => el.catagoryNum === 3)
+        console.log(this.props)
+        console.log(this.state)
+        console.log(cOne)
+
         return (
             <div className='gcControlContainer'>
 
@@ -149,7 +86,7 @@ class GameControl extends Component {
 
                     <div className="gcColumn">
 
-                        <h2>{cOne[0].cn}</h2>
+                        <h2>{cOne[0].catagory}</h2>
                         {cOne.map((qa, i) => (
                             <ControlModal key={i} catagory={cOne[0].cn} qa={qa} handleScore={this.handleScore} i={i + 1} />
 
@@ -157,7 +94,7 @@ class GameControl extends Component {
                     </div>
                     <div className="gcColumn">
 
-                        <h2>{cTwo[0].cn}</h2>
+                        <h2>{cTwo[0].catagory}</h2>
                         {cTwo.map((qa, i) => (
                             <ControlModal key={i} catagory={cTwo[0].cn} qa={qa} handleScore={this.handleScore} i={i + 1} />
 
@@ -165,7 +102,7 @@ class GameControl extends Component {
                     </div>
                     <div className="gcColumn">
 
-                        <h2>{cThree[0].cn}</h2>
+                        <h2>{cThree[0].catagory}</h2>
                         {cThree.map((qa, i) => (
                             <ControlModal key={i} catagory={cThree[0].cn} qa={qa} handleScore={this.handleScore} i={i + 1} />
 
@@ -173,7 +110,7 @@ class GameControl extends Component {
                     </div>
                 </div>
                 <div className='gcTeamContainer'>
-                    <div className='gcTeam1'>
+                    {/* <div className='gcTeam1'>
                         <div className='gcName'>
                             {this.state.team[0].name}
                         </div>
@@ -188,8 +125,11 @@ class GameControl extends Component {
                         <div className='gcScore'>
                             {this.state.team[1].points}
                         </div>
-                    </div>
-                    {/* </div> */}
+                    </div> */}
+                    {this.state.team.map((team, i) => (
+                        <TeamDisplay key={i} team={team} />
+
+                    ))}
                 </div>
             </div>
         )
@@ -201,5 +141,13 @@ class GameControl extends Component {
 
 }
 
+function mapStateToProps(state) {
+    return {
+        gameName: state.gameTitle,
+        qa: state.qa,
+        team: state.teams,
+        room: state.roomName
+    }
+}
 
-export default GameControl;
+export default connect(mapStateToProps, { updateTeams, updateRoomName, updateGameTitle, updateQa })(GameControl)

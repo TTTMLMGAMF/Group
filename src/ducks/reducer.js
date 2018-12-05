@@ -3,7 +3,113 @@ const initialState = {
     roomName: '',
     timer: 0,
     gameTitle: 'test',
-    qa: [],
+    qa: [
+        {
+            question: "How many cups of sugar does it take to get to the moon?",
+            answer: "3",
+            catagoryNum: 1,
+            catagory: "Things",
+            points: 100
+        },
+        {
+            question: "How many cups of salt does it take to get to the moon?",
+            answer: "17",
+            catagoryNum: 1,
+            catagory: "Things",
+            points: 200
+        },
+        {
+            question: "How do you code?",
+            answer: "Yes",
+            catagoryNum: 1,
+            catagory: "Things",
+            points: 300
+        },
+        {
+            question: "How do you code?",
+            answer: "Yes",
+            catagoryNum: 1,
+            catagory: "Things",
+            points: 400
+        },
+        {
+            question: "How do you code?",
+            answer: "Yes",
+            catagoryNum: 1,
+            catagory: "Things",
+            points: 500
+        },
+        {
+            question: "What is the best cohort ever?",
+            answer: "42",
+            catagoryNum: 2,
+            catagory: "Stuff",
+            points: 100
+        },
+        {
+            question: "What is the best cohort ever?",
+            answer: "42",
+            catagoryNum: 2,
+            catagory: "Stuff",
+            points: 200
+        },
+        {
+            question: "What is the best cohort ever?",
+            answer: "42",
+            catagoryNum: 2,
+            catagory: "Stuff",
+            points: 300
+        },
+        {
+            question: "What is the best cohort ever?",
+            answer: "42",
+            catagoryNum: 2,
+            catagory: "Stuff",
+            points: 400
+        },
+        {
+            question: "What is the best cohort ever?",
+            answer: "42",
+            catagoryNum: 2,
+            catagory: "Stuff",
+            points: 500
+        },
+        {
+            question: "Can we actually make this game?",
+            answer: "Try again later",
+            catagoryNum: 3,
+            catagory: "Other",
+            points: 100
+        },
+        {
+            question: "Can you print Hello World?",
+            answer: "No",
+            catagoryNum: 3,
+            catagory: "Other",
+            points: 200
+        },
+        {
+            question: "Can we actually make this game?",
+            answer: "Try again later",
+            catagoryNum: 3,
+            catagory: "Other",
+            points: 300
+        },
+        {
+            question: "Can we actually make this game?",
+            answer: "Try again later",
+            catagoryNum: 3,
+            catagory: "Other",
+            points: 400
+        },
+        {
+            question: "Can we actually make this game?",
+            answer: "Try again later",
+            catagoryNum: 3,
+            catagory: "Other",
+            points: 500
+        }
+    ],
 }
 
 const UPDATE_TEAMS = 'UPDATE_TEAMS';
