@@ -1,16 +1,26 @@
 import React, { Component } from "react";
 import { Modal, Button, Card, Icon, Avatar } from "antd";
 import "../../scss/App.scss";
+import axios from 'axios'
 const {Meta} = Card; //This is for the antD "card" title and game info
+
+
 
 class GameList
  extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false
+      myGames: [],
     };
   }
+
+  async componentDidMount(){
+    let res = axios.get('/api/games');
+    this.setState({myGames: res.data})
+    console.log(this.state)
+  }
+
   showModal = () => {
     this.setState({
       visible: true

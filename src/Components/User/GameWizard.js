@@ -87,7 +87,7 @@ export default class GameWizard extends Component {
     event.preventDefault()
     axios.post('/api/game', this.state)
     this.setState({
-      categoryNum: this.state.catergoryNum++,
+      categoryNum: this.state.categoryNum++,
       category: '',
       q1: '',
       a1: '',
