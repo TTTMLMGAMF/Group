@@ -43,7 +43,7 @@ class GameList
         </div>
       )
     })
-//I'm a comment
+
     return (
       <div>
 
