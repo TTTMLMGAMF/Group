@@ -29,6 +29,7 @@ class ControlModal extends Component {
         this.socket.on('room joined', data => {
             this.joinSuccess()
         })
+
     }
 
 
