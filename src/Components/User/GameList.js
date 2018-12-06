@@ -31,7 +31,14 @@ class GameList
 
 
   render() {
-    
+    console.log(this.props)
+    this.props.games.map(game =>{
+      return (
+        <div>
+          
+        </div>
+      )
+    })
 
     return (
       <div>
