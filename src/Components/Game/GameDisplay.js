@@ -175,5 +175,5 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { updateTeam, updateRoomName, updateGameTitle, updateQa })(GameDisplay)
+export default connect(mapStateToProps, { updateTeams, updateRoomName, updateGameTitle, updateQa })(GameDisplay)
 

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Modal, Button, Form, Input } from 'antd';
-import '../../scss/App.scss';
 import axios from 'axios';
+import '../../scss/App.scss';
+import {withRouter} from 'react-router-dom';
 
 const FormItem = Form.Item;
 
@@ -60,21 +61,22 @@ class NewUser extends Component {
         this.setState({ visible: false })
     }
 
-    handleSubmit = (e) => {
-        console.log('before', this.state)
+    handleSubmit = async (e) => {
+        // console.log('before', this.state)
         e.preventDefault();
-        this.props.form.validateFieldsAndScroll((err, values) => {
+        await this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
             }
-            this.setState({ email: values.username, password: values.password })
+            this.setState({ email: values.email, password: values.password })
         });
         const { email, password } = this.state;
         if (email && password) {
             axios.post('/auth/register', { email, password })
                 .then(res => {
+                    // console.log('THIS ONE RIGHT HERE:', res)
                     const user = res.data;
-                    if (user.id) {
+                    if (user) {
                         // this.props.updateUser(user);
                         this.props.history.push('/userhome')
                     } else {
@@ -89,21 +91,9 @@ class NewUser extends Component {
         setTimeout(() => {
             this.setState({ loading: false, visible: false });
         }, 3000);
-        console.log('after: ', this.state)
+        // console.log('after: ', this.state)
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.form.validateFieldsAndScroll((err, values) => {
-            if (!err) {
-                console.log('Received values of form: ', values);
-            }
-        });
-        this.setState({ loading: true });
-        setTimeout(() => {
-            this.setState({ loading: false, visible: false });
-        }, 3000);
-    }
 
     render() {
 
@@ -142,6 +132,7 @@ class NewUser extends Component {
                     visible={this.state.visible}
                     // onOk={this.handleOk}
                     onCancel={this.handleCancel}
+                    onSubmit={this.handleSubmit}
                     footer={null}
                 >
                     <Form onSubmit={this.handleSubmit}>
@@ -188,7 +179,7 @@ class NewUser extends Component {
                             )}
                         </FormItem>
                         <FormItem {...tailFormItemLayout}>
-                            <Button type="primary" htmlType="submit" loading={this.state.loading}>Register</Button>
+                            <Button type="primary" htmlType="submit" loading={this.state.loading} onClick={this.handleSubmit}>Register</Button>
                         </FormItem>
                     </Form>
                 </Modal>
@@ -199,4 +190,4 @@ class NewUser extends Component {
 
 const WrappedRegistrationForm = Form.create()(NewUser);
 
-export default WrappedRegistrationForm
+export default withRouter(WrappedRegistrationForm)

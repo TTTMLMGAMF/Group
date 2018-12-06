@@ -42,17 +42,20 @@ app.post(`/auth/register`, authCtrl.register);
 app.post(`/auth/login`, authCtrl.login);
 app.delete(`/auth/logout`, authCtrl.logout);
 
-app.get(`/api/games/:account-id`, endpointCtrl.retrieveGames)
-app.get(`/api/accountInfo/:account-id`, endpointCtrl.retrieveAccountInfo)
-app.put(`/api/class/:classroom-id`, endpointCtrl.updateClassroom)
-app.delete(`/api/class/:classroom-id`, endpointCtrl.removeClassroom)
+app.get(`/api/games/:account_id`, endpointCtrl.retrieveGames)
+app.get(`/api/accountInfo/:account_id`, endpointCtrl.retrieveAccountInfo)
+app.put(`/api/class/:classroom_id`, endpointCtrl.updateClassroom)
+app.delete(`/api/class/:classroom_id`, endpointCtrl.removeClassroom)
 app.post(`/api/students`, endpointCtrl.addStudents);
 app.get(`/api/game/:game-id`, endpointCtrl.getGame);
-app.post('/api/game', (req, res) => {
+app.post('/api/creategame', (req, res) => {
     games[req.body.room + '_qa'] = { ...dummyData, room: req.body.room }
     res.end()
 })
 app.delete(`/api/game/:game-id`, endpointCtrl.deleteGame);
+
+
+app.post(`/api/game`, endpointCtrl.addGame);
 
 
 

@@ -2,21 +2,35 @@ import React, { Component } from "react";
 import Axios from 'axios'
 import { Modal, Radio, Input, InputNumber, Tag } from "antd";
 import "../../scss/App.scss";
+// import { connect } from "http2";
+import { connect } from "react-redux";
+import { v4 as randomString } from "uuid";
+import Team from "./Team";
+import { updateTimer, updateRoomName, updateTeams } from '../../ducks/reducer';
 
 const RadioGroup = Radio.Group;
 
-export default class StartGame extends Component {
+export class StartGame extends Component {
   constructor(props) {
     super(props);
     this.state = {
       visible: false,
-      value: 2
+      numOfTeams: 0,
+      teams: [],
+      roomName: "",
+      timer: 30000
     };
   }
 
   showModal = () => {
     this.setState({
       visible: true
+    });
+    // Here we need to generate a random string to use as a roomName
+    let random = `${randomString()}`;
+    let shortRandom = random.substring(0, 4);
+    this.setState({
+      roomName: shortRandom
     });
   };
 
@@ -27,6 +41,12 @@ export default class StartGame extends Component {
     this.setState({
       visible: false
     });
+    // This is where it needs to update redux with the local state
+    this.props.updateRoomName(this.state.roomName);
+    this.props.updateTeams(this.state.teams);
+    this.props.updateTimer(this.state.timer);
+    console.log(this.props)
+    console.log('this is state: ', this.state)
   };
 
   handleCancel = e => {
@@ -36,19 +56,34 @@ export default class StartGame extends Component {
     });
   };
 
-  onChange = e => {
-    console.log("radio checked", e.target.value);
+  handleNumberOfTeams = e => {
+    this.setState({ teams: [] });
     this.setState({
-      value: e.target.value
+      teams: Array(e.target.value).fill({ teamName: "", score: 0 })
     });
   };
 
+  handleTeam = (e, index) => {
+    let stateCopy = Object.assign({}, this.state);
+    stateCopy.teams = stateCopy.teams.slice();
+    stateCopy.teams[index] = Object.assign({}, stateCopy.teams[index]);
+    stateCopy.teams[index].teamName = e.target.value;
+    this.setState(stateCopy);
+  };
 
-  handleTimeChange(value) {
-    console.log('changed', value);
-  }
+  handleTimeChange = value => {
+    this.setState({
+      timer: value * 1000
+    });
+  };
 
   render() {
+    let teamsNames = this.state.teams.map((team, i) => {
+      return (
+        <Team key={i} index={i} team={team} handleTeam={this.handleTeam} />
+      );
+    });
+
     return (
       <div>
         <button type="primary" onClick={this.showModal}>
@@ -56,27 +91,35 @@ export default class StartGame extends Component {
         </button>
         <div>
           <Modal
-            title="Game Setup"
+            title={this.props.gameTitle}
             visible={this.state.visible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
           >
             <h1>
               How Many Teams
-              <RadioGroup onChange={this.onChange} value={this.state.value}>
+              <RadioGroup
+                onChange={this.handleNumberOfTeams}
+                value={this.state.value}
+              >
                 <Radio value={2}>2</Radio>
                 <Radio value={3}>3</Radio>
                 <Radio value={4}>4</Radio>
               </RadioGroup>
             </h1>
-            <Input placeholder="Team 1" />
-            <Input placeholder="Team 2" />
-            <Input placeholder="Team 3" />
-            <Input placeholder="Team 4" />
-            <h1>Game Code: <Tag color="#2db7f5">#2db7f5</Tag> </h1>
+            {teamsNames}
+            <h1>
+              Game Code: <Tag color="#2db7f5">{this.state.roomName}</Tag>{" "}
+            </h1>
             <h1>
               Question Timer (seconds):
-              <InputNumber min={10} max={360} defaultValue={30} step={5} onChange={this.handleTimeChange} />
+              <InputNumber
+                min={10}
+                max={360}
+                defaultValue={30}
+                step={5}
+                onChange={this.handleTimeChange}
+              />
             </h1>
           </Modal>
         </div>
@@ -84,3 +127,10 @@ export default class StartGame extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  const { gameTitle } = state;
+  return { gameTitle };
+}
+
+export default connect(mapStateToProps, { updateRoomName, updateTeams, updateTimer })(StartGame);
