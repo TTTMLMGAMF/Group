@@ -17,7 +17,7 @@ export default class SideDrawer extends Component {
 
   render() {
     return (
-      <Layout style={{ minHeight: '80vh' }}>
+      <Layout style={{ minHeight: '100vh' }}>
         <Sider
           collapsible
           collapsed={this.state.collapsed}
