@@ -117,7 +117,7 @@ const UPDATE_ROOMNAME = 'UPDATE_ROOMNAME';
 const UPDATE_TIMER = 'UPDATE_TIMER';
 const UPDATE_GAMETITLE = 'UPDATE_GAMETITLE';
 const UPDATE_QA = 'UPDATE_QA';
-
+const LOGOUT = 'LOGOUT';
 
 
 export function updateTeams(data) {
@@ -155,6 +155,13 @@ export function updateQa(data) {
     }
 }
 
+export function logout(data) {
+    return {
+        type: LOGOUT,
+        payload: data
+    }
+}
+
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
@@ -172,6 +179,9 @@ export default function reducer(state = initialState, action) {
 
         case UPDATE_QA:
             return Object.assign({}, state, { qa: action.payload });
+
+        case LOGOUT:
+            return Object.assign({}, initialState, {initialState: action.payload})
 
         default:
             return state
