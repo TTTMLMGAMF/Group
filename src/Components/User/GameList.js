@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Modal, Button, Card, Icon, Avatar } from "antd";
 import "../../scss/App.scss";
+import Axios from "axios";
 const {Meta} = Card; //This is for the antD "card" title and game info
 
 class GameList
@@ -29,6 +30,9 @@ class GameList
     });
   };
 
+  // handleDelete = () => {
+  //   Axios.delete(`/api/game/${game_id}`)
+  // };
 
   render() {
     
