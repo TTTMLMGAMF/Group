@@ -42,6 +42,7 @@ export class StartGame extends Component {
     this.props.updateTeams(this.state.teams);
     this.props.updateTimer(this.state.timer);
     console.log(this.props)
+    console.log('this is state: ',this.state)
   };
 
   handleCancel = e => {
