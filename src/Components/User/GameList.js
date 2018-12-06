@@ -40,7 +40,10 @@ class GameList
           <Card
             style={{ width: 300 }}
             cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
-            actions={[<Icon type="caret-right" />, <Icon type="edit" />, <Icon type="delete" />]}
+            actions={[
+              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}}> <Icon type="caret-right" /></button>, 
+              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}}><Icon type="edit" /></button>, 
+              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}}><Icon type="delete" /></button>]}
             hoverable>
           <Meta title="GAME NAME/TITLE"
                 description="Game description"/>
