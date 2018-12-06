@@ -110,6 +110,7 @@ const initialState = {
             points: 500
         }
     ],
+    visible: false
 }
 
 const UPDATE_TEAMS = 'UPDATE_TEAMS';
@@ -118,6 +119,7 @@ const UPDATE_TIMER = 'UPDATE_TIMER';
 const UPDATE_GAMETITLE = 'UPDATE_GAMETITLE';
 const UPDATE_QA = 'UPDATE_QA';
 const LOGOUT = 'LOGOUT';
+const NAVCREATEGAME = 'NAVCREATEGAME';
 
 
 export function updateTeams(data) {
@@ -162,6 +164,13 @@ export function logout(data) {
     }
 }
 
+export function navCreateGame(data) {
+    return {
+        type: NAVCREATEGAME,
+        payload: data
+    }
+}
+
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
@@ -181,7 +190,10 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { qa: action.payload });
 
         case LOGOUT:
-            return Object.assign({}, initialState, {initialState: action.payload})
+            return Object.assign({}, initialState, { initialState: action.payload })
+
+        case NAVCREATEGAME:
+            return Object.assign({}, state, { visible:action.payload })
 
         default:
             return state
