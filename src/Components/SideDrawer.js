@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './../scss/App.scss';
 // import GameWizard from './User/GameWizard';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import Axios from 'axios';
 import {logout} from '../ducks/reducer';
@@ -23,7 +23,7 @@ class SideDrawer extends Component {
   handleLogout = () => {
     Axios.delete('/auth/logout')
     .then( () => {
-      // this.props.logout()
+      this.props.logout()
       this.props.history.push('/')
     })
   }
@@ -49,7 +49,8 @@ class SideDrawer extends Component {
             </Menu.Item>
             <Menu.Item key="3">
               <Icon type="plus" />
-              <span>CREATE GAME</span>
+              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}} > <Icon type="logout" />
+              <span>CREATE GAME</span></button>
             </Menu.Item>
             {/* <Menu.Item key="4">
               <Icon type="setting" />
@@ -58,9 +59,7 @@ class SideDrawer extends Component {
             <Menu.Item key="5" >
              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}} onClick={this.handleLogout}> <Icon type="logout" />
               <span>LOGOUT</span></button>
-            </Menu.Item>
-
-            
+            </Menu.Item>           
           </Menu>
         </Sider>
         
@@ -68,10 +67,12 @@ class SideDrawer extends Component {
     );
   }
 }
+
+
 function mapStateToProps(state) {
   return {
       state
   }
 }
 
-export default connect(mapStateToProps,{logout})(SideDrawer)
+export default withRouter(connect(mapStateToProps,{logout})(SideDrawer))
