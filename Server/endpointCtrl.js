@@ -57,6 +57,7 @@ module.exports = {
       q5,
       a5
     } = req.body;
+    let {account_id} = req.session.user;
     console.log("CategoryNumber!!!: ", categoryNum);
     const db = req.app.get("db");
     let game = await db.add_game([
@@ -64,7 +65,7 @@ module.exports = {
       imageUrl,
       subject,
       category,
-      1
+      account_id
     ]);
     console.log("this is the game info: ", game);
     let qas = await db.add_QAs([

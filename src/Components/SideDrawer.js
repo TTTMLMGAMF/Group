@@ -49,7 +49,8 @@ class SideDrawer extends Component {
             </Menu.Item>
             <Menu.Item key="3">
               <Icon type="plus" />
-              <span>CREATE GAME</span>
+              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}} > <Icon type="logout" />
+              <span>CREATE GAME</span></button>
             </Menu.Item>
             {/* <Menu.Item key="4">
               <Icon type="setting" />
@@ -58,9 +59,7 @@ class SideDrawer extends Component {
             <Menu.Item key="5" >
              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}} onClick={this.handleLogout}> <Icon type="logout" />
               <span>LOGOUT</span></button>
-            </Menu.Item>
-
-            
+            </Menu.Item>           
           </Menu>
         </Sider>
         
