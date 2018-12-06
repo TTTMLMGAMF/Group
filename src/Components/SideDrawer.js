@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
 import './../scss/App.scss';
+// import GameWizard from './User/GameWizard';
+import { Link } from 'react-router-dom';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import Axios from 'axios';
+import {logout} from '../ducks/reducer';
+import {connect} from 'react-redux';
 
-const { Header, Content, Footer, Sider } = Layout;
-const SubMenu = Menu.SubMenu;
+const { Sider } = Layout;
+// const SubMenu = Menu.SubMenu;
 
-export default class SideDrawer extends Component {
+class SideDrawer extends Component {
   state = {
     collapsed: true,
   };
@@ -13,6 +18,14 @@ export default class SideDrawer extends Component {
   onCollapse = (collapsed) => {
     console.log(collapsed);
     this.setState({ collapsed });
+  }
+
+  handleLogout = () => {
+    Axios.delete('/auth/logout')
+    .then( () => {
+      // this.props.logout()
+      this.props.history.push('/')
+    })
   }
 
   render() {
@@ -27,24 +40,24 @@ export default class SideDrawer extends Component {
           <div className="logo" />
           <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
             <Menu.Item key="1">
-            <Icon type="home" />
-              <span>HOME</span>
+            <Link to='/'><Icon type="home" />
+              <span>HOME</span></Link>
             </Menu.Item>
             <Menu.Item key="2">
-              <Icon type="user" />
-              <span>USER HOME</span>
+              <Link to='/userhome'><Icon type="user" />
+              <span>USER HOME</span></Link>
             </Menu.Item>
             <Menu.Item key="3">
               <Icon type="plus" />
               <span>CREATE GAME</span>
             </Menu.Item>
-            <Menu.Item key="4">
+            {/* <Menu.Item key="4">
               <Icon type="setting" />
               <span>SETTINGS</span>
-            </Menu.Item>
-            <Menu.Item key="5">
-              <Icon type="logout" />
-              <span>LOGOUT</span>
+            </Menu.Item> */}
+            <Menu.Item key="5" >
+             <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}} onClick={this.handleLogout}> <Icon type="logout" />
+              <span>LOGOUT</span></button>
             </Menu.Item>
 
             
@@ -55,3 +68,10 @@ export default class SideDrawer extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+      state
+  }
+}
+
+export default connect(mapStateToProps,{logout})(SideDrawer)

@@ -40,9 +40,11 @@ module.exports = {
             })
     },
     logout: (req, res) => {
+        // console.log('req:', req)
         if (req.session.user) {
             req.session.destroy();
             res.status(200).send({ message: "Successfully logged out." })
+            // console.log(req.session.user)
         }
     }
 }
