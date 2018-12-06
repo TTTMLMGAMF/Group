@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { Modal, Button, Form, Input, Upload, message, Icon } from 'antd';
 import "../../scss/App.scss";
-import Category from './Category'
-import cloneDeep from 'lodash/cloneDeep'
-import axios from 'axios'
+import Category from './Category';
+import cloneDeep from 'lodash/cloneDeep';
+import axios from 'axios';
+import {connect} from 'react-redux';
+import {navCreateGame} from '../../ducks/reducer';
 
 const props = {
   name: 'file',
@@ -24,7 +26,7 @@ const props = {
 };
 
 
-export default class GameWizard extends Component {
+class GameWizard extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -224,3 +226,11 @@ export default class GameWizard extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    state
+  }
+}
+
+export default connect(mapStateToProps,{navCreateGame})(GameWizard)

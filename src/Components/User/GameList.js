@@ -40,7 +40,7 @@ class GameList
           <Card
             style={{ width: 300 }}
             cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
-            actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}
+            actions={[<Icon type="caret-right" />, <Icon type="edit" />, <Icon type="delete" />]}
             hoverable>
           <Meta title="GAME NAME/TITLE"
                 description="Game description"/>
@@ -48,26 +48,11 @@ class GameList
           <Card
             style={{ width: 300 }}
             cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
-            actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}>
+            actions={[<Icon type="caret-right" />, <Icon type="edit" />, <Icon type="delete" />]}>
             <Meta title="GAME NAME/TITLE"
                 description="Game description"/>
           </Card>
-          <Card
-            style={{ width: 300 }}
-            cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
-            actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}>
-            <Meta title="GAME NAME/TITLE"
-                description="Game description"/>
-          </Card>
-          <Card
-            style={{ width: 300 }}
-            cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
-            actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}>
-            <Meta title="GAME NAME/TITLE"
-                description="Game description"/>
-          </Card>
-
-        
+                 
           {/* <Card title="Card title">Card content</Card> */}
         </div>
       </div>
