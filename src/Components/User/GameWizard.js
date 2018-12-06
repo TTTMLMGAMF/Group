@@ -84,10 +84,12 @@ export default class GameWizard extends Component {
   }
 
   submitCategoryHandler = (event) => {
-    event.preventDefault()
+    // event.preventDefault()
     axios.post('/api/game', this.state)
     this.setState({
-      categoryNum: this.state.catergoryNum++,
+      categoryNum: this.state.categoryNum + 1
+    })
+    this.setState({
       category: '',
       q1: '',
       a1: '',
@@ -100,7 +102,9 @@ export default class GameWizard extends Component {
       q5: '',
       a5: '',
     });
-    
+    if(this.state.categoryNum === 3){
+      this.setState({visible: false})
+    }
     
   }
   
@@ -200,7 +204,7 @@ export default class GameWizard extends Component {
               value={this.state.a4}
               onChange={this.handleInputChange} />
             <p>QUESTION 5:</p><Input placeholder='most difficult question here'
-              name='q5_q'
+              name='q5'
               type='text'
               value={this.state.q5}
               onChange={this.handleInputChange} />
