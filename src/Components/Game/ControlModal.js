@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Modal, Button } from 'antd';
 import io from 'socket.io-client';
 import { connect } from 'react-redux'
-import { updateTeam, updateRoomName, updateGameTitle, updateQa } from '../../ducks/reducer'
+import { updateTeam, updateRoomName, updateGameTitle } from '../../ducks/reducer'
 import '../../scss/App.scss'
 
 
@@ -10,16 +10,19 @@ class ControlModal extends Component {
     constructor() {
         super();
         this.state = {
+            team: [],
             disabled: false,
             visible: false,
             room: 'things',
-            joined: false
+            joined: false,
+            index: 0
         }
     }
 
     async componentDidMount() {
         await this.setState({
-            room: this.props.room
+            room: this.props.room,
+            team: this.props.team
         })
         this.socket = io('http://localhost:4000');
         this.joinRoom()
@@ -27,7 +30,6 @@ class ControlModal extends Component {
             this.joinSuccess()
         })
     }
-
 
 
     joinRoom() {
@@ -55,9 +57,13 @@ class ControlModal extends Component {
 
     handleAdd = (i) => {
         this.props.handleScore(this.props.qa.points, i)
-        this.setState({ visible: false, disabled: true });
+        this.props.handleDisabled(i)
+        this.setState({ visible: false });
+
         this.socket.emit('question close', {
-            room: this.state.room
+            room: this.state.room,
+            team: this.state.team,
+            disabled: true
         })
 
     }
@@ -69,33 +75,35 @@ class ControlModal extends Component {
     handleCancel = () => {
         this.setState({ visible: false })
         this.socket.emit('question close', {
-            room: this.state.room
+            room: this.state.room,
+            team: this.state.team
         })
     }
 
     render() {
-        const { visible, disabled } = this.state;
-        // console.log(this.props.qa)
+        const { visible } = this.state;
+        console.log(this.props)
         return (
             <div>
 
-                <button className='gcBtn' disabled={disabled} type="primary" onClick={this.showModal}>
+                <button className='gcBtn' disabled={this.props.qa.disabled} type="primary" onClick={this.showModal}>
                     Question: {this.props.i}
                 </button>
                 <Modal
                     visible={visible}
-                    title={this.props.catagory}
+                    title={this.props.category}
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                     centered={true}
                     footer={[
                         <div>
-                            <p>Team 1</p>
-                            <Button key="team1.1" onClick={() => this.handleMinus(0)}>-</Button>
-                            <Button key="team1.2" type="primary" onClick={() => this.handleAdd(0)}> + </Button>
-                            <p>Team 2</p>
-                            <Button key="team2.1" onClick={() => this.handleMinus(1)}> - </Button>
-                            <Button key="team2.2" type="primary" onClick={() => this.handleAdd(1)}> + </Button>
+                            {this.state.team.map((team, i) => (
+                                <div key={i}>
+                                    <p>{team.name}</p>
+                                    <Button key={i + 200} onClick={() => this.handleMinus(i)} > - </Button>
+                                    <Button key={i + 100} type='primary' onClick={() => this.handleAdd(i)} > + </Button>
+                                </div>
+                            ))}
                         </div>
                     ]}
                 >

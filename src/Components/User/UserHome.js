@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, Button, Card, Icon, Avatar, Form } from "antd";
+// import { Modal, Button, Card, Icon, Avatar, Form } from "antd";
 import StartGame from "./StartGame";
 import "../../scss/App.scss";
 import GameList from "./GameList";
@@ -35,7 +35,7 @@ class UserHome extends Component {
   // const { Meta } = Card;
 
   render() {
-    
+
 
     return (
       <div>
@@ -51,7 +51,7 @@ class UserHome extends Component {
         </div>
         <div>
           <h3>CREATE NEW GAME</h3>
-          <GameWizard/>
+          <GameWizard />
         </div>
         <div>
           <StartGame />

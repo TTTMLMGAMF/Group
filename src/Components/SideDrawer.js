@@ -1,9 +1,12 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './../scss/App.scss';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Layout, Menu, Icon } from 'antd';
+// Breadcrumb,
 
-const { Header, Content, Footer, Sider } = Layout;
-const SubMenu = Menu.SubMenu;
+const { Sider } = Layout;
+// Header, Content, Footer,
+
+// const SubMenu = Menu.SubMenu;
 
 export default class SideDrawer extends Component {
   state = {
@@ -22,12 +25,12 @@ export default class SideDrawer extends Component {
           collapsible
           collapsed={this.state.collapsed}
           onCollapse={this.onCollapse}
-          
+
         >
           <div className="logo" />
           <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
             <Menu.Item key="1">
-            <Icon type="home" />
+              <Icon type="home" />
               <span>HOME</span>
             </Menu.Item>
             <Menu.Item key="2">
@@ -47,10 +50,10 @@ export default class SideDrawer extends Component {
               <span>LOGOUT</span>
             </Menu.Item>
 
-            
+
           </Menu>
         </Sider>
-        
+
       </Layout>
     );
   }

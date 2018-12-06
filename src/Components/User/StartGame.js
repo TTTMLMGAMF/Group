@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Axios from 'axios'
 import { Modal, Radio, Input, InputNumber, Tag } from "antd";
 import "../../scss/App.scss";
 
@@ -21,6 +22,8 @@ export default class StartGame extends Component {
 
   handleOk = e => {
     console.log(e);
+    Axios.post('/api/game', { room: "Heman" })
+      .then(() => this.props.history.push('/gamecontrol'))
     this.setState({
       visible: false
     });
@@ -41,8 +44,8 @@ export default class StartGame extends Component {
   };
 
 
-  handleTimeChange(value){
-      console.log('changed', value);
+  handleTimeChange(value) {
+    console.log('changed', value);
   }
 
   render() {
