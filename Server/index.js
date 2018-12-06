@@ -43,12 +43,13 @@ app.delete(`/auth/logout`, authCtrl.logout);
 
 app.get(`/api/games`, endpointCtrl.retrieveGames)
 app.get(`/api/accountInfo/:account_id`, endpointCtrl.retrieveAccountInfo)
-app.put(`/api/class/:classroom_id`, endpointCtrl.updateClassroom)
-app.delete(`/api/class/:classroom_id`, endpointCtrl.removeClassroom)
-app.post(`/api/students`, endpointCtrl.addStudents);
+// app.put(`/api/class/:classroom_id`, endpointCtrl.updateClassroom)
+// app.delete(`/api/class/:classroom_id`, endpointCtrl.removeClassroom)
+// app.post(`/api/students`, endpointCtrl.addStudents);
 app.get(`/api/game/:game_id`, endpointCtrl.getGame);
 app.delete(`/api/game/:game_id`, endpointCtrl.deleteGame);
 app.post(`/api/game`, endpointCtrl.addGame);
+app.put(`/api/game/:game_id`, endpointCtrl.addCategories);
 
 const io = socket(app.listen(SERVER_PORT, () => {
     console.log(`Port ${SERVER_PORT} is ready to teach!!!`)

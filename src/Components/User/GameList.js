@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { Modal, Button, Card, Icon, Avatar } from "antd";
 import "../../scss/App.scss";
+<<<<<<< HEAD
 import axios from 'axios'
+=======
+import Axios from "axios";
+>>>>>>> master
 const {Meta} = Card; //This is for the antD "card" title and game info
 
 
@@ -39,9 +43,19 @@ class GameList
     });
   };
 
+  // handleDelete = () => {
+  //   Axios.delete(`/api/game/${game_id}`)
+  // };
 
   render() {
-    
+    console.log(this.props)
+    this.props.games.map(game =>{
+      return (
+        <div>
+          
+        </div>
+      )
+    })
 
     return (
       <div>
@@ -50,7 +64,10 @@ class GameList
           <Card
             style={{ width: 300 }}
             cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
-            actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}
+            actions={[
+              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}}> <Icon type="caret-right" /></button>, 
+              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}}><Icon type="edit" /></button>, 
+              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}}><Icon type="delete" /></button>]}
             hoverable>
           <Meta title="GAME NAME/TITLE"
                 description="Game description"/>
@@ -58,26 +75,11 @@ class GameList
           <Card
             style={{ width: 300 }}
             cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
-            actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}>
+            actions={[<Icon type="caret-right" />, <Icon type="edit" />, <Icon type="delete" />]}>
             <Meta title="GAME NAME/TITLE"
                 description="Game description"/>
           </Card>
-          <Card
-            style={{ width: 300 }}
-            cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
-            actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}>
-            <Meta title="GAME NAME/TITLE"
-                description="Game description"/>
-          </Card>
-          <Card
-            style={{ width: 300 }}
-            cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
-            actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}>
-            <Meta title="GAME NAME/TITLE"
-                description="Game description"/>
-          </Card>
-
-        
+          
           {/* <Card title="Card title">Card content</Card> */}
         </div>
       </div>
