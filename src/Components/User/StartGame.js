@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, Radio, Input, InputNumber, Tag } from "antd";
+import { Modal, Radio, InputNumber, Tag, Icon } from "antd";
 import "../../scss/App.scss";
 // import { connect } from "http2";
 import { connect } from "react-redux";
@@ -15,6 +15,7 @@ export class StartGame extends Component {
     this.state = {
       visible: false,
       numOfTeams: 0,
+      value: 0, //trying to get the radio buttons to fill in when selected
       teams: [],
       roomName: "",
       timer: 30000
@@ -53,7 +54,7 @@ export class StartGame extends Component {
   };
 
   handleNumberOfTeams = e => {
-    this.setState({ teams: [] });
+    this.setState({ teams: [], value: e.target.value });
     this.setState({
       teams: Array(e.target.value).fill({ teamName: "", score: 0 })
     });
@@ -74,6 +75,7 @@ export class StartGame extends Component {
   };
 
   render() {
+    console.log(this.props);
     let teamsNames = this.state.teams.map((team, i) => {
       return (
         <Team key={i} index={i} team={team} handleTeam={this.handleTeam} />
@@ -82,8 +84,8 @@ export class StartGame extends Component {
 
     return (
       <div>
-        <button type="primary" onClick={this.showModal}>
-          Set up Game
+        <button type="primary" onClick={this.showModal} style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}}>
+          <Icon type="caret-right"/> 
         </button>
         <div>
           <Modal

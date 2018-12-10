@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Modal, Button, Card, Icon, Avatar } from "antd";
 import "../../scss/App.scss";
 import Axios from "axios";
+import StartGame from "./StartGame";
 const {Meta} = Card; //This is for the antD "card" title and game info
 
 class GameList
@@ -45,9 +46,9 @@ class GameList
             style={{ width: 300 }}
             cover={<img alt="game image" src={game.image} />}
             actions={[
-              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}}> <Icon type="caret-right" /></button>, 
+              <StartGame/>,
               <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}}><Icon type="edit" /></button>, 
-              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}} onClick={this.handleDelete}><Icon type="delete" /></button>]}
+              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}} onClick={()=> console.log(this.props)}><Icon type="delete" /></button>]}
             hoverable>
           <Meta title={game.game_name}
                 description={game.subject}/>

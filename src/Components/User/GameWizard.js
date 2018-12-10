@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Modal, Button, Form, Input, Upload, message, Icon } from "antd";
 import "../../scss/App.scss";
-import Category from './Category';
-import cloneDeep from 'lodash/cloneDeep';
-import axios from 'axios';
-import {connect} from 'react-redux';
-import {navCreateGame} from '../../ducks/reducer';
+import Category from "./Category";
+import cloneDeep from "lodash/cloneDeep";
+import axios from "axios";
+import { connect } from "react-redux";
+import { navCreateGame } from "../../ducks/reducer";
 
 const props = {
   name: "file",
@@ -24,7 +24,6 @@ const props = {
     }
   }
 };
-
 
 class GameWizard extends Component {
   constructor(props) {
@@ -90,7 +89,9 @@ class GameWizard extends Component {
     // event.preventDefault()
     // If categoryNum === 1 hit post game
     this.state.categoryNum === 1
-      ? axios.post("/api/game", this.state).then(res => this.setState({game_id: res.data[0].game_id}))
+      ? axios
+          .post("/api/game", this.state)
+          .then(res => this.setState({ game_id: res.data[0].game_id }))
       : axios.put(`/api/game/` + this.state.game_id, this.state);
     // Else hit put game
     this.setState({
@@ -118,9 +119,18 @@ class GameWizard extends Component {
   render() {
     return (
       <div>
-        <Button type="primary" onClick={this.showModal}>
-          GAME WIZARD
-        </Button>
+        <button
+          type="primary"
+          onClick={this.showModal}
+          style={{
+            backgroundColor: "transparent",
+            border: "0px",
+            paddingLeft: "0"
+          }}
+        >
+          <Icon type="plus" />
+          <span>CREATE GAME</span>
+        </button>
         <div>
           {/* This is Ryan's */}
           <Modal
@@ -250,7 +260,10 @@ class GameWizard extends Component {
 function mapStateToProps(state) {
   return {
     state
-  }
+  };
 }
 
-export default connect(mapStateToProps,{navCreateGame})(GameWizard)
+export default connect(
+  mapStateToProps,
+  { navCreateGame }
+)(GameWizard);
