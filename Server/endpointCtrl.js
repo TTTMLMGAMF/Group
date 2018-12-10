@@ -57,9 +57,9 @@ module.exports = {
       q5,
       a5
     } = req.body;
+    let { account_id } = req.session.user;
     console.log("CategoryNumber!!!: ", categoryNum);
     const db = req.app.get("db");
-    let {account_id} = req.session.user;
     let game = await db.add_game([gameTitle, imageUrl, subject, category, account_id]);
     console.log("this is the game info: ", game);
     let qas = await db.add_QAs([
@@ -85,19 +85,19 @@ module.exports = {
     const db = req.app.get('db');
     let { game_id } = req.params;
     let {
-        category,
-        categoryNum,
-        q1,
-        a1,
-        q2,
-        a2,
-        q3,
-        a3,
-        q4,
-        a4,
-        q5,
-        a5
-      } = req.body;
+      category,
+      categoryNum,
+      q1,
+      a1,
+      q2,
+      a2,
+      q3,
+      a3,
+      q4,
+      a4,
+      q5,
+      a5
+    } = req.body;
     console.log("game ID worked!!", game_id);
     let addCategories = db.add_QAs([
       game_id,
@@ -119,7 +119,7 @@ module.exports = {
   deleteGame: async (req, res) => {
     console.log("Game will be EXTERRRMINATED!!!");
     const db = req.app.get("db");
-    console.log('PAY ATTENTION:',req.params)
+    console.log('PAY ATTENTION:', req.params)
     let { game_id, game_name } = req.params;
     // console.log('PAY ATTENTION:', game_id)
     let deleted = await db.delete_game([game_id]);
