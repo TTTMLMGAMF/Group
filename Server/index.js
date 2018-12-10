@@ -8,6 +8,7 @@ const authCtrl = require('./authCtrl');
 const socket = require('socket.io');
 const endpointCtrl = require('./endpointCtrl');
 const dummyData = require('./dummyData');
+const clondeDeep = require('clone-deep');
 
 
 const app = express();
@@ -48,12 +49,14 @@ app.put(`/api/class/:classroom_id`, endpointCtrl.updateClassroom)
 app.delete(`/api/class/:classroom_id`, endpointCtrl.removeClassroom)
 app.post(`/api/students`, endpointCtrl.addStudents);
 app.get(`/api/game/:game-id`, endpointCtrl.getGame);
+
 app.post('/api/creategame', (req, res) => {
-    games[req.body.room + '_qa'] = { ...dummyData, room: req.body.room }
+    games[req.body.room + '_qa'] = clondeDeep(dummyData)
+    games[req.body.room + '_qa'].room = req.body.room
     res.end()
 })
-app.delete(`/api/game/:game-id`, endpointCtrl.deleteGame);
 
+app.delete(`/api/game/:game-id`, endpointCtrl.deleteGame);
 
 app.post(`/api/game`, endpointCtrl.addGame);
 
@@ -74,14 +77,34 @@ io.on('connection', socket => {
         console.log('room joined', data.room)
         socket.join(data.room);
         io.to(data.room).emit('game state', games[data.room + '_qa'])
-        io.to(data.room).emit('room joined');
     })
 
+
     socket.on('question click', data => {
-        // console.log(data)
-        io.to(data.room).emit('question open', data)
+
+        let i = games[data.state.room + '_qa'].qa.findIndex(id => id.id === data.id)
+        games[data.state.room + '_qa'].qa[i].visible = true
+
+        io.to(data.state.room).emit('game state', games[data.state.room + '_qa'])
+        io.to(data.state.room).emit('question open')
     })
     socket.on('question close', data => {
-        io.to(data.room).emit('question close', data)
+        let i = games[data.state.room + '_qa'].qa.findIndex(id => id.id === data.id)
+        games[data.state.room + '_qa'].qa[i].visible = false
+        io.to(data.state.room).emit('game state', games[data.state.room + '_qa'])
+    })
+
+    socket.on('handle score', data => {
+        if (data.add === true) {
+            let e = games[data.state.room + '_qa'].qa.findIndex(id => id.id === data.id)
+            let newTeams = Object.assign({}, games[data.state.room + '_qa']);
+            newTeams.teams[data.i].points += data.state.qa[e].points
+            newTeams.qa[e].disabled = true
+        } else if (data.add === false) {
+            let e = games[data.state.room + '_qa'].qa.findIndex(id => id.id === data.id)
+            let newTeams = Object.assign({}, games[data.state.room + '_qa']);
+            newTeams.teams[data.i].points += - data.state.qa[e].points
+            socket.emit('game state', newTeams)
+        }
     })
 })

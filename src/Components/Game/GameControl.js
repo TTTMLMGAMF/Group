@@ -5,7 +5,7 @@ import TeamDisplay from './TeamDisplay';
 import SideDrawer from '../SideDrawer';
 import io from 'socket.io-client'
 import { connect } from 'react-redux'
-import { updateTeams, updateRoomName, updateGameTitle, updateQa } from '../../ducks/reducer'
+import { updateRoomName } from '../../ducks/reducer'
 import '../../scss/App.scss'
 
 
@@ -17,9 +17,7 @@ class GameControl extends Component {
             qa: [],
             team: [],
             room: 'things',
-            joined: false
         }
-        this.joinSuccess = this.joinSuccess.bind(this);
         this.joinRoom = this.joinRoom.bind(this);
 
     }
@@ -27,43 +25,60 @@ class GameControl extends Component {
 
     async componentDidMount() {
         await this.setState({
-            room: this.props.room,
-            qa: this.props.qa,
-            team: this.props.team
+            room: window.location.pathname.split('/')[2],
         })
         this.socket = io('http://localhost:4000');
         await this.joinRoom()
-        await this.socket.on('room joined', data => {
-            this.joinSuccess()
+        await this.socket.on('game state', data => {
+            this.setState({
+                qa: data.qa,
+                team: data.teams,
+                gameTitle: data.gameTitle
+            })
         })
-
     }
+
 
 
 
     joinRoom() {
         if (this.state.room) {
             this.socket.emit('join room', {
-                room: this.props.room
+                room: this.state.room
             })
         }
     }
-    joinSuccess() {
-        this.setState({ joined: true })
+
+    handleScore = (i, id, add) => {
+        this.socket.emit('handle score', {
+            state: this.state,
+            i: i,
+            id: id,
+            add: add
+        })
     }
 
-
-    handleScore = (x, i) => {
-        let newState = Object.assign({}, this.state);
-        newState.team[i].points += x;
-        this.setState(newState);
-        // this.props.updateTeam(this.state.team)
+    showModal = (id) => {
+        this.socket.emit('question click', {
+            state: this.state,
+            id: id
+        })
     }
 
-    handleDisabled = (i) => {
-        let newState = Object.assign({}, this.state);
-        newState.qa[i].disabled = true
-        this.setState(newState);
+    handleAdd = (i, id) => {
+        this.handleScore(i, id, true)
+        this.handleCancel(id)
+    }
+
+    handleMinus = (i, id) => {
+        this.handleScore(i, id, false)
+    }
+
+    handleCancel = (id) => {
+        this.socket.emit('question close', {
+            state: this.state,
+            id: id
+        })
     }
 
 
@@ -71,10 +86,6 @@ class GameControl extends Component {
         let cOne = this.state.qa.filter(el => el.categoryNum === 1)
         let cTwo = this.state.qa.filter(el => el.categoryNum === 2)
         let cThree = this.state.qa.filter(el => el.categoryNum === 3)
-        // console.log(this.props)
-        // console.log(this.state)
-        // console.log(cOne)
-
         return (
             <div>
 
@@ -85,30 +96,30 @@ class GameControl extends Component {
 
                     {/* <div className='gcGame'> */}
                     <h1>Game Control where the teacher controls the game</h1>
-                    {<Link to="/gamedisplay" target="_blank">OPEN</Link>}
+                    {<Link to={`/gamedisplay/${this.state.room}`} target="_blank">OPEN</Link>}
                     <div className='gcColumnContainer'>
 
                         <div className="gcColumn">
 
-                            <h2>{cOne[0].category}</h2>
+                            {/* <h2>{cOne[0].category}</h2> */}
                             {cOne.map((qa, i) => (
-                                <ControlModal key={i} category={cOne[0].cn} qa={qa} handleScore={this.handleScore} i={i} handleDisabled={this.handleDisabled} />
+                                <ControlModal key={i} category={cOne[0].cn} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} />
 
                             ))}
                         </div>
                         <div className="gcColumn">
 
-                            <h2>{cTwo[0].category}</h2>
+                            {/* <h2>{cTwo[0].category}</h2> */}
                             {cTwo.map((qa, i) => (
-                                <ControlModal key={i} category={cTwo[0].cn} qa={qa} handleScore={this.handleScore} i={i} handleDisabled={this.handleDisabled} />
+                                <ControlModal key={i} category={cTwo[0].cn} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} />
 
                             ))}
                         </div>
                         <div className="gcColumn">
 
-                            <h2>{cThree[0].category}</h2>
+                            {/* <h2>{cThree[0].category}</h2> */}
                             {cThree.map((qa, i) => (
-                                <ControlModal key={i} category={cThree[0].cn} qa={qa} handleScore={this.handleScore} i={i} handleDisabled={this.handleDisabled} />
+                                <ControlModal key={i} category={cThree[0].cn} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} />
 
                             ))}
                         </div>
@@ -116,27 +127,19 @@ class GameControl extends Component {
                     <div className='gcTeamContainer'>
                         {this.state.team.map((team, i) => (
                             <TeamDisplay key={i} team={team} />
-
                         ))}
                     </div>
                 </div>
             </div>
         )
-
     }
-
-
-
-
 }
+
 
 function mapStateToProps(state) {
     return {
-        gameName: state.gameTitle,
-        qa: state.qa,
-        team: state.teams,
         room: state.roomName
     }
 }
 
-export default connect(mapStateToProps, { updateTeams, updateRoomName, updateGameTitle, updateQa })(GameControl)
+export default connect(mapStateToProps, { updateRoomName })(GameControl)

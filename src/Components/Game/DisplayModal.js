@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import io from 'socket.io-client';
-import { connect } from 'react-redux'
-import { updateTeams, updateRoomName, updateGameTitle, updateQa } from '../../ducks/reducer'
+// import { connect } from 'react-redux'
+// import { updateTeams, updateRoomName, updateGameTitle, updateQa } from '../../ducks/reducer'
 import { Modal } from "antd";
 
 
@@ -33,39 +33,28 @@ class DisplayModal extends Component {
     this.socket.on('room joined', data => {
       this.joinSuccess()
     })
-    // this.socket.on('question open', data => {
-    //   this.setState({
-    //     qa: data.qa,
-    //     visible: true,
-    //     countDown: 10
-    //   })
-    //   this.timer()
-    // })
-    // this.socket.on('question close', data => {
-    //   console.log(data)
-    //   this.setState({
-    //     disabled: data.disabled,
-    //     visible: false,
-    //     countDown: 0
-    //   })
-    // })
+    this.socket.on('question open', data => {
+      this.setState({
+        countDown: 10
+      })
+      this.timer()
+    })
   }
 
 
-  // timer = () => {
-  //   if (this.state.countDown > 0) {
-  //     setTimeout(() => {
-  //       this.setState({
-  //         countDown: this.state.countDown - 1
-  //       })
-  //       this.timer()
-  //     }, 1000)
-  //   }
-  // }
+  timer = () => {
+    if (this.state.countDown > 0) {
+      setTimeout(() => {
+        this.setState({
+          countDown: this.state.countDown - 1
+        })
+        this.timer()
+      }, 1000)
+    }
+  }
 
 
   joinRoom() {
-    console.log(this.state.room)
     if (this.state.room) {
       this.socket.emit('join room', {
         room: this.state.room
@@ -78,53 +67,27 @@ class DisplayModal extends Component {
 
 
   render() {
-    // if (this.state.countDown > 0) {
-    //   setTimeout(() => {
-
-    //     this.setState({
-    //       countDown: this.state.countDown - 1
-    //     })
-    //   }, 1000)
-    // }
-    // console.log("hello")
-    console.log('Props', this.props)
-    console.log(this.props.countDown)
-    console.log(this.state.countDown)
     return (
       <div>
-        <button className="gcBtn" disabled={this.state.disabled}>
-          {this.props.question.points}
+        <button className="gcBtn" disabled={this.props.qa.disabled}>
+          {this.props.qa.points}
         </button>
         <Modal
-          visible={this.props.visible}
+          visible={this.props.qa.visible}
           centered={true}
         >
-          <h1>{this.state.qa.question}</h1>
+          <h1>{this.props.qa.question}</h1>
           <div className="dmCountdown">
             {this.state.countDown}
           </div>
-          {/* <div className="dmContainer">
-          <div className="dmQuestionContainer">
-          <h1 className="dmQuestion">
-          {this.props.qa.question}
-          </h1>
-          
-          </div>
-        </div> */}
         </Modal>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    gameName: state.gameTitle,
-    qa: state.qa,
-    team: state.teams,
-    room: state.roomName
-  }
-}
 
-export default connect(mapStateToProps, { updateTeams, updateRoomName, updateGameTitle, updateQa })(DisplayModal)
+
+export default DisplayModal
+
 

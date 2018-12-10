@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { Modal, Button } from 'antd';
-import io from 'socket.io-client';
-import { connect } from 'react-redux'
-import { updateTeams, updateRoomName, updateGameTitle, updateQa } from '../../ducks/reducer'
 import '../../scss/App.scss'
 
 
@@ -14,7 +11,6 @@ class ControlModal extends Component {
             disabled: false,
             visible: false,
             room: 'things',
-            joined: false,
             index: 0
         }
     }
@@ -24,85 +20,31 @@ class ControlModal extends Component {
             room: this.props.room,
             team: this.props.team
         })
-        this.socket = io('http://localhost:4000');
-        this.joinRoom()
-        this.socket.on('room joined', data => {
-            this.joinSuccess()
-        })
-
     }
 
-
-    joinRoom() {
-        if (this.state.room) {
-            this.socket.emit('join room', {
-                room: this.state.room
-            })
-        }
-    }
-    joinSuccess() {
-        this.setState({ joined: true })
-    }
-
-
-    showModal = () => {
-        this.setState({
-            visible: true
-        });
-        this.socket.emit('question click', {
-            room: this.state.room,
-            qa: this.props.qa,
-            i: this.props.i
-        })
-    }
-
-    handleAdd = (i) => {
-        this.props.handleScore(this.props.qa.points, i)
-        this.props.handleDisabled(i)
-        this.setState({ visible: false });
-
-        this.socket.emit('question close', {
-            room: this.state.room,
-            team: this.state.team,
-            disabled: true
-        })
-
-    }
-
-    handleMinus = (i) => {
-        this.props.handleScore(-this.props.qa.points, i)
-    }
-
-    handleCancel = () => {
-        this.setState({ visible: false })
-        this.socket.emit('question close', {
-            room: this.state.room,
-            team: this.state.team
-        })
-    }
 
     render() {
-        const { visible } = this.state;
-        console.log(this.props)
+        const { visible, id } = this.props.qa;
+        console.log(visible)
         return (
             <div>
 
-                <button className='gcBtn' disabled={this.props.qa.disabled} type="primary" onClick={this.showModal}>
-                    Question: {this.props.i}
+                <button className='gcBtn' disabled={this.props.qa.disabled} type="primary" onClick={() => this.props.showModal(id)}>
+                    Question: {this.props.i + 1}
                 </button>
                 <Modal
                     visible={visible}
                     title={this.props.category}
                     onOk={this.handleOk}
-                    onCancel={this.handleCancel}
+                    onCancel={() => this.props.handleCancel(id)}
                     centered={true}
                     footer={[
                         <div>
-                            {this.state.team.map((team, i) => (
+                            {this.props.team.map((team, i) => (
                                 <div key={i}>
                                     <p>{team.name}</p>
-                                    <Button key={i + 200} onClick={() => this.handleMinus(i)} > - </Button>
-                                    <Button key={i + 100} type='primary' onClick={() => this.handleAdd(i)} > + </Button>
+                                    <Button key={i + 200} onClick={() => this.props.handleMinus(i, id)} > - </Button>
+                                    <Button key={i + 100} type='primary' onClick={() => this.props.handleAdd(i, id)} > + </Button>
                                 </div>
                             ))}
                         </div>
@@ -117,13 +59,9 @@ class ControlModal extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        gameName: state.gameTitle,
-        team: state.teams,
-        room: state.roomName
-    }
-}
 
-export default connect(mapStateToProps, { updateTeams, updateRoomName, updateGameTitle })(ControlModal)
+
+
+export default ControlModal
+
 
