@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Modal, Button, Form, Input, Upload, message, Icon } from "antd";
 import "../../scss/App.scss";
+import Category from './Category';
 import cloneDeep from 'lodash/cloneDeep';
 import axios from 'axios';
 import {connect} from 'react-redux';
