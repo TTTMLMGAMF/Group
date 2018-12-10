@@ -3,8 +3,8 @@ module.exports = {
     //retrieves list of games for fames list
     console.log("retrieveGames has been hit");
     const db = req.app.get("db");
-    // const { account_id } = req.session.user;
-    db.get_games([1])
+    const { account_id } = req.session.user;
+    db.get_games([account_id])
       .then(game => res.status(200).send(game))
       .catch(err => {
         res.status(500).send({ errorMessage: "that's not a moon" });
@@ -119,7 +119,9 @@ module.exports = {
   deleteGame: async (req, res) => {
     console.log("Game will be EXTERRRMINATED!!!");
     const db = req.app.get("db");
+    console.log('PAY ATTENTION:',req.params)
     let { game_id, game_name } = req.params;
+    // console.log('PAY ATTENTION:', game_id)
     let deleted = await db.delete_game([game_id]);
     if (deleted) {
       res.send(`${game_name} successfully deleted.`);

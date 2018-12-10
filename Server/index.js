@@ -47,7 +47,7 @@ app.get(`/api/accountInfo/:account_id`, endpointCtrl.retrieveAccountInfo)
 // app.delete(`/api/class/:classroom_id`, endpointCtrl.removeClassroom)
 // app.post(`/api/students`, endpointCtrl.addStudents);
 app.get(`/api/game/:game_id`, endpointCtrl.getGame);
-app.delete(`/api/game/:game_id`, endpointCtrl.deleteGame);
+app.delete(`/api/game/:game_id/:game_name`, endpointCtrl.deleteGame);
 app.post(`/api/game`, endpointCtrl.addGame);
 app.put(`/api/game/:game_id`, endpointCtrl.addCategories);
 
