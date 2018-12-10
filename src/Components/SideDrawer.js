@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './../scss/App.scss';
-// import GameWizard from './User/GameWizard';
+import GameWizard from './User/GameWizard';
 import { Link, withRouter } from 'react-router-dom';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Layout, Menu, Icon } from 'antd';
 import Axios from 'axios';
-import { logout } from '../ducks/reducer';
+import { logout, navCreateGame } from '../ducks/reducer';
 import { connect } from 'react-redux';
 
 const { Sider } = Layout;
@@ -13,12 +13,17 @@ const { Sider } = Layout;
 class SideDrawer extends Component {
   state = {
     collapsed: true,
+    visible: true
   };
 
   onCollapse = (collapsed) => {
     console.log(collapsed);
     this.setState({ collapsed });
   }
+
+  showModal = () => {
+    this.props.navCreateGame()
+  };
 
   handleLogout = () => {
     Axios.delete('/auth/logout')
@@ -48,8 +53,7 @@ class SideDrawer extends Component {
                 <span>USER HOME</span></Link>
             </Menu.Item>
             <Menu.Item key="3">
-              <Icon type="plus" />
-              <button style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }} > <Icon type="logout" />
+              <button style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }} onClick={this.showModal} > <Icon type="plus" />
                 <span>CREATE GAME</span></button>
             </Menu.Item>
             {/* <Menu.Item key="4">
@@ -75,4 +79,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default withRouter(connect(mapStateToProps, { logout })(SideDrawer))
+export default withRouter(connect(mapStateToProps, { logout, navCreateGame })(SideDrawer))

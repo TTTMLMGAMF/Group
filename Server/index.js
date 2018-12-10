@@ -43,11 +43,11 @@ app.post(`/auth/register`, authCtrl.register);
 app.post(`/auth/login`, authCtrl.login);
 app.delete(`/auth/logout`, authCtrl.logout);
 
-app.get(`/api/games/:account_id`, endpointCtrl.retrieveGames)
+app.get(`/api/games`, endpointCtrl.retrieveGames)
 app.get(`/api/accountInfo/:account_id`, endpointCtrl.retrieveAccountInfo)
-app.put(`/api/class/:classroom_id`, endpointCtrl.updateClassroom)
-app.delete(`/api/class/:classroom_id`, endpointCtrl.removeClassroom)
-app.post(`/api/students`, endpointCtrl.addStudents);
+// app.put(`/api/class/:classroom_id`, endpointCtrl.updateClassroom)
+// app.delete(`/api/class/:classroom_id`, endpointCtrl.removeClassroom)
+// app.post(`/api/students`, endpointCtrl.addStudents);
 app.get(`/api/game/:game-id`, endpointCtrl.getGame);
 
 app.post('/api/creategame', (req, res) => {
@@ -59,6 +59,7 @@ app.post('/api/creategame', (req, res) => {
 app.delete(`/api/game/:game-id`, endpointCtrl.deleteGame);
 
 app.post(`/api/game`, endpointCtrl.addGame);
+app.put(`/api/game/:game_id`, endpointCtrl.addCategories);
 
 
 

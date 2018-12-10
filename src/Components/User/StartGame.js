@@ -85,6 +85,8 @@ export class StartGame extends Component {
       );
     });
 
+    console.log(this.props)
+
     return (
       <div>
         <button type="primary" onClick={this.showModal}>

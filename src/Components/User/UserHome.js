@@ -5,15 +5,23 @@ import "../../scss/App.scss";
 import GameList from "./GameList";
 import GameWizard from './GameWizard';
 import SideDrawer from './../SideDrawer';
+import axios from 'axios';
 // import { Card, Icon, Avatar } from 'antd';
 
 class UserHome extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false
+      visible: false,
+      games: []
     };
   }
+
+  componentDidMount() {
+    axios.get(`/api/games`)
+      .then(res => this.setState({ games: res.data }))
+  }
+
   showModal = () => {
     this.setState({
       visible: true
@@ -35,6 +43,7 @@ class UserHome extends Component {
   // const { Meta } = Card;
 
   render() {
+    console.log(this.state.games)
 
 
     return (
@@ -45,7 +54,7 @@ class UserHome extends Component {
           </div>
           <div className='uhBody'>
             <h1 id='uhHeader'>MY GAMES</h1>
-            <GameList />
+            <GameList games={this.state.games} />
 
           </div>
         </div>
