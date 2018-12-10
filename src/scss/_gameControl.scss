@@ -1,8 +1,12 @@
+.sd{
+    position: absolute;
+}
+
 .gcControlContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px black solid;
+    // border: 1px black solid;
     background-color: $color5;
     height: 100vh;
     h1 {

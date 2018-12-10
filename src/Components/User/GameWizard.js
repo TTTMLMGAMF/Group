@@ -4,8 +4,8 @@ import "../../scss/App.scss";
 import Category from './Category';
 import cloneDeep from 'lodash/cloneDeep';
 import axios from 'axios';
-import {connect} from 'react-redux';
-import {navCreateGame} from '../../ducks/reducer';
+import { connect } from 'react-redux';
+import { navCreateGame } from '../../ducks/reducer';
 
 const props = {
   name: "file",
@@ -90,7 +90,7 @@ class GameWizard extends Component {
     // event.preventDefault()
     // If categoryNum === 1 hit post game
     this.state.categoryNum === 1
-      ? axios.post("/api/game", this.state).then(res => this.setState({game_id: res.data[0].game_id}))
+      ? axios.post("/api/game", this.state).then(res => this.setState({ game_id: res.data[0].game_id }))
       : axios.put(`/api/game/` + this.state.game_id, this.state);
     // Else hit put game
     this.setState({
@@ -253,4 +253,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps,{navCreateGame})(GameWizard)
+export default connect(mapStateToProps, { navCreateGame })(GameWizard)
