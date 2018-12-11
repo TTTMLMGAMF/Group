@@ -119,9 +119,9 @@ module.exports = {
   deleteGame: async (req, res) => {
     console.log("Game will be EXTERRRMINATED!!!");
     const db = req.app.get("db");
-    console.log('PAY ATTENTION:', req.params)
+    console.log(req.params);
     let { game_id, game_name } = req.params;
-    // console.log('PAY ATTENTION:', game_id)
+    console.log('game_id: ', game_id, "game_name: ", game_name);
     let deleted = await db.delete_game([game_id]);
     if (deleted) {
       res.send(`${game_name} successfully deleted.`);

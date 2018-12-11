@@ -65,7 +65,7 @@ app.post('/api/creategame', async (req, res) => {
     res.end()
 })
 
-app.delete(`/api/game/:game-id`, endpointCtrl.deleteGame);
+app.delete(`/api/game/:game_id/:game_name`, endpointCtrl.deleteGame);
 
 app.post(`/api/game`, endpointCtrl.addGame);
 app.put(`/api/game/:game_id`, endpointCtrl.addCategories);
