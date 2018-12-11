@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, Button, Card, Icon, Avatar, Form } from "antd";
+// import { Modal, Button, Card, Icon, Avatar, Form } from "antd";
 import StartGame from "./StartGame";
 import "../../scss/App.scss";
 import GameList from "./GameList";
@@ -17,10 +17,10 @@ class UserHome extends Component {
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     axios.get(`/api/games`)
-    .then(res => this.setState({games: res.data}))
-}
+      .then(res => this.setState({ games: res.data }))
+  }
 
   showModal = () => {
     this.setState({
@@ -44,7 +44,7 @@ class UserHome extends Component {
 
   render() {
     console.log(this.state.games)
-    
+
 
     return (
       <div>
@@ -54,7 +54,7 @@ class UserHome extends Component {
           </div>
           <div className='uhBody'>
             <h1 id='uhHeader'>MY GAMES</h1>
-            <GameList games={this.state.games}/>
+            <GameList games={this.state.games} />
 
           </div>
         </div>

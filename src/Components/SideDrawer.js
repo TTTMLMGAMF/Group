@@ -22,15 +22,16 @@ class SideDrawer extends Component {
   };
 
   showModal = () => {
-    this.props.navCreateGame();
+    this.props.navCreateGame()
   };
 
   handleLogout = () => {
-    Axios.delete("/auth/logout").then(() => {
-      this.props.logout();
-      this.props.history.push("/");
-    });
-  };
+    Axios.delete('/auth/logout')
+      .then(() => {
+        this.props.logout()
+        this.props.history.push('/')
+      })
+  }
 
   render() {
     return (
@@ -85,12 +86,7 @@ class SideDrawer extends Component {
 function mapStateToProps(state) {
   return {
     state
-  };
+  }
 }
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { logout, navCreateGame }
-  )(SideDrawer)
-);
+export default withRouter(connect(mapStateToProps, { logout, navCreateGame })(SideDrawer))

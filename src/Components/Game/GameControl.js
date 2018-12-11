@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import ControlModal from './ControlModal';
 import TeamDisplay from './TeamDisplay';
+import SideDrawer from '../SideDrawer';
 import io from 'socket.io-client'
 import { connect } from 'react-redux'
-import { updateTeams, updateRoomName, updateGameTitle, updateQa } from '../../ducks/reducer'
+import { updateRoomName } from '../../ducks/reducer'
 import '../../scss/App.scss'
 
 
@@ -13,24 +15,9 @@ class GameControl extends Component {
         this.state = {
             gameName: "The Questions!",
             qa: [],
-            team: [
-                {
-                    name: "Team 1",
-                    points: 0
-                },
-                {
-                    name: "Team Firelords",
-                    points: 0
-                },
-                {
-                    name: "Bob Rossians",
-                    points: 0
-                }
-            ],
+            team: [],
             room: 'things',
-            joined: false
         }
-        this.joinSuccess = this.joinSuccess.bind(this);
         this.joinRoom = this.joinRoom.bind(this);
 
     }
@@ -38,116 +25,122 @@ class GameControl extends Component {
 
     async componentDidMount() {
         await this.setState({
-            room: this.props.room,
-            qa: this.props.qa
+            room: window.location.pathname.split('/')[2],
         })
         this.socket = io('http://localhost:4000');
         await this.joinRoom()
-        await this.socket.on('room joined', data => {
-            this.joinSuccess()
+        await this.socket.on('game state', data => {
+            this.setState({
+                qa: data.qa,
+                team: data.teams,
+                gameTitle: data.gameTitle
+            })
         })
     }
+
 
 
 
     joinRoom() {
         if (this.state.room) {
             this.socket.emit('join room', {
-                room: this.props.room
+                room: this.state.room
             })
         }
     }
-    joinSuccess() {
-        this.setState({ joined: true })
+
+    handleScore = (i, id, add) => {
+        this.socket.emit('handle score', {
+            state: this.state,
+            i: i,
+            id: id,
+            add: add
+        })
     }
 
+    showModal = (id) => {
+        this.socket.emit('question click', {
+            state: this.state,
+            id: id
+        })
+    }
 
-    handleScore = (x, i) => {
-        let newState = Object.assign({}, this.state);
-        newState.team[i].points += x;
-        this.setState(newState);
+    handleAdd = (i, id) => {
+        this.handleScore(i, id, true)
+        this.handleCancel(id)
+    }
+
+    handleMinus = (i, id) => {
+        this.handleScore(i, id, false)
+    }
+
+    handleCancel = (id) => {
+        this.socket.emit('question close', {
+            state: this.state,
+            id: id
+        })
     }
 
 
     render() {
-        let cOne = this.props.qa.filter(el => el.catagoryNum === 1)
-        let cTwo = this.props.qa.filter(el => el.catagoryNum === 2)
-        let cThree = this.props.qa.filter(el => el.catagoryNum === 3)
+        let cOne = this.state.qa.filter(el => el.category_num === 1)
+        let cTwo = this.state.qa.filter(el => el.category_num === 2)
+        let cThree = this.state.qa.filter(el => el.category_num === 3)
         console.log(this.props)
-        console.log(this.state)
-        console.log(cOne)
-
         return (
-            <div className='gcControlContainer'>
+            <div>
 
-                {/* <div className='gcGame'> */}
-                <h1>Game Control where the teacher controls the game</h1>
-                <div className='gcColumnContainer'>
-
-                    <div className="gcColumn">
-
-                        <h2>{cOne[0].catagory}</h2>
-                        {cOne.map((qa, i) => (
-                            <ControlModal key={i} catagory={cOne[0].cn} qa={qa} handleScore={this.handleScore} i={i + 1} />
-
-                        ))}
-                    </div>
-                    <div className="gcColumn">
-
-                        <h2>{cTwo[0].catagory}</h2>
-                        {cTwo.map((qa, i) => (
-                            <ControlModal key={i} catagory={cTwo[0].cn} qa={qa} handleScore={this.handleScore} i={i + 1} />
-
-                        ))}
-                    </div>
-                    <div className="gcColumn">
-
-                        <h2>{cThree[0].catagory}</h2>
-                        {cThree.map((qa, i) => (
-                            <ControlModal key={i} catagory={cThree[0].cn} qa={qa} handleScore={this.handleScore} i={i + 1} />
-
-                        ))}
-                    </div>
+                <div className='sd'>
+                    <SideDrawer />
                 </div>
-                <div className='gcTeamContainer'>
-                    {/* <div className='gcTeam1'>
-                        <div className='gcName'>
-                            {this.state.team[0].name}
+                <div className='gcControlContainer'>
+
+                    {/* <div className='gcGame'> */}
+                    <h1>Game Control where the teacher controls the game</h1>
+                    {<Link to={`/gamedisplay/${this.state.room}`} target="_blank">OPEN</Link>}
+                    <div className='gcColumnContainer'>
+
+                        <div className="gcColumn">
+
+                            {/* <h2>{cOne[0].category}</h2> */}
+                            {cOne.map((qa, i) => (
+                                <ControlModal key={i} category={cOne[0].cn} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} />
+
+                            ))}
                         </div>
-                        <div className='gcScore'>
-                            {this.state.team[0].points}
+                        <div className="gcColumn">
+
+                            {/* <h2>{cTwo[0].category}</h2> */}
+                            {cTwo.map((qa, i) => (
+                                <ControlModal key={i} category={cTwo[0].cn} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} />
+
+                            ))}
+                        </div>
+                        <div className="gcColumn">
+
+                            {/* <h2>{cThree[0].category}</h2> */}
+                            {cThree.map((qa, i) => (
+                                <ControlModal key={i} category={cThree[0].cn} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} />
+
+                            ))}
                         </div>
                     </div>
-                    <div className='gcTeam2'>
-                        <div className='gcName'>
-                            {this.state.team[1].name}
-                        </div>
-                        <div className='gcScore'>
-                            {this.state.team[1].points}
-                        </div>
-                    </div> */}
-                    {this.state.team.map((team, i) => (
-                        <TeamDisplay key={i} team={team} />
-
-                    ))}
+                    <div className='gcTeamContainer'>
+                        {this.state.team.map((team, i) => (
+                            <TeamDisplay key={i} team={team} />
+                        ))}
+                    </div>
                 </div>
             </div>
         )
-
     }
-
-
-
-
 }
+
 
 function mapStateToProps(state) {
     return {
-        gameName: state.gameTitle,
-        qa: state.qa,
-        team: state.teams,
         room: state.roomName
     }
 }
 
-export default connect(mapStateToProps, { updateTeams, updateRoomName, updateGameTitle, updateQa })(GameControl)
+export default connect(mapStateToProps, { updateRoomName })(GameControl)
