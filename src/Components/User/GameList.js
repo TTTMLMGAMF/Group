@@ -4,7 +4,8 @@ import { Card, Icon, } from "antd";
 
 import "../../scss/App.scss";
 import Axios from "axios";
-const { Meta } = Card; //This is for the antD "card" title and game info
+import StartGame from "./StartGame";
+const {Meta} = Card; //This is for the antD "card" title and game info
 
 class GameList
   extends Component {
@@ -47,9 +48,9 @@ class GameList
             style={{ width: 300 }}
             cover={<img alt="game image" src={game.image} />}
             actions={[
-              <button style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }}> <Icon type="caret-right" /></button>,
-              <button style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }}><Icon type="edit" /></button>,
-              <button style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }} onClick={this.handleDelete}><Icon type="delete" /></button>]}
+              <StartGame gameId={game.game_id}/>,
+              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}}><Icon type="edit" /></button>, 
+              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}} onClick={()=> console.log(this.props)}><Icon type="delete" /></button>]}
             hoverable>
             <Meta title={game.game_name}
               description={game.subject} />

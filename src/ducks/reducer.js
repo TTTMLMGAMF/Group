@@ -1,4 +1,9 @@
 const initialState = {
+    teams: [],
+    gameTitle: 'Chuck Norris',
+    qa: [],
+    roomName: '',
+    timer: 30,
 }
 
 const UPDATE_TEAMS = 'UPDATE_TEAMS';
