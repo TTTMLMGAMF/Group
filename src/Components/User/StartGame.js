@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import Axios from 'axios'
 import { Modal, Radio, Input, InputNumber, Tag } from "antd";
 import "../../scss/App.scss";
+import { withRouter } from 'react-router-dom';
 // import { connect } from "http2";
 import { connect } from "react-redux";
 import { v4 as randomString } from "uuid";
 import Team from "./Team";
-import {updateTimer, updateRoomName, updateTeams} from '../../ducks/reducer';
+import { updateTimer, updateRoomName, updateTeams } from '../../ducks/reducer';
 
 const RadioGroup = Radio.Group;
 
@@ -34,6 +36,9 @@ export class StartGame extends Component {
   };
 
   handleOk = e => {
+    console.log(e);
+    Axios.post('/api/creategame', { room: this.state.roomName })
+      .then(() => this.props.history.push(`/gamecontrol/${this.state.roomName}`))
     this.setState({
       visible: false
     });
@@ -41,8 +46,8 @@ export class StartGame extends Component {
     this.props.updateRoomName(this.state.roomName);
     this.props.updateTeams(this.state.teams);
     this.props.updateTimer(this.state.timer);
-    console.log(this.props)
-    console.log('this is state: ',this.state)
+    // console.log(this.props)
+    // console.log('this is state: ', this.state)
   };
 
   handleCancel = e => {
@@ -79,6 +84,8 @@ export class StartGame extends Component {
         <Team key={i} index={i} team={team} handleTeam={this.handleTeam} />
       );
     });
+
+    console.log(this.props)
 
     return (
       <div>
@@ -125,8 +132,8 @@ export class StartGame extends Component {
 }
 
 function mapStateToProps(state) {
-  const {gameTitle} = state;
-  return {gameTitle};
+  const { gameTitle } = state;
+  return { gameTitle };
 }
 
-export default connect(mapStateToProps, {updateRoomName, updateTeams, updateTimer})(StartGame);
+export default withRouter(connect(mapStateToProps, { updateRoomName, updateTeams, updateTimer })(StartGame));
