@@ -4,6 +4,19 @@ import { connect } from 'react-redux'
 import { updateTeams, updateRoomName, updateGameTitle, updateQa } from '../../ducks/reducer'
 import { DisplayModal } from './DisplayModal'
 import '../../scss/App.scss';
+import sky from '../../scss/images/game_sky.png';
+import grass from '../../scss/images/game_grass.png';
+import sun from '../../scss/images/game_sun.png';
+import cloudSmall from '../../scss/images/game_cloud3.png';
+import cloudMed from '../../scss/images/game_cloud2.png';
+import cloudBig from '../../scss/images/game_cloud1.png';
+import gameTitle from '../../scss/images/game_title_box.png';
+import categoryTitle from '../../scss/images/game_categroy_titles.png';
+import yellowTeam from '../../scss/images/game_TeamScore_yellow.png';
+import blueTeam from '../../scss/images/game_TeamScore_blue.png';
+import redTeam from '../../scss/images/game_TeamScore_red.png';
+
+
 
 
 class GameDisplay extends Component {
@@ -61,32 +74,49 @@ class GameDisplay extends Component {
     console.log(this.state.qa)
     return (
       <div className="gdContainer">
-        <h1>Game Title</h1>
+        <img id='sky' src={sky} alt='sky-background'/>
+        <div className='gameinfo'>
+          <h1 id='gdgt'>Game Title</h1>
+        </div>
+        <img id='grass' src={grass} alt='grass-background'/>
+        <img id='sun' src={sun} alt='sun-background'/>
+        <div className='clouds'>
+          <img id='cloudBig' src={cloudBig} alt='Big-cloud illustration'/>
+          <img id='cloudSmall' src={cloudSmall} alt='small-cloud illustration'/>
+          <img id='cloudMed' src={cloudMed} alt='Medium-cloud illustration'/>
+        </div>
         <div className="gdCategoryContainer">
+
           <div className="gdCategory">
-            <h2>Category #1</h2>
+            <div id='cat1'>
+              <h2>Category #1</h2>
+            </div>
             <DisplayModal visible={this.state.visible} qa={this.state.qa} countDown={this.state.countDown} />
-            <div className="gdQuestion">Q1</div>
-            <div className="gdQuestion">Q2</div>
-            <div className="gdQuestion">Q3</div>
-            <div className="gdQuestion">Q4</div>
-            <div className="gdQuestion">Q5</div>
+            <div className="gdQuestion">100</div>
+            <div className="gdQuestion">200</div>
+            <div className="gdQuestion">300</div>
+            <div className="gdQuestion">400</div>
+            <div className="gdQuestion">500</div>
           </div>
           <div className="gdCategory">
-            <h2>Category #2</h2>
-            <div className="gdQuestion">Q1</div>
-            <div className="gdQuestion">Q2</div>
-            <div className="gdQuestion">Q3</div>
-            <div className="gdQuestion">Q4</div>
-            <div className="gdQuestion">Q5</div>
+            <div id='cat1'>
+              <h2>Category #2</h2>
+            </div>
+            <div className="gdQuestion">100</div>
+            <div className="gdQuestion">200</div>
+            <div className="gdQuestion">300</div>
+            <div className="gdQuestion">400</div>
+            <div className="gdQuestion">500</div>
           </div>
           <div className="gdCategory">
-            <h2>Category #3</h2>
-            <div className="gdQuestion">Q1</div>
-            <div className="gdQuestion">Q2</div>
-            <div className="gdQuestion">Q3</div>
-            <div className="gdQuestion">Q4</div>
-            <div className="gdQuestion">Q5</div>
+            <div id='cat1'>
+              <h2>Category #3</h2>
+            </div>
+            <div className="gdQuestion">100</div>
+            <div className="gdQuestion">200</div>
+            <div className="gdQuestion">300</div>
+            <div className="gdQuestion">400</div>
+            <div className="gdQuestion">500</div>
           </div>
         </div>
         <div className='gdTeamContainer'>
@@ -94,15 +124,15 @@ class GameDisplay extends Component {
             <div className='gdTeamName'>TEAM 1</div>
             <div className='gdTeamScore'>1500</div>
           </div>
-          <div className='gdTeam'>
+          <div style={{filter: 'hue-rotate(75deg)'}} className='gdTeam'>
             <div className='gdTeamName'>TEAM 2</div>
             <div className='gdTeamScore'>-600</div>
           </div>
-          <div className='gdTeam'>
+          <div style={{filter: 'hue-rotate(135deg)'}} className='gdTeam'>
             <div className='gdTeamName'>TEAM 3</div>
             <div className='gdTeamScore'>500</div>
           </div>
-          <div className='gdTeam'>
+          <div style={{filter: 'hue-rotate(220deg)'}} className='gdTeam'>
             <div className='gdTeamName'>TEAM 4</div>
             <div className='gdTeamScore'>100</div>
           </div>

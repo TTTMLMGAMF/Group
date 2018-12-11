@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import { Modal, Button, Card, Icon, Avatar } from "antd";
 import "../../scss/App.scss";
-<<<<<<< HEAD
-import axios from 'axios'
-=======
-import Axios from "axios";
->>>>>>> master
+import axios from "axios";
 const {Meta} = Card; //This is for the antD "card" title and game info
 
 

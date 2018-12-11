@@ -3,13 +3,8 @@ module.exports = {
     //retrieves list of games for fames list
     console.log("retrieveGames has been hit");
     const db = req.app.get("db");
-<<<<<<< HEAD
-    const { account_id } = req.session.user;
-    db.get_games([account_id])
-=======
     // const { account_id } = req.session.user;
     db.get_games([1])
->>>>>>> master
       .then(game => res.status(200).send(game))
       .catch(err => {
         res.status(500).send({ errorMessage: "that's not a moon" });
