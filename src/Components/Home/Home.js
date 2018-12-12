@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Carousel, Layout, Menu, Affix } from 'antd';
+import { Carousel, Layout, Menu, Affix, Button } from 'antd';
 import Login from './login';
 import '../../scss/App.scss';
 
@@ -32,6 +32,17 @@ class Home extends Component {
                             style={{ lineHeight: '64px' }}
                         >
                             <Menu.Item key="1">{<Login />}</Menu.Item>
+                            {/* <Menu.Item key="2"> */}
+                                <Button
+                                    type="primary"
+                                    ghost={true}
+                                    onClick={this.showModal}
+                                // background={}
+                                // bodyStyle={()}
+                                >
+                                    Join Game
+                </Button>
+                            {/* </Menu.Item> */}
                         </Menu>
                     </Header>
                 </Affix>
@@ -54,22 +65,22 @@ class Home extends Component {
                                 </p><br />
                             <p>
                                 Teaching Tools allows you to:
-                            </p><br/>
+                            </p><br />
                             <ul className='home-bullets'>
-                                <li>Create custom games</li><br/>
-                                <li>Make learning more gooder</li><br/>
-                                <li>Make learning more funner</li><br/>
-                                <li>Create your own teams</li><br/>
-                                <li>Organize your classroom</li><br/>
-                                <li>Keep Jason and Becky from exchaning notes</li><br/>
+                                <li>Create custom games</li><br />
+                                <li>Make learning more gooder</li><br />
+                                <li>Make learning more funner</li><br />
+                                <li>Create your own teams</li><br />
+                                <li>Organize your classroom</li><br />
+                                <li>Keep Jason and Becky from exchaning notes</li><br />
                             </ul>
                         </div>
                         <div className='column-b'>
                             <h2>Testimonials</h2><br />
-                            <p>"I would cut down every cherry tree for the chance to take a whack at Teaching Tools!" -George Washington</p><br/>
-                            <p>"I hate all the orphans in the whole world, but even I want them to play the games from Teaching Tools." -Steven Esqueleto</p><br/>
-                            <p>"When my pipe broke, I didn't know what to do. But now, with Teaching Tools, all the children are following me again!" -Pied Piper</p><br/>
-                            <p>"This one's for the children" -New Kids on the Block</p><br/>
+                            <p>"I would cut down every cherry tree for the chance to take a whack at Teaching Tools!" -George Washington</p><br />
+                            <p>"I hate all the orphans in the whole world, but even I want them to play the games from Teaching Tools." -Steven Esqueleto</p><br />
+                            <p>"When my pipe broke, I didn't know what to do. But now, with Teaching Tools, all the children are following me again!" -Pied Piper</p><br />
+                            <p>"This one's for the children" -New Kids on the Block</p><br />
                             <p>"Teaching Tools taught me that I believe the children are our future" - Whitney Houston</p>
                         </div>
                     </div>
