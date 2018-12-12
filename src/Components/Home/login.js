@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import NewUser from './NewUser';
-import { Modal, Button, Form, Icon, Input } from 'antd';
+import { Modal, Button, Form, Icon, Input, Alert } from 'antd';
 import '../../scss/App.scss';
 import axios from 'axios';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import {showModal} from '../../tests/jeffLogic';
 
 const FormItem = Form.Item;
 
@@ -12,6 +13,7 @@ class Login extends Component {
         super();
         this.state = {
             visible: false,
+            warningVisible: false,
             email: '',
             password: ''
         }
@@ -19,7 +21,7 @@ class Login extends Component {
 
     showModal = () => {
         this.setState({
-            visible: true,
+            visible: showModal(this.state.visible)
         });
     }
 
@@ -28,7 +30,6 @@ class Login extends Component {
         this.setState({
             visible: false,
         });
-        //axios request for bcrypt login
     }
 
     handleCancel = (e) => {
@@ -44,25 +45,30 @@ class Login extends Component {
             if (!err) {
                 console.log('Received values of form: ', values);
             }
-            this.setState({email: values.userName, password: values.password});
+            this.setState({ email: values.userName, password: values.password });
         });
-        const {email, password} = this.state;
-        if(email && password){
-        axios.post('/auth/login', {email, password})
-        .then(res => {
-            // console.log('LOOK HERE:', res)
-            const user = res.data;
-            if (user.account_id) {
-                // this.props.updateUser(user);
-                this.props.history.push('/userhome')
-            } else {
-                alert('Please enter a valid email and password')
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        });
+        const { email, password } = this.state;
+        if (email && password) {
+            axios.post('/auth/login', { email, password })
+                .then(res => {
+                    const user = res.data;
+                    if (user.account_id) {
+                        // this.props.updateUser(user);
+                        this.props.history.push('/userhome')
+                    } 
+                    // else {
+                    //     alert('Please enter a valid email and password')
+                    // }
+                })
+                .catch(err => {
+                    this.setState({warningVisible: true});
+                    console.log(err);
+                });
         }
+    }
+
+    handleClose = () => {
+        this.setState({ warningVisible: false });
     }
 
     // handleRegister = () => {
@@ -76,9 +82,17 @@ class Login extends Component {
         const { getFieldDecorator } = this.props.form;
         return (
             <div>
-                <Button type="primary" onClick={this.showModal}>
+                
+                <Button 
+                type="primary" 
+                ghost={true} 
+                onClick={this.showModal}
+                // background={}
+                // bodyStyle={()}
+                >
                     Login
                 </Button>
+                {/* <GameEdit/> */}
                 <Modal
                     title="Login"
                     visible={this.state.visible}
@@ -87,6 +101,9 @@ class Login extends Component {
                     onSubmit={this.handleSubmit}
                     footer={null}
                 >
+                {this.state.warningVisible ?
+                (<Alert message='Please enter a valid email and password' type='error' showIcon onClose={this.handleClose}/>) : null
+            }
                     <Form onSubmit={this.handleSubmit} className="login-form">
                         <FormItem>
                             {getFieldDecorator('userName', {
