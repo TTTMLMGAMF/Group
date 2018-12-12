@@ -83,9 +83,9 @@ class GameControl extends Component {
 
 
     render() {
-        let cOne = this.state.qa.filter(el => el.categoryNum === 1)
-        let cTwo = this.state.qa.filter(el => el.categoryNum === 2)
-        let cThree = this.state.qa.filter(el => el.categoryNum === 3)
+        let cOne = this.state.qa.filter(el => el.category_num === 1)
+        let cTwo = this.state.qa.filter(el => el.category_num === 2)
+        let cThree = this.state.qa.filter(el => el.category_num === 3)
         console.log(this.props)
         return (
             <div>

@@ -58,12 +58,6 @@ class UserHome extends Component {
 
           </div>
         </div>
-        <div className='uhBtns'>
-          <h3>CREATE NEW GAME</h3>
-          <GameWizard />
-
-          <StartGame />
-        </div>
       </div>
     );
   }

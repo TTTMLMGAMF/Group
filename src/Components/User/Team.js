@@ -7,7 +7,7 @@ export default class Team extends Component {
     super(props);
     this.state = {
         teamName: "",
-        score: 0
+        points: 0
     };
   }
 
