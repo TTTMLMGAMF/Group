@@ -13,6 +13,7 @@ describe('Tests Show Modal button', () => {
       test('if given truthy, return falsy', ()=> {
         expect(showModal('a string')).toBeFalsy()
       })
+      
 })
 
 
