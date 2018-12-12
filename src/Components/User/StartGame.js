@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { v4 as randomString } from "uuid";
 import Team from "./Team";
 import { updateTimer, updateRoomName, updateTeams } from '../../ducks/reducer';
+import {shortRandStr} from '../../tests/ryanLogic';
 
 const RadioGroup = Radio.Group;
 
@@ -30,7 +31,7 @@ export class StartGame extends Component {
     });
     // Here we need to generate a random string to use as a roomName
     let random = `${randomString()}`;
-    let shortRandom = random.substring(0, 4);
+    let shortRandom = shortRandStr(random);
     this.setState({
       roomName: shortRandom
     });

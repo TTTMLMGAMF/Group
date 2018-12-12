@@ -2,10 +2,10 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
     register: async (req, res) => {
-        // console.log('look at the req:', req)
+        // console.log('look at the req:', req.body)
         const db = req.app.get('db');
         let { email, password } = req.body;
-        // console.log('body:', email, password)
+        console.log('body:', email, password)
         let pwd = bcrypt.hashSync(password, 10);
         password = pwd;
         let account = await db.user_login(email)
@@ -15,7 +15,7 @@ module.exports = {
                 req.session.user = newUser[0];
                 res.status(200).send(newUser[0]);
         } else {
-            res.send("Account Already Exists")
+            res.send("Account Already Exists. Please go back and log in, or use a different email address.")
         }
 
     },
