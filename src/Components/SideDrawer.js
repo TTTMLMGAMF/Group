@@ -36,7 +36,9 @@ class SideDrawer extends Component {
 
   render() {
     return (
-      <Layout className='menu-style'>
+      <Layout 
+      className='menu-style'
+      >
         <Sider
           collapsible
           collapsed={this.state.collapsed}

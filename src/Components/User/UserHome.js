@@ -48,9 +48,9 @@ class UserHome extends Component {
 
     return (
       <div>
+        <SideDrawer />
         <div className='uhMain'>
           <div className='sd'>
-            <SideDrawer />
           </div>
           <div className='uhBody'>
             <h1 id='uhHeader'>MY GAMES</h1>

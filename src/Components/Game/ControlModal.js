@@ -30,7 +30,7 @@ class ControlModal extends Component {
             <div>
 
                 <button className='gcBtn' disabled={this.props.qa.disabled} type="primary" onClick={() => this.props.showModal(question_answer_id)}>
-                    Question: {this.props.i + 1}
+                    <p>{this.props.i + 1}00</p>
                 </button>
                 <Modal
                     visible={visible}
@@ -68,7 +68,8 @@ class ControlModal extends Component {
                             ))}
                         </div>
                     }
-                >   <div className='gcModalText'>
+                >   
+                    <div className='gcModalText'>
                         <h1><span style={{fontWeight: 'bolder', textTransform: 'capitalize'}}>Question:</span>    {this.props.qa.question}</h1>
                        <hr/>
                         <h1><span style={{fontWeight: 'bolder', textTransform: 'capitalize'}}>Answer:</span>  {this.props.qa.answer}</h1>
