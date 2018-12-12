@@ -1,0 +1,51 @@
+.gcTeamBox {
+    z-index: 3;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-image: url('./images/background_texture3.png');
+    background-clip: border-box;
+    background-size: cover;
+    background-color: $color3;
+    background-blend-mode: darken;
+    border-radius: 10px;
+    border: 7.5px solid whitesmoke;
+    outline: .25px riged #2E4057CC; 
+    height: 12.5vh;
+
+    .gcTeam1 {
+      height: 100%;
+      width: 20vw;
+      border-radius: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .gcName {
+        height: 100%;
+        width: 45%;
+        border-radius: 10px 0 0 10px;
+        display: flex;
+        align-items: center;
+        font-family: $font2;
+        color: whitesmoke;
+        font-size: 1.5em;
+        padding-left: 1em;
+      }
+
+      .gcScore {
+        width: 35%;
+        height: 100%;
+        border-radius: 0 10px 10px 0;
+        display: flex;
+        align-items: center;
+        font-family: $marker;
+        color: $color5;
+        text-align: left;
+        padding-left: 1em;
+        font-size: 1.5em;
+        background-color: whitesmoke;
+        box-shadow: inset 0px 0px 20.5px 4px #00000099;
+      }
+    }
+}

@@ -8,14 +8,23 @@ import Axios from "axios";
 import StartGame from "./StartGame";
 const { Meta } = Card; //This is for the antD "card" title and game info
 
+
+
 class GameList
   extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false
+      myGames: [],
     };
   }
+
+  async componentDidMount(){
+    let res = Axios.get('/api/games');
+    this.setState({myGames: res.data})
+    console.log(this.state)
+  }
+
   showModal = () => {
     this.setState({
       visible: showModal(this.state.visible)

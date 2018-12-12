@@ -44,5 +44,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "theme": {
+    "primary-color": "#FF9502"
+  }
 }

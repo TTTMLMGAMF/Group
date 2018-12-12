@@ -33,13 +33,15 @@ class SideDrawer extends Component {
       })
   }
 
+
   render() {
     return (
-      <Layout style={{ minHeight: "100vh" }}>
+      <Layout className='menu-style'>
         <Sider
           collapsible
           collapsed={this.state.collapsed}
           onCollapse={this.onCollapse}
+          
         >
           <div className="logo" />
           <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
