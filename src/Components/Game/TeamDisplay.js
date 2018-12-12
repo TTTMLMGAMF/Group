@@ -7,10 +7,10 @@ class TeamDisplay extends Component {
             <div className='gcTeamBox'>
                 <div className='gcTeam1'>
                     <div className='gcName'>
-                        {this.props.team.name}
+                        {this.props.team.teamName}
                     </div>
                     <div className='gcScore'>
-                        {this.props.team.points}
+                        {this.props.team.score}
                     </div>
                 </div>
             </div>

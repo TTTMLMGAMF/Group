@@ -1,168 +1,73 @@
-import React, { Component } from "react";
-import { Modal, Button, Form, Input, Upload, message, Icon } from "antd";
+import React, {Component} from 'react';
 import "../../scss/App.scss";
-import Category from './Category';
-import cloneDeep from 'lodash/cloneDeep';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { navCreateGame } from '../../ducks/reducer';
+import { Button, Input} from "antd";
 
-const props = {
-  name: "file",
-  action: "//jsonplaceholder.typicode.com/posts/",
-  headers: {
-    authorization: "authorization-text"
-  },
-  onChange(info) {
-    if (info.file.status !== "uploading") {
-      console.log(info.file, info.fileList);
+  
+  class GameEdit extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        visible: false,
+        gameCategories: 1,
+        game_id: 0,
+        gameTitle: "",
+        subject: "",
+        imageUrl: "",
+        category: "",
+        categoryNum: 1,
+        q1: "",
+        a1: "",
+        q2: "",
+        a2: "",
+        q3: "",
+        a3: "",
+        q4: "",
+        a4: "",
+        q5: "",
+        a5: ""
+      };
     }
-    if (info.file.status === "done") {
-      message.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === "error") {
-      message.error(`${info.file.name} file upload failed.`);
+  
+    handleEditMount = () => {
+        axios.get()
     }
-  }
-};
 
-class GameWizard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false,
-      gameCategories: 1,
-      game_id: 0,
-      gameTitle: "",
-      subject: "",
-      imageUrl: "",
-      category: "",
-      categoryNum: 1,
-      q1: "",
-      a1: "",
-      q2: "",
-      a2: "",
-      q3: "",
-      a3: "",
-      q4: "",
-      a4: "",
-      q5: "",
-      a5: ""
-    };
-  }
-
-  showModal = () => {
-    this.setState({
-      visible: true
-    });
-  };
-  handleOk = e => {
-    console.log(e);
-    this.setState({
-      visible: false
-    });
-  };
-  handleCancel = e => {
-    console.log(e);
-    this.setState({
-      visible: false
-    });
-  };
-
-  handleInputChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
-    console.log(this.state);
-  };
-
-  handleQA = event => {
-    this.setState({});
-  };
-
-  handleQaChange = (index, value, property, id) => {
-    let qaCopy = cloneDeep(this.state.qa);
-    qaCopy[index][property] = value;
-    this.setState({ qa: qaCopy });
-    console.log(qaCopy);
-    console.log(this.state);
-  };
-
-  submitCategoryHandler = event => {
-    // event.preventDefault()
-    // If categoryNum === 1 hit post game
-    this.state.categoryNum === 1
-      ? axios
-          .post("/api/game", this.state)
-          .then(res => this.setState({ game_id: res.data[0].game_id }))
-      : axios.put(`/api/game/` + this.state.game_id, this.state);
-    // Else hit put game
-    this.setState({
-      categoryNum: this.state.categoryNum + 1
-    });
-    this.setState({
-      category: "",
-      q1: "",
-      a1: "",
-      q2: "",
-      a2: "",
-      q3: "",
-      a3: "",
-      q4: "",
-      a4: "",
-      q5: "",
-      a5: ""
-    });
-    console.log(this.state.game_id);
-    if (this.state.categoryNum === 3) {
-      this.setState({ visible: false });
-    }
-  };
-
-  render() {
-    return (
-      <div>
-        <button
-          type="primary"
-          onClick={this.showModal}
-          style={{
-            backgroundColor: "transparent",
-            border: "0px",
-            paddingLeft: "0"
-          }}
-        >
-          <Icon type="plus" />
-          <span>CREATE GAME</span>
-        </button>
+    handleInputChange = event => {
+        this.setState({ [event.target.name]: event.target.value });
+        console.log(this.state);
+      };
+    
+    render() {
+        const {gameTitle, subject, category, imageUrl} = this.state;
+      return (
         <div>
-          {/* This is Ryan's */}
-          <Modal
-            title="GAME WIZARD"
-            visible={this.state.visible}
-            onOk={this.handleOk}
-            onCancel={this.handleCancel}
-          >
-            <h2>GAME TITLE:</h2>
-            <Input
+            <h1>{gameTitle}</h1>
+            <input
               name="gameTitle"
               type="text"
               value={this.state.gameTitle}
               onChange={this.handleInputChange}
-            />
+            >{gameTitle}</input>
             <h4>SUBJECT:</h4>
-            <Input
+            <input
               name="subject"
               type="text"
               value={this.state.subject}
               onChange={this.handleInputChange}
-            />
+            >{subject}</input>
             <h4>IMAGE URL:</h4>
-            <Input
+            <input
               name="imageUrl"
               type="text"
               value={this.state.imageUrl}
               onChange={this.handleInputChange}
-            />
+            >{imageUrl}</input>
             {/* <h4>IMAGE:</h4><Upload {...props}><Button><Icon type="upload" /> Click to Upload</Button></Upload> */}
             <hr />
-            <h5>CATEGORY TITLE</h5>
+            <h5>{category}</h5>
             <Input
               name="category"
               type="text"
@@ -250,17 +155,16 @@ class GameWizard extends Component {
             <Button type="primary" onClick={this.submitCategoryHandler}>
               SUBMIT CATEGORY
             </Button>
-          </Modal>
+          
         </div>
-      </div>
-    );
+      );
+    }
   }
-}
-
-function mapStateToProps(state) {
-  return {
-    state
-  };
-}
-
-export default connect(mapStateToProps, { navCreateGame })(GameWizard)
+  
+  function mapStateToProps(state) {
+    return {
+      state
+    }
+  }
+  
+  export default connect(mapStateToProps, { navCreateGame })(GameEdit)

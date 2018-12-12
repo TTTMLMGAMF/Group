@@ -24,19 +24,19 @@ class ControlModal extends Component {
 
 
     render() {
-        const { visible, id } = this.props.qa;
+        const { visible, question_answer_id } = this.props.qa;
         console.log(visible)
         return (
             <div>
 
-                <button className='gcBtn' disabled={this.props.qa.disabled} type="primary" onClick={() => this.props.showModal(id)}>
+                <button className='gcBtn' disabled={this.props.qa.disabled} type="primary" onClick={() => this.props.showModal(question_answer_id)}>
                     Question: {this.props.i + 1}
                 </button>
                 <Modal
                     visible={visible}
                     title={this.props.category}
                     onOk={this.handleOk}
-                    onCancel={() => this.props.handleCancel(id)}
+                    onCancel={() => this.props.handleCancel(question_answer_id)}
                     centered={true}
                     zIndex={4}
                     width='70vw'
@@ -54,20 +54,20 @@ class ControlModal extends Component {
                         top: '10vh',
                         left: '15vw'
                     }}
-                    footer={[
+                    footer={
                         <div className='pointTracker'>
                             {this.props.team.map((team, i) => (
                                 <div className='ptTeam' key={i}>
                                     <h4>{team.name}</h4>
                                     <div>
-                                        <button key={i + 200} style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }} shape='circle' onClick={() => this.props.handleMinus(i, id)} ><Icon style={{fontSize:'5em', color: 'red'}} type="minus-circle"/></button>
-                                        <button key={i + 100} style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }} shape='circle' onClick={() => this.props.handleAdd(i, id)} ><Icon style={{fontSize:'5em', color: '#99C24D'}} type="plus-circle"/></button>
+                                        <button key={i + 200} style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }} shape='circle' onClick={() => this.props.handleMinus(i, question_answer_id)} ><Icon style={{fontSize:'5em', color: 'red'}} type="minus-circle"/></button>
+                                        <button key={i + 100} style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }} shape='circle' onClick={() => this.props.handleAdd(i, question_answer_id)} ><Icon style={{fontSize:'5em', color: '#99C24D'}} type="plus-circle"/></button>
                                         <div id='borderLine'></div>
                                     </div>
-                                </div>
+                                </div>    
                             ))}
                         </div>
-                    ]}
+                    }
                 >   <div className='gcModalText'>
                         <h1><span style={{fontWeight: 'bolder', textTransform: 'capitalize'}}>Question:</span>    {this.props.qa.question}</h1>
                        <hr/>

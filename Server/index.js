@@ -8,7 +8,7 @@ const authCtrl = require('./authCtrl');
 const socket = require('socket.io');
 const endpointCtrl = require('./endpointCtrl');
 const dummyData = require('./dummyData');
-const clondeDeep = require('clone-deep');
+const cloneDeep = require('clone-deep');
 
 
 const app = express();
@@ -50,9 +50,18 @@ app.get(`/api/accountInfo/:account_id`, endpointCtrl.retrieveAccountInfo)
 // app.post(`/api/students`, endpointCtrl.addStudents);
 app.get(`/api/game/:game-id`, endpointCtrl.getGame);
 
-app.post('/api/creategame', (req, res) => {
-    games[req.body.room + '_qa'] = clondeDeep(dummyData)
-    games[req.body.room + '_qa'].room = req.body.room
+app.post('/api/creategame', async (req, res) => {
+    console.log('req.body: ',req.body);
+    const db = app.get("db");
+    let qa = await db.get_QAs([req.body.gameId]);
+    qa.map(question => {question.visible = false, question.disabled = false})
+    console.log('questions:', qa)
+    let questionList = {qa};
+    console.log(questionList);
+    let game = {...req.body, ...questionList}
+    console.log(game);
+    games[req.body.room + '_qa'] = cloneDeep(game)
+    // games[req.body.room + '_qa'].room = req.body.room
     res.end()
 })
 
@@ -82,29 +91,28 @@ io.on('connection', socket => {
 
 
     socket.on('question click', data => {
-
-        let i = games[data.state.room + '_qa'].qa.findIndex(id => id.id === data.id)
+        let i = games[data.state.room + '_qa'].qa.findIndex(id => id.question_answer_id === data.id)
         games[data.state.room + '_qa'].qa[i].visible = true
 
         io.to(data.state.room).emit('game state', games[data.state.room + '_qa'])
         io.to(data.state.room).emit('question open')
     })
     socket.on('question close', data => {
-        let i = games[data.state.room + '_qa'].qa.findIndex(id => id.id === data.id)
+        let i = games[data.state.room + '_qa'].qa.findIndex(id => id.question_answer_id === data.id)
         games[data.state.room + '_qa'].qa[i].visible = false
         io.to(data.state.room).emit('game state', games[data.state.room + '_qa'])
     })
 
     socket.on('handle score', data => {
         if (data.add === true) {
-            let e = games[data.state.room + '_qa'].qa.findIndex(id => id.id === data.id)
+            let e = games[data.state.room + '_qa'].qa.findIndex(id => id.question_answer_id === data.id)
             let newTeams = Object.assign({}, games[data.state.room + '_qa']);
-            newTeams.teams[data.i].points += data.state.qa[e].points
+            newTeams.teams[data.i].score += data.state.qa[e].points
             newTeams.qa[e].disabled = true
         } else if (data.add === false) {
-            let e = games[data.state.room + '_qa'].qa.findIndex(id => id.id === data.id)
+            let e = games[data.state.room + '_qa'].qa.findIndex(id => id.question_answer_id === data.id)
             let newTeams = Object.assign({}, games[data.state.room + '_qa']);
-            newTeams.teams[data.i].points += - data.state.qa[e].points
+            newTeams.teams[data.i].score += - data.state.qa[e].points
             socket.emit('game state', newTeams)
         }
     })

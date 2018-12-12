@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Axios from 'axios'
-import { Modal, Radio, Input, InputNumber, Tag } from "antd";
+import { Modal, Radio, Icon, InputNumber, Tag } from "antd";
 import "../../scss/App.scss";
 import { withRouter } from 'react-router-dom';
 // import { connect } from "http2";
@@ -17,9 +17,10 @@ export class StartGame extends Component {
     this.state = {
       visible: false,
       numOfTeams: 0,
+      value: 0, //trying to get the radio buttons to fill in when selected
       teams: [],
       roomName: "",
-      timer: 30000
+      timer: 30000,
     };
   }
 
@@ -37,7 +38,7 @@ export class StartGame extends Component {
 
   handleOk = e => {
     console.log(e);
-    Axios.post('/api/creategame', { room: this.state.roomName })
+    Axios.post('/api/creategame', { room: this.state.roomName, teams: this.state.teams, timer: this.state.timer, gameId: this.props.gameId, gameTitle: this.props.gameTitle })
       .then(() => this.props.history.push(`/gamecontrol/${this.state.roomName}`))
     this.setState({
       visible: false
@@ -58,7 +59,7 @@ export class StartGame extends Component {
   };
 
   handleNumberOfTeams = e => {
-    this.setState({ teams: [] });
+    this.setState({ teams: [], value: e.target.value });
     this.setState({
       teams: Array(e.target.value).fill({ teamName: "", score: 0 })
     });
@@ -79,18 +80,18 @@ export class StartGame extends Component {
   };
 
   render() {
+    console.log(this.props);
     let teamsNames = this.state.teams.map((team, i) => {
       return (
         <Team key={i} index={i} team={team} handleTeam={this.handleTeam} />
       );
     });
 
-    console.log(this.props)
 
     return (
       <div>
-        <button type="primary" onClick={this.showModal}>
-          Set up Game
+        <button type="primary" onClick={this.showModal} style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}}>
+          <Icon type="caret-right"/> 
         </button>
         <div>
           <Modal
