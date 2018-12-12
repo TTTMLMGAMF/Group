@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Card, Icon, } from "antd";
+import { showModal } from '../TestFolder/trentLogic'
 // Avatar, Modal, Button,
 
 import "../../scss/App.scss";
 import Axios from "axios";
 import StartGame from "./StartGame";
-const {Meta} = Card; //This is for the antD "card" title and game info
+const { Meta } = Card; //This is for the antD "card" title and game info
 
 class GameList
   extends Component {
@@ -17,9 +18,11 @@ class GameList
   }
   showModal = () => {
     this.setState({
-      visible: true
+      visible: showModal(this.state.visible)
     });
   };
+
+
   handleOk = e => {
     console.log(e);
     this.setState({
@@ -48,9 +51,9 @@ class GameList
             style={{ width: 300 }}
             cover={<img alt="game image" src={game.image} />}
             actions={[
-              <StartGame gameId={game.game_id}/>,
-              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}}><Icon type="edit" /></button>, 
-              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}} onClick={()=> console.log(this.props)}><Icon type="delete" /></button>]}
+              <StartGame gameId={game.game_id} />,
+              <button style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }}><Icon type="edit" /></button>,
+              <button style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }} onClick={() => console.log(this.props)}><Icon type="delete" /></button>]}
             hoverable>
             <Meta title={game.game_name}
               description={game.subject} />
@@ -71,5 +74,6 @@ class GameList
     );
   }
 }
+
 
 export default GameList;

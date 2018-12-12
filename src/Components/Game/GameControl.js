@@ -6,6 +6,7 @@ import SideDrawer from '../SideDrawer';
 import io from 'socket.io-client'
 import { connect } from 'react-redux'
 import { updateRoomName } from '../../ducks/reducer'
+import { addOrSub } from '../TestFolder/trentLogic'
 import '../../scss/App.scss'
 
 
@@ -54,7 +55,7 @@ class GameControl extends Component {
             state: this.state,
             i: i,
             id: id,
-            add: add
+            add: addOrSub(add)
         })
     }
 
@@ -66,12 +67,12 @@ class GameControl extends Component {
     }
 
     handleAdd = (i, id) => {
-        this.handleScore(i, id, true)
+        this.handleScore(i, id, "add")
         this.handleCancel(id)
     }
 
     handleMinus = (i, id) => {
-        this.handleScore(i, id, false)
+        this.handleScore(i, id, "sub")
     }
 
     handleCancel = (id) => {
@@ -86,7 +87,7 @@ class GameControl extends Component {
         let cOne = this.state.qa.filter(el => el.category_num === 1)
         let cTwo = this.state.qa.filter(el => el.category_num === 2)
         let cThree = this.state.qa.filter(el => el.category_num === 3)
-        console.log(this.props)
+        console.log(this.state.qa[0])
         return (
             <div>
 
