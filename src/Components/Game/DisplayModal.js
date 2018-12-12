@@ -3,6 +3,7 @@ import io from 'socket.io-client';
 // import { connect } from 'react-redux'
 // import { updateTeams, updateRoomName, updateGameTitle, updateQa } from '../../ducks/reducer'
 import { Modal } from "antd";
+import backTexture from '../../scss/images/background_texture3.png'
 
 
 class DisplayModal extends Component {
@@ -68,15 +69,54 @@ class DisplayModal extends Component {
 
   render() {
     return (
-      <div>
-        <button className="gcBtn" disabled={this.props.qa.disabled}>
+      <div className="displaypage">
+        <button className="gdBtn" disabled={this.props.qa.disabled}>
           {this.props.qa.points}
         </button>
-        <Modal
+        <Modal className="gdModal"
           visible={this.props.qa.visible}
           centered={true}
+          footer={null}
+          width='20vw'
+          height='50vh'
+          mask={true}
+          centered={true}
+          closable={false}
+          zIndex={4}
+          bodyStyle={{
+            height: '60vh', 
+            width: '70vw', 
+            color: 'transparent', 
+            fontFamily: 'Luckiest Guy, cursive', 
+            fontSize: '5vw', 
+            justifyContent: 'center', 
+            textAlign: 'center', 
+            alignContent: 'middle', 
+            border: '30px ridge whitesmoke', 
+            boxShadow: 'inset 0px 0px 40.5px 5px #00000099',
+            overFlow: 'hidden',
+            backgroundImage: `url(${backTexture}`,
+            backgroundRepeat: 'no-repeat',
+            backgroundClip: 'border-box',
+            backgroundSize: 'cover',
+            backgroundColor: '#048BA8',
+            backgroundBlendMode: 'darken',
+            // borderRadius: '25px',
+            padding: '5vw'
+          }}
+          style={{
+            // backgroundColor: '#2E4057', 
+            borderRadius: '25px',
+            position: 'absolute',
+            top: '10vh',
+            left: '15vw'
+          }}
+          maskStyle={{backgroundColor: '#2E4057CC'}}
         >
-          <h1>{this.props.qa.question}</h1>
+          <h1 style={{
+            color: '#FF9502',
+            textShadow: '0 -1px 0 #fff, 0 1px 0 #2e2e2e, 0 2px 0 #2c2c2c, 0 3px 0 #2a2a2a, 0 4px 0 #282828, 0 5px 0 #262626, 0 6px 0 #242424, 0 7px 0 #222, 0 8px 0 #202020, 0 9px 0 #1e1e1e, 0 10px 0 #1c1c1c, 0 11px 0 #1a1a1a, 0 12px 0 #181818, 0 13px 0 #161616, 0 14px 0 #141414, 0 15px 0 #121212, 0 22px 30px rgba(0,0,0,0.9)'
+          }} className='gdModalText'>{this.props.qa.question}</h1>
           <div className="dmCountdown">
             {this.state.countDown}
           </div>

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class TeamDisplay extends Component {
     render() {
         return (
-            <div className='gcTeamContainer'>
+            <div className='gcTeamBox'>
                 <div className='gcTeam1'>
                     <div className='gcName'>
                         {this.props.team.teamName}
