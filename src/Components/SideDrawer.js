@@ -33,6 +33,7 @@ class SideDrawer extends Component {
       })
   }
 
+
   render() {
     return (
       <Layout className='menu-style'>

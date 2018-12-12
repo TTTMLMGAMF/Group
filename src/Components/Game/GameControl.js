@@ -125,7 +125,7 @@ class GameControl extends Component {
                             ))}
                         </div>
                     </div>
-                    <div className='gcTeamContainer'>
+                    <div className='gcTeamsContainer'>
                         {this.state.team.map((team, i) => (
                             <TeamDisplay key={i} team={team} />
                         ))}
