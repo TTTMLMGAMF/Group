@@ -5,7 +5,8 @@ module.exports = {
     const db = req.app.get("db");
     const { account_id } = req.session.user;
     db.get_games([account_id])
-      .then(game => res.status(200).send(game))
+    .then(game => {res.status(200).send(game)
+    console.log("games list:", game)})
       .catch(err => {
         res.status(500).send({ errorMessage: "that's not a moon" });
         console.log(err);

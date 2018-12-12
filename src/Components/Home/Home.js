@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Carousel, Layout, Menu, Breadcrumb, Affix } from 'antd';
+import { Carousel, Layout, Menu, Affix } from 'antd';
 import Login from './login';
 import '../../scss/App.scss';
 
