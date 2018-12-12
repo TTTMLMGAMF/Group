@@ -17,7 +17,10 @@ class GameControl extends Component {
             gameName: "The Questions!",
             qa: [],
             team: [],
-            room: 'things',
+            room: '',
+            cOne: [],
+            cTwo: [],
+            cThree: []
         }
         this.joinRoom = this.joinRoom.bind(this);
 
@@ -34,7 +37,7 @@ class GameControl extends Component {
             this.setState({
                 qa: data.qa,
                 team: data.teams,
-                gameTitle: data.gameTitle
+                gameTitle: data.gameTitle,
             })
         })
     }
@@ -83,11 +86,12 @@ class GameControl extends Component {
     }
 
 
+
     render() {
         let cOne = this.state.qa.filter(el => el.category_num === 1)
         let cTwo = this.state.qa.filter(el => el.category_num === 2)
         let cThree = this.state.qa.filter(el => el.category_num === 3)
-        console.log(this.state.qa[0])
+        console.log(this.state.cOne)
         return (
             <div>
 
@@ -97,7 +101,7 @@ class GameControl extends Component {
                 <div className='gcControlContainer'>
 
                     {/* <div className='gcGame'> */}
-                    <h1>Game Control where the teacher controls the game</h1>
+                    <h1>{this.state.gameTitle}</h1>
                     {<Link to={`/gamedisplay/${this.state.room}`} target="_blank">OPEN</Link>}
                     <div className='gcColumnContainer'>
 
