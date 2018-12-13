@@ -107,6 +107,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#999999', end
 
 .gcModalText {
     text-align: left;
+    color: $color5;
 
 }
 
@@ -137,6 +138,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#999999', end
 
     h4 {
         font-weight: bold;
-        font-size: 1.5vw;
+        font-size: 1vw;
+        color: $color5;
     }
 }

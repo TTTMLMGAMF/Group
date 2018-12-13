@@ -6,7 +6,6 @@ import SideDrawer from '../SideDrawer';
 import io from 'socket.io-client'
 import { connect } from 'react-redux'
 import { updateRoomName } from '../../ducks/reducer'
-import { addOrSub } from '../TestFolder/trentLogic'
 import '../../scss/App.scss'
 
 
@@ -17,10 +16,10 @@ class GameControl extends Component {
             gameName: "The Questions!",
             qa: [],
             team: [],
-            room: '',
-            cOne: [],
-            cTwo: [],
-            cThree: []
+            room: 'things',
+            cOne: '',
+            cTwo: '',
+            cThree: ''
         }
         this.joinRoom = this.joinRoom.bind(this);
 
@@ -34,10 +33,14 @@ class GameControl extends Component {
         this.socket = io('http://localhost:4000');
         await this.joinRoom()
         await this.socket.on('game state', data => {
+            console.log(data)
             this.setState({
                 qa: data.qa,
                 team: data.teams,
                 gameTitle: data.gameTitle,
+                cOne: data.cOne,
+                cTwo: data.cTwo,
+                cThree: data.cThree
             })
         })
     }
@@ -58,7 +61,7 @@ class GameControl extends Component {
             state: this.state,
             i: i,
             id: id,
-            add: addOrSub(add)
+            add: add
         })
     }
 
@@ -70,12 +73,12 @@ class GameControl extends Component {
     }
 
     handleAdd = (i, id) => {
-        this.handleScore(i, id, "add")
-        this.handleCancel(id)
+        this.handleScore(i, id, true)
+        // this.handleCancel(id)
     }
 
     handleMinus = (i, id) => {
-        this.handleScore(i, id, "sub")
+        this.handleScore(i, id, false)
     }
 
     handleCancel = (id) => {
@@ -85,13 +88,19 @@ class GameControl extends Component {
         })
     }
 
+    showAnswer = (id) => {
+        this.socket.emit('show answer', {
+            state: this.state,
+            id: id
+        })
+    }
 
 
     render() {
         let cOne = this.state.qa.filter(el => el.category_num === 1)
         let cTwo = this.state.qa.filter(el => el.category_num === 2)
         let cThree = this.state.qa.filter(el => el.category_num === 3)
-        console.log(this.state.cOne)
+        console.log(this.props)
         return (
             <div>
 
@@ -107,25 +116,25 @@ class GameControl extends Component {
 
                         <div className="gcColumn">
 
-                            {/* <h2>{cOne[0].category}</h2> */}
+                            <h2>{this.state.cOne}</h2>
                             {cOne.map((qa, i) => (
-                                <ControlModal key={i} category={cOne[0].cn} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} />
+                                <ControlModal key={i} category={this.state.cOne} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} />
 
                             ))}
                         </div>
                         <div className="gcColumn">
 
-                            {/* <h2>{cTwo[0].category}</h2> */}
+                            <h2>{this.state.cTwo}</h2>
                             {cTwo.map((qa, i) => (
-                                <ControlModal key={i} category={cTwo[0].cn} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} />
+                                <ControlModal key={i} category={this.state.cTwo} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} />
 
                             ))}
                         </div>
                         <div className="gcColumn">
 
-                            {/* <h2>{cThree[0].category}</h2> */}
+                            <h2>{this.state.cThree}</h2>
                             {cThree.map((qa, i) => (
-                                <ControlModal key={i} category={cThree[0].cn} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} />
+                                <ControlModal key={i} category={this.state.cThree} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} />
 
                             ))}
                         </div>

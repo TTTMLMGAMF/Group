@@ -75,10 +75,14 @@ class GameList
 
     return (
       <div>
-        {gameCard}
-        <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', margin: '20px' }}>
+        <div className='gameCards'>
+          <div id='card'>
+            {gameCard}
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', margin: '20px' }}>
 
-          {/* <Card title="Card title">Card content</Card> */}
+            {/* <Card title="Card title">Card content</Card> */}
+          </div>
         </div>
       </div>
     );

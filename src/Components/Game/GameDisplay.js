@@ -26,7 +26,11 @@ class GameDisplay extends Component {
       room: 'things',
       qa: [],
       team: [],
-      gameTitle: ''
+      gameTitle: '',
+      cOne: '',
+      cTwo: '',
+      cThree: '',
+      showAnswer: false
     }
     this.joinRoom = this.joinRoom.bind(this);
   }
@@ -42,7 +46,17 @@ class GameDisplay extends Component {
       this.setState({
         qa: data.qa,
         team: data.teams,
-        gameTitle: data.gameTitle
+        gameTitle: data.gameTitle,
+        cOne: data.cOne,
+        cTwo: data.cTwo,
+        cThree: data.cThree
+      })
+    })
+
+    //This sets showAnswer to true
+    await this.socket.on('show answer', data => {
+      this.setState({
+        showAnswer: data
       })
     })
 
@@ -78,7 +92,7 @@ class GameDisplay extends Component {
     let cOne = this.state.qa.filter(el => el.category_num === 1)
     let cTwo = this.state.qa.filter(el => el.category_num === 2)
     let cThree = this.state.qa.filter(el => el.category_num === 3)
-    console.log(cOne[0])
+    console.log(this.state.cOne)
     return (
       <div>
 
@@ -101,25 +115,25 @@ class GameDisplay extends Component {
 
             <div className="gdCategory">
               {/* <DisplayModal question={qa} countDown={this.state.countDown} /> */}
-              {/* <h2>{cOne[0].category}</h2> */}
+              <h1 className='theCategory'>{this.state.cOne}</h1>
               {cOne.map((qa, i) => (
-                <DisplayModal key={i} qa={qa} countDown={this.state.countDown} />
+                <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
 
               ))}
             </div>
             <div className="gdCategory">
 
-              {/* <h2>{cTwo[0].category}</h2> */}
+              <h1>{this.state.cTwo}</h1>
               {cTwo.map((qa, i) => (
-                <DisplayModal key={i} qa={qa} countDown={this.state.countDown} />
+                <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
 
               ))}
             </div>
             <div className="gdCategory">
 
-              {/* <h2>{cThree[0].category}</h2> */}
+              <h1>{this.state.cThree}</h1>
               {cThree.map((qa, i) => (
-                <DisplayModal key={i} qa={qa} countDown={this.state.countDown} />
+                <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
 
               ))}
             </div>
