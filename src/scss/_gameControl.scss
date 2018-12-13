@@ -103,6 +103,7 @@
     &:disabled{
         background: rgb(153,153,153);
         color: $color5;
+        
 background: -moz-linear-gradient(top, rgb(153,153,153) 0%, rgb(145,145,145) 47%, rgb(122,117,122) 100%);
 background: -webkit-gradient(left top, left bottom, color-stop(0%, rgb(153,153,153)), color-stop(47%, rgb(145,145,145)), color-stop(100%, rgb(122,117,122)));
 background: -webkit-linear-gradient(top, rgb(153,153,153) 0%, rgb(145,145,145) 47%, rgb(122,117,122) 100%);
