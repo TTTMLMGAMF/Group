@@ -29,7 +29,8 @@ class GameDisplay extends Component {
       gameTitle: '',
       cOne: '',
       cTwo: '',
-      cThree: ''
+      cThree: '',
+      showAnswer: false
     }
     this.joinRoom = this.joinRoom.bind(this);
   }
@@ -49,6 +50,13 @@ class GameDisplay extends Component {
         cOne: data.cOne,
         cTwo: data.cTwo,
         cThree: data.cThree
+      })
+    })
+
+    //This sets showAnswer to true
+    await this.socket.on('show answer', data => {
+      this.setState({
+        showAnswer: data
       })
     })
 
@@ -109,7 +117,7 @@ class GameDisplay extends Component {
               {/* <DisplayModal question={qa} countDown={this.state.countDown} /> */}
               <h1 className='theCategory'>{this.state.cOne}</h1>
               {cOne.map((qa, i) => (
-                <DisplayModal key={i} qa={qa} countDown={this.state.countDown} />
+                <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
 
               ))}
             </div>
@@ -117,7 +125,7 @@ class GameDisplay extends Component {
 
               <h1>{this.state.cTwo}</h1>
               {cTwo.map((qa, i) => (
-                <DisplayModal key={i} qa={qa} countDown={this.state.countDown} />
+                <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
 
               ))}
             </div>
@@ -125,7 +133,7 @@ class GameDisplay extends Component {
 
               <h1>{this.state.cThree}</h1>
               {cThree.map((qa, i) => (
-                <DisplayModal key={i} qa={qa} countDown={this.state.countDown} />
+                <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
 
               ))}
             </div>

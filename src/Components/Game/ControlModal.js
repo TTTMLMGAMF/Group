@@ -56,6 +56,7 @@ class ControlModal extends Component {
                     }}
                     footer={
                         <div className='pointTracker'>
+                            <button onClick={() => this.props.showAnswer(question_answer_id)}>show answer</button>
                             {this.props.team.map((team, i) => (
                                 <div className='ptTeam' key={i}>
                                     <h4>{team.teamName}</h4>
