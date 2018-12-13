@@ -82,18 +82,18 @@ class GameDisplay extends Component {
     return (
       <div>
 
-        
+
         <div className="gdContainer">
-          <img id='sky' src={sky} alt='sky-background'/>
+          <img id='sky' src={sky} alt='sky-background' />
           <div className='gameinfo'>
-            <h1 id='gdgt'>Game Title</h1>
+            <h1 id='gdgt'>{this.state.gameTitle}</h1>
           </div>
-          <img id='grass' src={grass} alt='grass-background'/>
-          <img id='sun' src={sun} alt='sun-background'/>
+          <img id='grass' src={grass} alt='grass-background' />
+          <img id='sun' src={sun} alt='sun-background' />
           <div className='clouds'>
-            <img id='cloudBig' src={cloudBig} alt='Big-cloud illustration'/>
-            <img id='cloudSmall' src={cloudSmall} alt='small-cloud illustration'/>
-            <img id='cloudMed' src={cloudMed} alt='Medium-cloud illustration'/>
+            <img id='cloudBig' src={cloudBig} alt='Big-cloud illustration' />
+            <img id='cloudSmall' src={cloudSmall} alt='small-cloud illustration' />
+            <img id='cloudMed' src={cloudMed} alt='Medium-cloud illustration' />
           </div>
 
 
@@ -133,7 +133,7 @@ class GameDisplay extends Component {
 
 
         </div>
-      </div>  
+      </div>
     );
   }
 }

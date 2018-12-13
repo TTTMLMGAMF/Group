@@ -6,6 +6,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { navCreateGame } from '../../ducks/reducer';
+import {handleCancel} from '../../tests/ryanLogic';
 
 const props = {
   name: "file",
@@ -64,7 +65,7 @@ class GameWizard extends Component {
   handleCancel = e => {
     console.log(e);
     this.setState({
-      visible: false
+      visible: handleCancel(this.state.visible)
     });
   };
 
@@ -115,6 +116,7 @@ class GameWizard extends Component {
       this.setState({ visible: false });
     }
   };
+
 
   render() {
     return (
@@ -256,6 +258,7 @@ class GameWizard extends Component {
     );
   }
 }
+
 
 function mapStateToProps(state) {
   return {

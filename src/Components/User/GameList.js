@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Card, Icon, } from "antd";
+import { showModal } from '../TestFolder/trentLogic'
 // Avatar, Modal, Button,
 
 import "../../scss/App.scss";
-import Axios from "axios";
+import axios from "axios";
 import StartGame from "./StartGame";
-const {Meta} = Card; //This is for the antD "card" title and game info
+const { Meta } = Card; //This is for the antD "card" title and game info
 
 
 
@@ -19,16 +20,18 @@ class GameList
   }
 
   async componentDidMount(){
-    let res = Axios.get('/api/games');
+    let res = axios.get('/api/games');
     this.setState({myGames: res.data})
     console.log(this.state)
   }
 
   showModal = () => {
     this.setState({
-      visible: true
+      visible: showModal(this.state.visible)
     });
   };
+
+
   handleOk = e => {
     console.log(e);
     this.setState({
@@ -42,11 +45,11 @@ class GameList
     });
   };
 
-  handleDelete = () => {
-    console.log("DON'T BE UNDEFINED:", this.props.games)
-    let { game_id, game_name } = this.props.games;
-    Axios.delete(`/api/game/${game_id}/${game_name}`)
-  };
+  // handleDelete = (game_id, game_name) => {
+  //   console.log(game_id, game_name)
+  //   axios.delete(`/api/game/${game_id}/${game_name}`)
+  //   this.props.reRender()
+  // };
 
   render() {
     console.log(this.props)
@@ -59,7 +62,7 @@ class GameList
             actions={[
               <StartGame gameId={game.game_id}/>,
               <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}}><Icon type="edit" /></button>, 
-              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}} onClick={()=> console.log(this.props)}><Icon type="delete" /></button>]}
+              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}} onClick={()=> this.props.handleDelete(game.game_id, game.game_name)}><Icon type="delete" /></button>]}
             hoverable>
             <Meta title={game.game_name}
               description={game.subject} />
@@ -84,5 +87,6 @@ class GameList
     );
   }
 }
+
 
 export default GameList;
