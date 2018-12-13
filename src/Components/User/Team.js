@@ -24,7 +24,7 @@ export default class Team extends Component {
     console.log(this.state);
     return (
       <div>
-        <Input placeholder="Team Name" onChange={e => this.props.handleTeam(e, index)} />
+        <Input value={this.props.team.teamName} onChange={e => this.props.handleTeam(e, index)} />
       </div>
     );
   }
