@@ -51,15 +51,17 @@ app.get(`/api/accountInfo/:account_id`, endpointCtrl.retrieveAccountInfo)
 // app.get(`/api/game/:game_id`, endpointCtrl.getGame);
 
 app.post('/api/creategame', async (req, res) => {
-    console.log('req.body: ',req.body);
+    // console.log('req.body: ',req.body);
     const db = app.get("db");
     let qa = await db.get_QAs([req.body.gameId]);
-    qa.map(question => {question.visible = false, question.disabled = false})
-    console.log('questions:', qa)
-    let questionList = {qa};
-    console.log(questionList);
-    let game = {...req.body, ...questionList}
-    console.log(game);
+    qa.map(question => { question.visible = false, question.disabled = false })
+    // console.log('questions:', qa)
+    let questionList = { qa };
+
+    let categories = { cOne: qa[0].category, cTwo: qa[7].category, cThree: qa[12].category }
+    console.log(categories);
+    let game = { ...req.body, ...questionList, ...categories }
+    // console.log(game);
     games[req.body.room + '_qa'] = cloneDeep(game)
     // games[req.body.room + '_qa'].room = req.body.room
     res.end()
