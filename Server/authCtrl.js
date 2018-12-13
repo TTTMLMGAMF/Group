@@ -22,10 +22,10 @@ module.exports = {
     login: (req, res) => {
         const db = req.app.get('db');
         const { email, password } = req.body;
-        // console.log(email, password);
+        console.log(email, password);
         db.user_login(email)
             .then((user) => {
-                // console.log('Here:', user)
+                console.log('Here:', user)
                 if (bcrypt.compareSync(password, user[0].account_pass)) {
                     delete user[0].account_pass;
                     req.session.user = user[0];

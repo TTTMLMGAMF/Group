@@ -1,25 +1,37 @@
 import React, { Component } from "react";
 import { Card, Icon, } from "antd";
+import { showModal } from '../TestFolder/trentLogic'
 // Avatar, Modal, Button,
 
 import "../../scss/App.scss";
 import axios from "axios";
 import StartGame from "./StartGame";
-const {Meta} = Card; //This is for the antD "card" title and game info
+const { Meta } = Card; //This is for the antD "card" title and game info
+
+
 
 class GameList
   extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false
+      myGames: [],
     };
   }
+
+  async componentDidMount(){
+    let res = axios.get('/api/games');
+    this.setState({myGames: res.data})
+    console.log(this.state)
+  }
+
   showModal = () => {
     this.setState({
-      visible: true
+      visible: showModal(this.state.visible)
     });
   };
+
+
   handleOk = e => {
     console.log(e);
     this.setState({
@@ -71,5 +83,6 @@ class GameList
     );
   }
 }
+
 
 export default GameList;
