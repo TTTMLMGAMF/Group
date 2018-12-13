@@ -7,6 +7,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  z-index: -2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -17,12 +18,12 @@
   }
 
   #sky {
-    width: 135vw;
+    width: 150vw;
+    height: 120vh;
     position: absolute;
-    top: -400px;
-    z-index: 1;
-    filter: drop-shadow(0px 8px 2.5px rgba(51, 51, 51, 0.5));
-    height: auto;
+    top: -30vh;
+    z-index: -1;
+    filter: drop-shadow(-10px 18px 2.5px rgba(51, 51, 51, 0.5));
     animation: sky 3s ease-out 0s 1;
     clip-path: inset(20% 0 0 0);
 
@@ -37,7 +38,7 @@
     margin: 250px;
       #gdgt {
         position: absolute;
-        top: 5%;
+        top: 0;
         z-index: 2;
         font-size: 5.5em;
         font-family: $marker;
@@ -49,12 +50,12 @@
   }
   #grass {
     position: absolute;
-    z-index: 2;
-    width: 120vw;
-    bottom: -95%;
+    z-index: -1;
+    width: 130vw;
+    top: 55vh;
     clip-path: inset(0 0 60% 0);
     animation: grass 3s ease-out 0s 1;
-    filter: drop-shadow(0px 8px 2.5px rgba(51, 51, 51, 0.5));
+    filter: drop-shadow(-10px 18px 2.5px rgba(51, 51, 51, 0.5));
   }
   @keyframes sun {
     0% {right: -250px;}
@@ -64,16 +65,16 @@
   #sun {
     position: absolute;
     width: 40vw;
-    top: -50px;
+    top: -5vh;
     right: -300px;
     height: auto;
-    z-index: 3;
+    z-index: 2;
     filter: drop-shadow(-100px 50px 5px rgba(51, 51, 51, 0.5));
     animation: sun 10s ease-in-out 0s infinite;
   }
   .clouds {
     position: absolute;
-    top: 0;
+    top: -10vh;
     left: -500px;
     z-index: 3;
 
@@ -85,11 +86,11 @@
       position: absolute;
       width: 40vw;
       top: -300px;
-      left: 2800px;
+      left: 3800px;
       height: auto;
       z-index: 3;
       filter: drop-shadow(-100px 50px 5px rgba(51, 51, 51, 0.5));
-      animation: clouds 125s linear 30s infinite;
+      animation: clouds 120s linear 40s infinite;
     }
     
     #cloudMed {
@@ -98,9 +99,9 @@
       top: -300px;
       left: 2800px;
       height: auto;
-      z-index: 3;
+      z-index: 1;
       filter: drop-shadow(-100px 50px 5px rgba(51, 51, 51, 0.5));
-      animation: clouds 125s linear 60s infinite;
+      animation: clouds 120s linear 80s infinite;
 
     }
     #cloudBig {
@@ -111,90 +112,93 @@
       height: auto;
       z-index: 3;
       filter: drop-shadow(-100px 50px 5px rgba(51, 51, 51, 0.5));
-      animation: clouds 125s linear 0s infinite;
+      animation: clouds 120s linear 0s infinite;
     }
   }
-  h1 {
-    // background-color: gold;
-    width: 100%;
-    height: 10%;
+  // h1 {
+  //   width: 100%;
+  //   height: 10%;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: sky 3s ease-out 0s 1;
-  }
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   animation: sky 3s linear 0s 1;
+  // }
 
   .gdCategoryContainer {
-    z-index: 3;
-    // background-color: gray;
-    width: 80%;
-    position: relative;
-    top: -320px;
+    
+    width: 100%;
+    position: absolute;
+    top: 35vh;
+    left: 0;
     display: flex;
-    justify-content: center;
+    align-content: flex-start;
+    justify-content: space-evenly;
+    z-index: 4;
+
+    
+
 
     .gdCategory {
-      width: 30%;
-      border-radius: 5px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
+      justify-content: flex-start;
+      align-items: space-around;
+      z-index: 4;
+      margin: 0 7.5vw;
 
-      #cat1 {
-        height: 10vw;
+      .catTitle {
+        font-family: $marker;
+        color: $color1;
+        font-weight: bolder;
+        font-size: 1.5em;
+        z-index: 4;
+        background-color: #048BA880;
+        // position: absolute;
+        // top: -27vh;
         width: 15vw;
-        background-image: url('./images/game_categroy_titles.png');
-        background-size: 175% 175%;
-        background-repeat: no-repeat;
-        background-position: center center;
-        display: grid;
-        justify-content: center;
-        align-items: center;
-        h2 {
-          font-family: $marker;
-          color: $color3;
-          font-weight: bold;
-          font-size: 1.5em; 
-          
-        }
+        margin: 0 7.5vw;
       }
       
-
-      .gdQuestion {
-        // background-image: url('./images/game_scorebox_back.png');
-        background-color: #2E4057;
-        background-size: 100%;
-        background-repeat: no-repeat;
-        // filter:hue-rotate(200deg);
+      .gdBtn {
+        background-image: url('./images/background_texture3.png');
+        background-clip: border-box;
+        background-size: cover;
+        background-color: $color2;
+        background-blend-mode: luminosity;
+        box-shadow: inset 0px 0px 20.5px 5px #00000099;
         color: $color1;
         font-family: $font2;
-        font-size: 5vh;
+        font-size: 3vw;
         text-shadow: 0 1px 0 #2E405780, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
         width: 15vh;
         height: 10vh;
-        margin: 5px;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        border-radius: 5px;
-        div {
-          color: $color1;
-        }
+        margin: 0 0 1vh 0;
+        border-radius: 10px;
+        border: 7.5px solid whitesmoke;
+        outline: .25px riged #2E4057CC;
+        
       }
+    
+      .gdBtn:disabled {
+          color: #048BA8CC;
+          // text-shadow: none;
+      }
+      
     }
   }
-  .gdTeamsContainer {
-    width: 90vw;
-    display: flex;
-    justify-content: space-around;
-    height: 15vh;
-    z-index: 5;
-    margin-bottom: 7.5vh;
-    
+      .gdTeamsContainer {
+        width: 90vw;
+        position: absolute;
+        top: 85vh;
+        // display: flex;
+        // flex-direction: row;
+        // justify-content: space-around;      
+        // height: 15vh;
+        // z-index: 5;
+        // margin-bottom: 5vh; 
+        display: flex;
+        justify-content: space-around;
+        z-index: 10;
   }
-
 }

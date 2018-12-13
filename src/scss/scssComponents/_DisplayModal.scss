@@ -5,46 +5,35 @@
     
     overflow: hidden;
 
-    .gdBtn {
-        // background: radial-gradient(ellipse at center, #048BA8 0%, #2E4057CC 100%, #2F2D2ECC 100%);
-        background-image: url('./images/background_texture3.png');
-        background-clip: border-box;
-        background-size: cover;
-        background-color: $color2;
-        background-blend-mode: luminosity;
-        //normal
-        // multiply
-        // screen
-        // overlay
-        // darken
-        // lighten
-        // color-dodge
-        // saturation
-        // color
-        // luminosity
-        // -webkit-box-shadow: inset 5px 5px 15px 5px #000000; 
-        box-shadow: inset 0px 0px 20.5px 5px #00000099;
-        color: $color1;
-        font-family: $font2;
-        font-size: 5vh;
-        text-shadow: 0 1px 0 #2E405780, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
-        width: 15vh;
-        height: 10vh;
-        margin: 5px;
-        border-radius: 10px;
-        border: 7.5px solid whitesmoke;
-        outline: .25px riged #2E4057CC;
+    // .gdBtn {
+    //     // background: radial-gradient(ellipse at center, #048BA8 0%, #2E4057CC 100%, #2F2D2ECC 100%);
+    //     background-image: url('./images/background_texture3.png');
+    //     background-clip: border-box;
+    //     background-size: cover;
+    //     background-color: $color2;
+    //     background-blend-mode: luminosity;
+    //     box-shadow: inset 0px 0px 20.5px 5px #00000099;
+    //     color: $color1;
+    //     font-family: $font2;
+    //     font-size: 3vw;
+    //     text-shadow: 0 1px 0 #2E405780, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+    //     width: 15vh;
+    //     height: 10vh;
+    //     margin: 5px;
+    //     border-radius: 10px;
+    //     border: 7.5px solid whitesmoke;
+    //     outline: .25px riged #2E4057CC;
         
 
-        // div {
-        //   color: $color1;
-        // }
-    }
+    //     // div {
+    //     //   color: $color1;
+    //     // }
+    // }
     
-    .gdBtn:disabled {
-        color: #048BA8CC;
-        // text-shadow: none;
-    }
+    // .gdBtn:disabled {
+    //     color: #048BA8CC;
+    //     // text-shadow: none;
+    // }
 
     .gdModal {
         background-image: url('./images/background_texture3.png');
