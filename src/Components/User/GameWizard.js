@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, Button, Form, Input, Upload, message, Icon } from "antd";
+import { Modal, Button, Input, message, Icon } from "antd";
 import "../../scss/App.scss";
 import Category from './Category';
 import cloneDeep from 'lodash/cloneDeep';

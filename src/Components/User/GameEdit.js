@@ -4,6 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { navCreateGame } from '../../ducks/reducer';
 import { Button, Input} from "antd";
+import SideDrawer from './../SideDrawer';
 
   
   class GameEdit extends Component {
@@ -44,6 +45,7 @@ import { Button, Input} from "antd";
         const {gameTitle, subject, category, imageUrl} = this.state;
       return (
         <div>
+          <SideDrawer/>
             <h1>{gameTitle}</h1>
             <input
               name="gameTitle"
@@ -68,87 +70,87 @@ import { Button, Input} from "antd";
             {/* <h4>IMAGE:</h4><Upload {...props}><Button><Icon type="upload" /> Click to Upload</Button></Upload> */}
             <hr />
             <h5>{category}</h5>
-            <Input
+            <input
               name="category"
               type="text"
               value={this.state.category}
               onChange={this.handleInputChange}
-            />
+            >{category}</input>
             <p>QUESTION 1:</p>
-            <Input
+            <input
               placeholder="easiest question here"
               name="q1"
               type="text"
               value={this.state.q1}
               onChange={this.handleInputChange}
-            />
-            <Input
+            >{q1}</input>
+            <input
               placeholder="answer"
               name="a1"
               type="text"
               value={this.state.a1}
               onChange={this.handleInputChange}
-            />
+            >{a1}</input>
             <p>QUESTION 2:</p>
-            <Input
+            <input
               placeholder="question"
               name="q2"
               type="text"
               value={this.state.q2}
               onChange={this.handleInputChange}
-            />
-            <Input
+            >{q2}</input>
+            <input
               placeholder="answer"
               name="a2"
               type="text"
               value={this.state.a2}
               onChange={this.handleInputChange}
-            />
+            >{a2}</input>
             <p>QUESTION 3:</p>
-            <Input
+            <input
               placeholder="question"
               name="q3"
               type="text"
               value={this.state.q3}
               onChange={this.handleInputChange}
-            />
-            <Input
+            >{q3}</input>
+            <input
               placeholder="answer"
               name="a3"
               type="text"
               value={this.state.a3}
               onChange={this.handleInputChange}
-            />
+            >{a3}</input>
             <p>QUESTION 4:</p>
-            <Input
+            <input
               placeholder="question"
               name="q4"
               type="text"
               value={this.state.q4}
               onChange={this.handleInputChange}
-            />
-            <Input
+            >{q4}</input>
+            <input
               placeholder="answer"
               name="a4"
               type="text"
               value={this.state.a4}
               onChange={this.handleInputChange}
-            />
+            >a4</input>
             <p>QUESTION 5:</p>
-            <Input
+            <input
               placeholder="most difficult question here"
               name="q5"
               type="text"
               value={this.state.q5}
               onChange={this.handleInputChange}
-            />
-            <Input
+            >{q5}</input>
+            <input
               placeholder="answer"
               name="a5"
               type="text"
               value={this.state.a5}
               onChange={this.handleInputChange}
-            />
+            >{a5}</input>
 
             <hr />
             {/* {categories} */}
