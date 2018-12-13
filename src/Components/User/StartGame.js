@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import Axios from 'axios'
+import axios from "axios";
 import { Modal, Radio, Icon, InputNumber, Tag } from "antd";
 import "../../scss/App.scss";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 // import { connect } from "http2";
 import { connect } from "react-redux";
 import { v4 as randomString } from "uuid";
 import Team from "./Team";
-import { updateTimer, updateRoomName, updateTeams } from '../../ducks/reducer';
-import {shortRandStr} from '../../tests/ryanLogic';
+import { updateTimer, updateRoomName, updateTeams } from "../../ducks/reducer";
+import { shortRandStr } from "../../tests/ryanLogic";
 
 const RadioGroup = Radio.Group;
 
@@ -18,10 +18,10 @@ export class StartGame extends Component {
     this.state = {
       visible: false,
       numOfTeams: 0,
-      value: 0, //trying to get the radio buttons to fill in when selected
+      value: 0, 
       teams: [],
       roomName: "",
-      timer: 30000,
+      timer: 30000
     };
   }
 
@@ -39,8 +39,17 @@ export class StartGame extends Component {
 
   handleOk = e => {
     console.log(e);
-    Axios.post('/api/creategame', { room: this.state.roomName, teams: this.state.teams, timer: this.state.timer, gameId: this.props.gameId, gameTitle: this.props.gameTitle })
-      .then(() => this.props.history.push(`/gamecontrol/${this.state.roomName}`))
+    axios
+      .post("/api/creategame", {
+        room: this.state.roomName,
+        teams: this.state.teams,
+        timer: this.state.timer,
+        gameId: this.props.gameId,
+        gameTitle: this.props.gameTitle
+      })
+      .then(() =>
+        this.props.history.push(`/gamecontrol/${this.state.roomName}`)
+      );
     this.setState({
       visible: false
     });
@@ -59,11 +68,36 @@ export class StartGame extends Component {
     });
   };
 
-  handleNumberOfTeams = e => {
-    this.setState({ teams: [], value: e.target.value });
-    this.setState({
-      teams: Array(e.target.value).fill({ teamName: "", score: 0 })
-    });
+  handleNumberOfTeams = async (e) => {
+    console.log('value before click: ', this.state.value)
+    await this.setState({ value: e.target.value });
+    console.log('value after click: ', this.state.value)
+    if (this.state.value === 2) {
+      this.setState({
+        // teams: Array(e.target.value).fill({ teamName: `Team ${i + 1}`, score: 0 })
+        teams: Array.of(
+          { teamName: "Team 1", score: 0 },
+          { teamName: "Team 2", score: 0 }
+        )
+      });
+    } else if (this.state.value === 3) {
+      this.setState({
+        teams: Array.of(
+          { teamName: "Team 1", score: 0 },
+          { teamName: "Team 2", score: 0 },
+          { teamName: "Team 3", score: 0 }
+        )
+      });
+    } else if (this.state.value === 4) {
+      this.setState({
+        teams: Array.of(
+          { teamName: "Team 1", score: 0 },
+          { teamName: "Team 2", score: 0 },
+          { teamName: "Team 3", score: 0 },
+          { teamName: "Team 4", score: 0 }
+        )
+      });
+    }
   };
 
   handleTeam = (e, index) => {
@@ -88,15 +122,22 @@ export class StartGame extends Component {
       );
     });
 
-
     return (
       <div>
-        <button type="primary" onClick={this.showModal} style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}}>
-          <Icon type="caret-right"/> 
+        <button
+          type="primary"
+          onClick={this.showModal}
+          style={{
+            backgroundColor: "transparent",
+            border: "0px",
+            paddingLeft: "0"
+          }}
+        >
+          <Icon type="caret-right" />
         </button>
         <div>
           <Modal
-            title={this.props.gameTitle}
+            title={this.props.gameName}
             visible={this.state.visible}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
@@ -138,4 +179,9 @@ function mapStateToProps(state) {
   return { gameTitle };
 }
 
-export default withRouter(connect(mapStateToProps, { updateRoomName, updateTeams, updateTimer })(StartGame));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { updateRoomName, updateTeams, updateTimer }
+  )(StartGame)
+);

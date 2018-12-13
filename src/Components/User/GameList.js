@@ -54,13 +54,14 @@ class GameList
   render() {
     console.log(this.props)
     let gameCard = this.props.games.map(game => {
+      console.log(game.game_name);
       return (
         <div>
           <Card
             style={{ width: 300 }}
             cover={<img alt="game image" src={game.image} />}
             actions={[
-              <StartGame gameId={game.game_id}/>,
+              <StartGame gameId={game.game_id} gameName={game.game_name}/>,
               // <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}}><Icon type="edit" /></button>, 
               <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}} onClick={()=> this.props.handleDelete(game.game_id, game.game_name)}><Icon type="delete" /></button>]}
             hoverable>
