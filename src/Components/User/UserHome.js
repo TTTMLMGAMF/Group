@@ -48,8 +48,8 @@ class UserHome extends Component {
 
     return (
       <div>
-        <SideDrawer />
         <div className='uhMain'>
+        <SideDrawer />
           <div className='sd'>
           </div>
           <div className='uhBody'>
