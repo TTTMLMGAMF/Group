@@ -1,6 +1,6 @@
 const initialState = {
     teams: [],
-    gameTitle: 'Chuck Norris',
+    gameTitle: '',
     qa: [],
     roomName: '',
     timer: 30,
