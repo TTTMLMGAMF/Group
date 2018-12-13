@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button, Icon } from 'antd';
+import { Modal, Icon } from 'antd';
 import '../../scss/App.scss'
 
 

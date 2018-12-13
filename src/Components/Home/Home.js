@@ -6,17 +6,7 @@ import '../../scss/App.scss';
 const { Header, Content, Footer } = Layout;
 
 class Home extends Component {
-    // constructor(){
-    //     super();
-    //     this.state = {
-    //         switch: false
-    //     }
-    // }
-
-    // handleModalSwitch = () => {
-    //     this.state.switch === true ? 
-    //     this.setState({switch: false}) : this.setState({switch: true})
-    // }
+  
     joinGame = () => {
         this.props.history.push('/joingame')
     }
@@ -53,9 +43,9 @@ class Home extends Component {
                     {/* <Breadcrumb style={{ margin: '16px 0' }}>
                         <Breadcrumb.Item>Home</Breadcrumb.Item>
                     </Breadcrumb> */}
-                    <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
-                        <Carousel autoplay>
-                            <div><img src='https://cdn.pixabay.com/photo/2013/04/19/01/15/university-105709__340.jpg' alt="classroom" /></div>
+                    <div style={{ background: '#fff', padding: 24, minHeight: 280, boxShadow: "2px 1px 1px rgba(0, 0, 0, 0.2)", verticalAlign: 'middle'}}>
+                        <Carousel  autoplay>
+                            <div><img  src='https://cdn.pixabay.com/photo/2013/04/19/01/15/university-105709__340.jpg' alt="classroom" /></div>
                             <div><img src='https://www.lifewire.com/thmb/KBCk0Wz5ZI70_dvF9ZROsxSj3P4=/768x0/filters:no_upscale():max_bytes(150000):strip_icc()/rear-view-of-teenage-students-raising-hands-in-classroom-525409405-58adb2083df78c345bbc6d2f.jpg' alt="hands raised projector" /></div>
                             <div><img src='http://pianu.com/wp-content/uploads/2017/10/ezgif.com-optimize.gif' alt="It's a penguin!" /></div>
                             <div><img src='https://media.giphy.com/media/ZYrLQoUA8hadW/giphy.gif' alt="School of Rock!" />
