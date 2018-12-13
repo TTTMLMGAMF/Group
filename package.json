@@ -45,7 +45,7 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "theme": {
-    "primary-color": "#FF9502"
+  "devDependencies": {
+    "jest": "^23.6.0"
   }
 }

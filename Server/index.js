@@ -48,7 +48,7 @@ app.get(`/api/accountInfo/:account_id`, endpointCtrl.retrieveAccountInfo)
 // app.put(`/api/class/:classroom_id`, endpointCtrl.updateClassroom)
 // app.delete(`/api/class/:classroom_id`, endpointCtrl.removeClassroom)
 // app.post(`/api/students`, endpointCtrl.addStudents);
-app.get(`/api/game/:game-id`, endpointCtrl.getGame);
+// app.get(`/api/game/:game_id`, endpointCtrl.getGame);
 
 app.post('/api/creategame', async (req, res) => {
     // console.log('req.body: ',req.body);
@@ -67,7 +67,7 @@ app.post('/api/creategame', async (req, res) => {
     res.end()
 })
 
-app.delete(`/api/game/:game-id`, endpointCtrl.deleteGame);
+app.delete(`/api/game/:game_id/:game_name`, endpointCtrl.deleteGame);
 
 app.post(`/api/game`, endpointCtrl.addGame);
 app.put(`/api/game/:game_id`, endpointCtrl.addCategories);

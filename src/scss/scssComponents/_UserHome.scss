@@ -6,18 +6,33 @@
 
 .uhMain {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    // left: 200px;
+    z-index: 2;
 }
 
 .uhBody {
     display: flex;
     flex-direction: column;
-    // justify-content: spa;
+    justify-content: spa;
     align-items: center;
+    height: 100%;
+    width: 100%;
+    
 }
 #uhHeader{
     font-weight: bold;
     font-size: 100px;
+    font-family: $font2;
+    padding-top: 5vh;
+    font-size: 10vw;
+    color: $color3;
+    
 }
 
 .uhBtns {
@@ -28,4 +43,23 @@
     display: flex;
     flex-direction: column;
     justify-content: center; 
+    align-items: center;
+}
+
+.gameCards {
+    width: 60%;
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    #card {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 5vw;
+        
+
+    }
 }

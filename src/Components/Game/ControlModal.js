@@ -30,7 +30,7 @@ class ControlModal extends Component {
             <div>
 
                 <button className='gcBtn' disabled={this.props.qa.disabled} type="primary" onClick={() => this.props.showModal(question_answer_id)}>
-                    Question: {this.props.qa.points}
+                    <p>{this.props.i + 1}00</p>
                 </button>
                 <Modal
                     visible={visible}
@@ -58,7 +58,7 @@ class ControlModal extends Component {
                         <div className='pointTracker'>
                             {this.props.team.map((team, i) => (
                                 <div className='ptTeam' key={i}>
-                                    <h4>{team.name}</h4>
+                                    <h4>{team.teamName}</h4>
                                     <div>
                                         <button key={i + 200} style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }} shape='circle' onClick={() => this.props.handleMinus(i, question_answer_id)} ><Icon style={{ fontSize: '5em', color: 'red' }} type="minus-circle" /></button>
                                         <button key={i + 100} style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }} shape='circle' onClick={() => this.props.handleAdd(i, question_answer_id)} ><Icon style={{ fontSize: '5em', color: '#99C24D' }} type="plus-circle" /></button>

@@ -40,6 +40,13 @@ class UserHome extends Component {
     });
   };
 
+  handleDelete = (game_id, game_name) => {
+    console.log(game_id, game_name)
+    axios.delete(`/api/game/${game_id}/${game_name}`)
+    axios.get('/api/games')
+    .then(res =>{this.setState({games: res.data})})
+  };
+
   // const { Meta } = Card;
 
   render() {
@@ -49,12 +56,12 @@ class UserHome extends Component {
     return (
       <div>
         <div className='uhMain'>
+        <SideDrawer />
           <div className='sd'>
-            <SideDrawer />
           </div>
           <div className='uhBody'>
             <h1 id='uhHeader'>MY GAMES</h1>
-            <GameList games={this.state.games} />
+            <GameList games={this.state.games} handleDelete={this.handleDelete} />
 
           </div>
         </div>
