@@ -74,7 +74,7 @@ class GameControl extends Component {
 
     handleAdd = (i, id) => {
         this.handleScore(i, id, true)
-        this.handleCancel(id)
+        // this.handleCancel(id)
     }
 
     handleMinus = (i, id) => {
@@ -83,6 +83,13 @@ class GameControl extends Component {
 
     handleCancel = (id) => {
         this.socket.emit('question close', {
+            state: this.state,
+            id: id
+        })
+    }
+
+    showAnswer = (id) => {
+        this.socket.emit('show answer', {
             state: this.state,
             id: id
         })

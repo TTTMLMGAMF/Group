@@ -111,11 +111,18 @@ io.on('connection', socket => {
             let newTeams = Object.assign({}, games[data.state.room + '_qa']);
             newTeams.teams[data.i].score += data.state.qa[e].points
             newTeams.qa[e].disabled = true
+            io.to(data.state.room).emit('game state', newTeams)
         } else if (data.add === false) {
             let e = games[data.state.room + '_qa'].qa.findIndex(id => id.question_answer_id === data.id)
             let newTeams = Object.assign({}, games[data.state.room + '_qa']);
             newTeams.teams[data.i].score += - data.state.qa[e].points
-            socket.emit('game state', newTeams)
+            io.to(data.state.room).emit('game state', newTeams)
         }
+    })
+
+    socket.on('show answer', data => {
+        // let e = games[data.state.room + '_qa'].qa.findIndex(id => id.question_answer_id === data.id)
+
+        io.to(data.state.room).emit('show answer', true)
     })
 })
