@@ -115,7 +115,7 @@ class GameDisplay extends Component {
             </div>
             <div className="gdCategory">
 
-              <h2>{this.state.cTwo}</h2>
+              <h1>{this.state.cTwo}</h1>
               {cTwo.map((qa, i) => (
                 <DisplayModal key={i} qa={qa} countDown={this.state.countDown} />
 
@@ -123,7 +123,7 @@ class GameDisplay extends Component {
             </div>
             <div className="gdCategory">
 
-              <h2>{this.state.cThree}</h2>
+              <h1>{this.state.cThree}</h1>
               {cThree.map((qa, i) => (
                 <DisplayModal key={i} qa={qa} countDown={this.state.countDown} />
 
