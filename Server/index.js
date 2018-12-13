@@ -104,6 +104,7 @@ io.on('connection', socket => {
         let i = games[data.state.room + '_qa'].qa.findIndex(id => id.question_answer_id === data.id)
         games[data.state.room + '_qa'].qa[i].visible = false
         io.to(data.state.room).emit('game state', games[data.state.room + '_qa'])
+        io.to(data.state.room).emit('show answer', false)
     })
 
     socket.on('handle score', data => {
