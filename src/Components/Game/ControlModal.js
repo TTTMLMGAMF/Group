@@ -30,7 +30,7 @@ class ControlModal extends Component {
             <div>
 
                 <button className='gcBtn' disabled={this.props.qa.disabled} type="primary" onClick={() => this.props.showModal(question_answer_id)}>
-                    Question: {this.props.qa.points}
+                    <p>{this.props.i + 1}00</p>
                 </button>
                 <Modal
                     visible={visible}
@@ -56,6 +56,7 @@ class ControlModal extends Component {
                     }}
                     footer={
                         <div className='pointTracker'>
+                            <button onClick={() => this.props.showAnswer(question_answer_id)}>show answer</button>
                             {this.props.team.map((team, i) => (
                                 <div className='ptTeam' key={i}>
                                     <h4>{team.teamName}</h4>

@@ -4,7 +4,7 @@ import { showModal } from '../TestFolder/trentLogic'
 // Avatar, Modal, Button,
 
 import "../../scss/App.scss";
-import Axios from "axios";
+import axios from "axios";
 import StartGame from "./StartGame";
 const { Meta } = Card; //This is for the antD "card" title and game info
 
@@ -20,7 +20,7 @@ class GameList
   }
 
   async componentDidMount(){
-    let res = Axios.get('/api/games');
+    let res = axios.get('/api/games');
     this.setState({myGames: res.data})
     console.log(this.state)
   }
@@ -45,11 +45,11 @@ class GameList
     });
   };
 
-  handleDelete = () => {
-    console.log("DON'T BE UNDEFINED:", this.props.games)
-    let { game_id, game_name } = this.props.games;
-    Axios.delete(`/api/game/${game_id}/${game_name}`)
-  };
+  // handleDelete = (game_id, game_name) => {
+  //   console.log(game_id, game_name)
+  //   axios.delete(`/api/game/${game_id}/${game_name}`)
+  //   this.props.reRender()
+  // };
 
   render() {
     console.log(this.props)
@@ -60,9 +60,9 @@ class GameList
             style={{ width: 300 }}
             cover={<img alt="game image" src={game.image} />}
             actions={[
-              <StartGame gameId={game.game_id} />,
-              <button style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }}><Icon type="edit" /></button>,
-              <button style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }} onClick={() => console.log(this.props)}><Icon type="delete" /></button>]}
+              <StartGame gameId={game.game_id}/>,
+              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}}><Icon type="edit" /></button>, 
+              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}} onClick={()=> this.props.handleDelete(game.game_id, game.game_name)}><Icon type="delete" /></button>]}
             hoverable>
             <Meta title={game.game_name}
               description={game.subject} />
@@ -74,10 +74,14 @@ class GameList
 
     return (
       <div>
-        {gameCard}
-        <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', margin: '20px' }}>
+        <div className='gameCards'>
+          <div id='card'>
+            {gameCard}
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', margin: '20px' }}>
 
-          {/* <Card title="Card title">Card content</Card> */}
+            {/* <Card title="Card title">Card content</Card> */}
+          </div>
         </div>
       </div>
     );
