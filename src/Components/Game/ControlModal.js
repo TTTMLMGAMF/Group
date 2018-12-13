@@ -30,7 +30,7 @@ class ControlModal extends Component {
             <div>
 
                 <button className='gcBtn' disabled={this.props.qa.disabled} type="primary" onClick={() => this.props.showModal(question_answer_id)}>
-                    Question: {this.props.qa.points}
+                    <p>{this.props.i + 1}00</p>
                 </button>
                 <Modal
                     visible={visible}

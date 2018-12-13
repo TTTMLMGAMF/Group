@@ -56,8 +56,8 @@ class UserHome extends Component {
     return (
       <div>
         <div className='uhMain'>
+        <SideDrawer />
           <div className='sd'>
-            <SideDrawer />
           </div>
           <div className='uhBody'>
             <h1 id='uhHeader'>MY GAMES</h1>
