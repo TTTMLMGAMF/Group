@@ -1,11 +1,11 @@
 
-.gdContainer {
+.gdBackground {
   background-color: whitesmoke;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
   z-index: -2;
   display: flex;
@@ -39,9 +39,12 @@
       #gdgt {
         position: absolute;
         top: 0;
+        padding-top: 20px;
         z-index: 2;
-        font-size: 5.5em;
+        font-size: 6vw;
         font-family: $marker;
+        color:  #2E4057;
+        text-shadow: -2.5px 5px 2.5px rgba(51, 51, 51, 0.5);
       }
   }
   @keyframes grass {
@@ -51,8 +54,8 @@
   #grass {
     position: absolute;
     z-index: -1;
-    width: 130vw;
-    top: 55vh;
+    width: 140%;
+    top: 60%;
     clip-path: inset(0 0 60% 0);
     animation: grass 3s ease-out 0s 1;
     filter: drop-shadow(-10px 18px 2.5px rgba(51, 51, 51, 0.5));
@@ -85,7 +88,7 @@
     #cloudSmall {
       position: absolute;
       width: 40vw;
-      top: -300px;
+      top: -200px;
       left: 3800px;
       height: auto;
       z-index: 3;
@@ -96,7 +99,7 @@
     #cloudMed {
       position: absolute;
       width: 50vw;
-      top: -300px;
+      top: -150px;
       left: 2800px;
       height: auto;
       z-index: 1;
@@ -107,13 +110,37 @@
     #cloudBig {
       position: absolute;
       width: 50vw;
-      top: -150px;
+      top: -100px;
       left: -300px;
       height: auto;
       z-index: 3;
       filter: drop-shadow(-100px 50px 5px rgba(51, 51, 51, 0.5));
       animation: clouds 120s linear 0s infinite;
     }
+  }
+  @keyframes trog {
+    0% {left: -700px;}
+    10% {left: -100px; top: 40vh;}
+    20% {left: 100px; top: 60vh;}
+    30% {left: 300px; top: 30vh;}
+    40% {left: 600px; top: 40vh;}
+    50% {left: 600px; top: 20vh;}
+    60% {left: 800px; top: 50vh;}
+    70% {left: 1000px; top: 40vh;}
+    80% {left: 1100px; top: 40vh;}
+    90% {left: 1100px; top: 20vh;}
+    100% {left: 1200px;}
+  }
+
+  #trogdor {
+    position: absolute;
+      width: 50vw;
+      top: 50vh;
+      left: -700px;
+      height: auto;
+      z-index: 3;
+      filter: drop-shadow(-100px 50px 5px rgba(51, 51, 51, 0.5));
+      animation: trog 5s ease-in-out 10s 5;
   }
   // h1 {
   //   width: 100%;
@@ -124,40 +151,46 @@
   //   align-items: center;
   //   animation: sky 3s linear 0s 1;
   // }
+}
 
-  .gdCategoryContainer {
+.gdCategoryContainer {
     
-    width: 100%;
+    width: 80vw;
     position: absolute;
     top: 35vh;
-    left: 0;
+    left: 10vw;
     display: flex;
-    align-content: flex-start;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-content: space-between;
     z-index: 4;
-
-    
-
 
     .gdCategory {
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      align-items: space-around;
+      justify-content: center;
+      width: 400px;
+      align-items: center;
       z-index: 4;
-      margin: 0 7.5vw;
+      margin: 5px 50px;
 
       .catTitle {
-        font-family: $marker;
+        font-family: $font2;
         color: $color1;
         font-weight: bolder;
-        font-size: 1.5em;
+        font-size: 2.5vw;
         z-index: 4;
-        background-color: #048BA880;
-        // position: absolute;
-        // top: -27vh;
-        width: 15vw;
-        margin: 0 7.5vw;
+        background-color: #048BA8CC;
+        border-radius: 25px;
+        padding: 1.5vh;
+        width: 100%;
+        height: 12vh;
+        position: relative;
+        top: -22vh;
+        text-align: center;
+        text-shadow: 0 1px 0 #2E405780, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+        
+
+        // margin: 0 7.5vw;
       }
       
       .gdBtn {
@@ -171,7 +204,7 @@
         font-family: $font2;
         font-size: 3vw;
         text-shadow: 0 1px 0 #2E405780, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
-        width: 15vh;
+        width: 8vw;
         height: 10vh;
         margin: 0 0 1vh 0;
         border-radius: 10px;
@@ -187,18 +220,17 @@
       
     }
   }
-      .gdTeamsContainer {
-        width: 90vw;
-        position: absolute;
-        top: 85vh;
-        // display: flex;
-        // flex-direction: row;
-        // justify-content: space-around;      
-        // height: 15vh;
-        // z-index: 5;
-        // margin-bottom: 5vh; 
-        display: flex;
-        justify-content: space-around;
-        z-index: 10;
-  }
+
+.gdTeamsContainer {
+  width: 100vw;
+  position: absolute;
+  top: 85vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;      
+  height: 15vh;
+  margin-bottom: 5vh; 
+  z-index: 6;
+  
 }
+

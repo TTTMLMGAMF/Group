@@ -57,7 +57,8 @@ class GameList
       return (
         <div>
           <Card
-            style={{ width: 300 }}
+            
+            style={{ width: '300px' }}
             cover={<img alt="game image" src={game.image} />}
             actions={[
               <StartGame gameId={game.game_id}/>,
