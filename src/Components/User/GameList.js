@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Card, Icon, } from "antd";
-import { showModal } from '../TestFolder/trentLogic'
+import { showModal } from '../../tests/trentLogic'
 // Avatar, Modal, Button,
 
 import "../../scss/App.scss";
@@ -19,9 +19,9 @@ class GameList
     };
   }
 
-  async componentDidMount(){
+  async componentDidMount() {
     let res = axios.get('/api/games');
-    this.setState({myGames: res.data})
+    this.setState({ myGames: res.data })
     console.log(this.state)
   }
 
@@ -57,13 +57,15 @@ class GameList
       return (
         <div>
           <Card
-            style={{ width: 300 }}
-            cover={<img alt="game image" src={game.image} />}
+            style={{ width: 300, margin: 15 }}
+            cover={<div style={{ height: 150, overflow: 'hidden', display: 'flex', justifyContent: 'center' }}>
+              <img alt="game image" src={game.image} style={{ height: 200, alignSelf: "center" }} />
+            </div>}
             actions={[
-              <StartGame gameId={game.game_id}/>,
-              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}}><Icon type="edit" /></button>, 
-              <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}} onClick={()=> this.props.handleDelete(game.game_id, game.game_name)}><Icon type="delete" /></button>]}
-            hoverable>
+              <StartGame gameId={game.game_id} />,
+              <button style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }}><Icon type="edit" /></button>,
+              <button style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }} onClick={() => this.props.handleDelete(game.game_id, game.game_name)}><Icon type="delete" /></button>]}
+            hoverable className="hover">
             <Meta title={game.game_name}
               description={game.subject} />
           </Card>
@@ -73,16 +75,10 @@ class GameList
     })
 
     return (
-      <div>
-        <div className='gameCards'>
-          <div id='card'>
-            {gameCard}
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', margin: '20px' }}>
+      <div className='gameCards'>
 
-            {/* <Card title="Card title">Card content</Card> */}
-          </div>
-        </div>
+        {gameCard}
+
       </div>
     );
   }

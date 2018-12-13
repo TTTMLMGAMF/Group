@@ -14,6 +14,7 @@
     top: 0;
     // left: 200px;
     z-index: 2;
+    background-color: lightgray;
 }
 
 .uhBody {
@@ -47,19 +48,12 @@
 }
 
 .gameCards {
-    width: 60%;
-    margin: 20px;
+    width: 80vw;
+    margin-left: 75px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    #card {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin: 5vw;
-        
+    flex-direction: row;
+    justify-content: space-evenly; 
 
-    }
 }
+
