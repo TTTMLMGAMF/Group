@@ -26,7 +26,10 @@ class GameDisplay extends Component {
       room: 'things',
       qa: [],
       team: [],
-      gameTitle: ''
+      gameTitle: '',
+      cOne: '',
+      cTwo: '',
+      cThree: ''
     }
     this.joinRoom = this.joinRoom.bind(this);
   }
@@ -42,7 +45,10 @@ class GameDisplay extends Component {
       this.setState({
         qa: data.qa,
         team: data.teams,
-        gameTitle: data.gameTitle
+        gameTitle: data.gameTitle,
+        cOne: data.cOne,
+        cTwo: data.cTwo,
+        cThree: data.cThree
       })
     })
 
@@ -78,7 +84,7 @@ class GameDisplay extends Component {
     let cOne = this.state.qa.filter(el => el.category_num === 1)
     let cTwo = this.state.qa.filter(el => el.category_num === 2)
     let cThree = this.state.qa.filter(el => el.category_num === 3)
-    console.log(cOne[0])
+    console.log(this.state.cOne)
     return (
       <div>
 
@@ -101,7 +107,7 @@ class GameDisplay extends Component {
 
             <div className="gdCategory">
               {/* <DisplayModal question={qa} countDown={this.state.countDown} /> */}
-              {/* <h2>{cOne[0].category}</h2> */}
+              <h1 className='theCategory'>{this.state.cOne}</h1>
               {cOne.map((qa, i) => (
                 <DisplayModal key={i} qa={qa} countDown={this.state.countDown} />
 
@@ -109,7 +115,7 @@ class GameDisplay extends Component {
             </div>
             <div className="gdCategory">
 
-              {/* <h2>{cTwo[0].category}</h2> */}
+              <h2>{this.state.cTwo}</h2>
               {cTwo.map((qa, i) => (
                 <DisplayModal key={i} qa={qa} countDown={this.state.countDown} />
 
@@ -117,7 +123,7 @@ class GameDisplay extends Component {
             </div>
             <div className="gdCategory">
 
-              {/* <h2>{cThree[0].category}</h2> */}
+              <h2>{this.state.cThree}</h2>
               {cThree.map((qa, i) => (
                 <DisplayModal key={i} qa={qa} countDown={this.state.countDown} />
 
