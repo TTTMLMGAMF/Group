@@ -17,6 +17,9 @@ class Home extends Component {
     //     this.state.switch === true ? 
     //     this.setState({switch: false}) : this.setState({switch: true})
     // }
+    joinGame = () => {
+        this.props.history.push('/joingame')
+    }
 
     render() {
 
@@ -36,7 +39,7 @@ class Home extends Component {
                                 <Button
                                     type="primary"
                                     ghost={true}
-                                    onClick={this.showModal}
+                                    onClick={this.joinGame}
                                 // background={}
                                 // bodyStyle={()}
                                 >
