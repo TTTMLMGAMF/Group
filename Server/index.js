@@ -14,7 +14,7 @@ const cloneDeep = require('clone-deep');
 
 const app = express();
 app.use(bodyParser.json());
-app.use(express.static(`${_dirname}/../build`));
+app.use(express.static(`${__dirname}/../build`));
 
 const {
     SERVER_PORT,
