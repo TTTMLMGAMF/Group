@@ -39,9 +39,11 @@ export default class Buzzer extends Component {
         console.log(this.state.name)
         console.log(this.props)
         return (
-            <div>
-                <h1>{this.state.name}</h1>
-                <button onClick={() => this.buzzer()}>Smash it!</button>
+            <div className='buzzerContainer'>
+                <div onClick={() => this.buzzer()} className='buzzerBox'>
+                    {/* <h1>{this.state.name}</h1> */}
+                    <button >PUSH</button>
+                </div>
             </div>
         )
     }

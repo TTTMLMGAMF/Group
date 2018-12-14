@@ -10,7 +10,6 @@ import cloudSmall from '../../scss/images/game_cloud3.png';
 import cloudMed from '../../scss/images/game_cloud2.png';
 import cloudBig from '../../scss/images/game_cloud1.png';
 import trogdor from '../../scss/images/game_trogdor.png';
-import { Alert } from "antd";
 
 
 
@@ -28,7 +27,8 @@ class GameDisplay extends Component {
       cOne: '',
       cTwo: '',
       cThree: '',
-      showAnswer: false
+      showAnswer: false,
+      buzzer: []
     }
     this.joinRoom = this.joinRoom.bind(this);
   }
@@ -37,7 +37,7 @@ class GameDisplay extends Component {
     await this.setState({
       room: window.location.pathname.split('/')[2],
     })
-    this.socket = io('http://localhost:4000')
+    this.socket = io("http://localhost:4000")
     await this.joinRoom()
     await this.socket.on('game state', data => {
       console.log("hit it")
@@ -59,9 +59,24 @@ class GameDisplay extends Component {
     })
 
     await this.socket.on('buzzer', data => {
-      alert(data)
+      let buzzer = this.state.buzzer.slice(0)
+      buzzer.push(data)
+      console.log(buzzer)
+      this.setState({
+        buzzer: buzzer
+      })
+      setTimeout(() => {
+        this.remove()
+      }, 5000);
+
     })
 
+  }
+
+  remove() {
+    this.setState({
+      buzzer: []
+    })
   }
 
   timer = () => {
@@ -97,6 +112,7 @@ class GameDisplay extends Component {
     console.log(this.state.cOne)
     return (
       <div>
+        {this.state.buzzer[0] ? <div className='gcBuzzer' onClick={() => this.remove()}>{this.state.buzzer.map(e => <div>{e}</div>)}</div> : null}
 
 
         <div className="gdBackground">
@@ -104,6 +120,7 @@ class GameDisplay extends Component {
           <div className='gameinfo'>
             <h1 id='gdgt'>{this.state.gameTitle}</h1>
           </div>
+          <img id='trogdor' src={trogdor} alt='trogdor' />
           <img id='grass' src={grass} alt='grass-background' />
           <img id='sun' src={sun} alt='sun-background' />
           <div className='clouds'>
@@ -111,7 +128,6 @@ class GameDisplay extends Component {
             <img id='cloudSmall' src={cloudSmall} alt='small-cloud illustration' />
             <img id='cloudMed' src={cloudMed} alt='Medium-cloud illustration' />
           </div>
-          <img id='trogdor' src={trogdor} alt='trogdor' />
 
         </div>
 
