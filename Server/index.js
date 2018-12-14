@@ -1,3 +1,4 @@
+const path = require('path');
 require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
@@ -13,6 +14,7 @@ const cloneDeep = require('clone-deep');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(express.static(`${__dirname}/../build`));
 
 const {
     SERVER_PORT,
@@ -104,6 +106,7 @@ io.on('connection', socket => {
         let i = games[data.state.room + '_qa'].qa.findIndex(id => id.question_answer_id === data.id)
         games[data.state.room + '_qa'].qa[i].visible = false
         io.to(data.state.room).emit('game state', games[data.state.room + '_qa'])
+        io.to(data.state.room).emit('show answer', false)
     })
 
     socket.on('handle score', data => {
@@ -129,3 +132,7 @@ io.on('connection', socket => {
         io.to(data.state.room).emit('show answer', true)
     })
 })
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
