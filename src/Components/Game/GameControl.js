@@ -76,7 +76,7 @@ class GameControl extends Component {
     handleAdd = (i, id) => {
         this.handleScore(i, id, "add")
         // this.handleCancel(id)
-        this.showAnswer();
+        this.showAnswer(id);
     }
 
     handleMinus = (i, id) => {
@@ -120,7 +120,7 @@ class GameControl extends Component {
 
                             <h2>{this.state.cOne}</h2>
                             {cOne.map((qa, i) => (
-                                <ControlModal key={i} category={this.state.cOne} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} showAnswer={this.showAnswer}/>
+                                <ControlModal key={i} category={this.state.cOne} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} showAnswer={this.showAnswer} />
 
                             ))}
                         </div>
@@ -128,7 +128,7 @@ class GameControl extends Component {
 
                             <h2>{this.state.cTwo}</h2>
                             {cTwo.map((qa, i) => (
-                                <ControlModal key={i} category={this.state.cTwo} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} showAnswer={this.showAnswer}/>
+                                <ControlModal key={i} category={this.state.cTwo} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} showAnswer={this.showAnswer} />
 
                             ))}
                         </div>
@@ -136,7 +136,7 @@ class GameControl extends Component {
 
                             <h2>{this.state.cThree}</h2>
                             {cThree.map((qa, i) => (
-                                <ControlModal key={i} category={this.state.cThree} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} showAnswer={this.showAnswer}/>
+                                <ControlModal key={i} category={this.state.cThree} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} showAnswer={this.showAnswer} />
 
                             ))}
                         </div>

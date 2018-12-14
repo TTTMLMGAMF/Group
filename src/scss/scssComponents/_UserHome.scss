@@ -1,12 +1,15 @@
-// .sd {
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-// }
-// .uhMainBody {
-//     height: 100%;
-//     width: 100%;
-// }
+
+body{
+    background-color: lightgray;
+}
+
+.sd {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+
 .uhMain {
     display: flex;
     flex-direction: column;
@@ -19,6 +22,7 @@
     z-index: 2;
     // background-color: lightgray;
 }
+
 
     .uhBody {
         display: flex;
@@ -42,6 +46,31 @@
     }
 
 
+.uhBody {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    margin-left: 75px;
+    // height: 100%;
+    // width: 100%;
+    // border: 10px solid black;
+    
+}
+#uhHeader{
+    font-weight: bold;
+    font-size: 100px;
+    font-family: $font2;
+    padding-top: 5vh;
+    font-size: 10vw;
+    color: $color3;
+    margin-left: 75px;
+    
+}
+
+
 .uhBtns {
     width: 300px;
     position: relative;
@@ -56,10 +85,11 @@
 .gameCards {
     width: 80vw;
     margin-left: 75px;
+    // position: absolute;
+    top: 0;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-evenly; 
-
 }
 

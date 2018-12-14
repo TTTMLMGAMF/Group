@@ -125,9 +125,12 @@ export class StartGame extends Component {
     return (
       <div>
         <button
-          type="primary"
+          // type="primary"
           onClick={this.showModal}
           style={{
+            width: "150px",
+            height: "40px",
+            // margin: "0",
             backgroundColor: "transparent",
             border: "0px",
             paddingLeft: "0"
@@ -157,7 +160,7 @@ export class StartGame extends Component {
             <h1>
               Game Code: <Tag color="#2db7f5">{this.state.roomName}</Tag>{" "}
             </h1>
-            <h1>
+            {/* <h1>
               Question Timer (seconds):
               <InputNumber
                 min={10}
@@ -166,7 +169,7 @@ export class StartGame extends Component {
                 step={5}
                 onChange={this.handleTimeChange}
               />
-            </h1>
+            </h1> */}
           </Modal>
         </div>
       </div>

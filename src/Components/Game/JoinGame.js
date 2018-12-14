@@ -45,6 +45,7 @@ export default class JoinGame extends Component {
                         target="_blank"><button>SUBMIT</button></Link>}
                     </div>
                 </div>
+
             </div>
 
         )
