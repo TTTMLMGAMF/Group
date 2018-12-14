@@ -29,7 +29,7 @@ class DisplayModal extends Component {
       countDown: this.props.countDown,
       room: this.props.room
     })
-    this.socket = io();
+    this.socket = io('http://localhost:4000');
     this.joinRoom()
     this.socket.on('room joined', data => {
       this.joinSuccess()
@@ -115,29 +115,29 @@ class DisplayModal extends Component {
           }}
           maskStyle={{ backgroundColor: '#2E4057CC', zIndex: '5' }}
         >
-        <div>
-          {
-            !this.props.showAnswer ? (
-              <div>
-                <h1 style={{
-                  color: '#FF9502',
-                  textShadow: '0 -1px 0 #fff, 0 1px 0 #2e2e2e, 0 2px 0 #2c2c2c, 0 3px 0 #2a2a2a, 0 4px 0 #282828, 0 5px 0 #262626, 0 6px 0 #242424, 0 7px 0 #222, 0 8px 0 #202020, 0 9px 0 #1e1e1e, 0 10px 0 #1c1c1c, 0 11px 0 #1a1a1a, 0 12px 0 #181818, 0 13px 0 #161616, 0 14px 0 #141414, 0 15px 0 #121212, 0 22px 30px rgba(0,0,0,0.9)'
-                }} className='gdModalText'>{this.props.qa.question}</h1>
-              </div>
-            ) : (
-              <div>
-                <h1 
-                className='showAnswer' 
-                style={{
-                  color: '#99C24D',
-                  textShadow: '0 -1px 0 #fff, 0 1px 0 #2e2e2e, 0 2px 0 #2c2c2c, 0 3px 0 #2a2a2a, 0 4px 0 #282828, 0 5px 0 #262626, 0 6px 0 #242424, 0 7px 0 #222, 0 8px 0 #202020, 0 9px 0 #1e1e1e, 0 10px 0 #1c1c1c, 0 11px 0 #1a1a1a, 0 12px 0 #181818, 0 13px 0 #161616, 0 14px 0 #141414, 0 15px 0 #121212, 0 22px 30px rgba(0,0,0,0.9)',
-                  position: 'relative',
-                  top: '150%'
-                }}>Answer: {this.props.qa.answer}</h1>
-              </div>
-            )
-          }
-        </div>
+          <div>
+            {
+              !this.props.showAnswer ? (
+                <div>
+                  <h1 style={{
+                    color: '#FF9502',
+                    textShadow: '0 -1px 0 #fff, 0 1px 0 #2e2e2e, 0 2px 0 #2c2c2c, 0 3px 0 #2a2a2a, 0 4px 0 #282828, 0 5px 0 #262626, 0 6px 0 #242424, 0 7px 0 #222, 0 8px 0 #202020, 0 9px 0 #1e1e1e, 0 10px 0 #1c1c1c, 0 11px 0 #1a1a1a, 0 12px 0 #181818, 0 13px 0 #161616, 0 14px 0 #141414, 0 15px 0 #121212, 0 22px 30px rgba(0,0,0,0.9)'
+                  }} className='gdModalText'>{this.props.qa.question}</h1>
+                </div>
+              ) : (
+                  <div>
+                    <h1
+                      className='showAnswer'
+                      style={{
+                        color: '#99C24D',
+                        textShadow: '0 -1px 0 #fff, 0 1px 0 #2e2e2e, 0 2px 0 #2c2c2c, 0 3px 0 #2a2a2a, 0 4px 0 #282828, 0 5px 0 #262626, 0 6px 0 #242424, 0 7px 0 #222, 0 8px 0 #202020, 0 9px 0 #1e1e1e, 0 10px 0 #1c1c1c, 0 11px 0 #1a1a1a, 0 12px 0 #181818, 0 13px 0 #161616, 0 14px 0 #141414, 0 15px 0 #121212, 0 22px 30px rgba(0,0,0,0.9)',
+                        position: 'relative',
+                        top: '150%'
+                      }}>Answer: {this.props.qa.answer}</h1>
+                  </div>
+                )
+            }
+          </div>
           <div className="dmCountdown">
             {this.state.countDown}
           </div>
