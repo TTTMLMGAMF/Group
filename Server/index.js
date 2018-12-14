@@ -64,7 +64,7 @@ app.post('/api/creategame', async (req, res) => {
     // console.log(categories);
     let gameTitle = { gameTitle: req.body.gameTitle }
     let game = { ...req.body, ...questionList, ...categories, ...gameTitle }
-    // console.log(game);
+    console.log(game);
     games[req.body.room + '_qa'] = cloneDeep(game)
     // games[req.body.room + '_qa'].room = req.body.room
     res.end()
@@ -114,7 +114,7 @@ io.on('connection', socket => {
             let e = games[data.state.room + '_qa'].qa.findIndex(id => id.question_answer_id === data.id)
             let newTeams = Object.assign({}, games[data.state.room + '_qa']);
             newTeams.teams[data.i].score += data.state.qa[e].points
-            newTeams.qa[e].disabled = true
+            // newTeams.qa[e].disabled = true
             io.to(data.state.room).emit('game state', newTeams)
         } else if (data.add === false) {
             let e = games[data.state.room + '_qa'].qa.findIndex(id => id.question_answer_id === data.id)
@@ -133,6 +133,6 @@ io.on('connection', socket => {
     })
 })
 
-app.get('*', (req, res)=>{
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../build/index.html'));
 });

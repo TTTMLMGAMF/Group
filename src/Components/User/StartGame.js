@@ -125,9 +125,12 @@ export class StartGame extends Component {
     return (
       <div>
         <button
-          type="primary"
+          // type="primary"
           onClick={this.showModal}
           style={{
+            width: "150px",
+            height: "40px",
+            // margin: "0",
             backgroundColor: "transparent",
             border: "0px",
             paddingLeft: "0"

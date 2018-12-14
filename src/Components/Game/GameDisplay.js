@@ -36,7 +36,7 @@ class GameDisplay extends Component {
     await this.setState({
       room: window.location.pathname.split('/')[2],
     })
-    this.socket = io()
+    this.socket = io('http://localhost:4000')
     await this.joinRoom()
     await this.socket.on('game state', data => {
       console.log("hit it")
@@ -114,20 +114,20 @@ class GameDisplay extends Component {
 
           <div className="gdCategory">
             {/* <DisplayModal question={qa} countDown={this.state.countDown} /> */}
-              <h1 className='catTitle'>{this.state.cOne}</h1>
+            <h1 className='catTitle'>{this.state.cOne}</h1>
             {cOne.map((qa, i) => (
               // className here is .gdBtn
               <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
             ))}
           </div>
           <div className="gdCategory">
-              <h1 className='catTitle'>{this.state.cTwo}</h1>
+            <h1 className='catTitle'>{this.state.cTwo}</h1>
             {cTwo.map((qa, i) => (
               <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
             ))}
           </div>
           <div className="gdCategory">
-              <h1 className='catTitle'>{this.state.cThree}</h1>
+            <h1 className='catTitle'>{this.state.cThree}</h1>
             {cThree.map((qa, i) => (
               <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
             ))}
