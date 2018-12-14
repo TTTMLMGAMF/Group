@@ -99,6 +99,7 @@ class GameDisplay extends Component {
           <div className='gameinfo'>
             <h1 id='gdgt'>{this.state.gameTitle}</h1>
           </div>
+          <img id='trogdor' src={trogdor} alt='trogdor' />
           <img id='grass' src={grass} alt='grass-background' />
           <img id='sun' src={sun} alt='sun-background' />
           <div className='clouds'>
@@ -106,7 +107,6 @@ class GameDisplay extends Component {
             <img id='cloudSmall' src={cloudSmall} alt='small-cloud illustration' />
             <img id='cloudMed' src={cloudMed} alt='Medium-cloud illustration' />
           </div>
-          <img id='trogdor' src={trogdor} alt='trogdor' />
 
         </div>
 

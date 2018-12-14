@@ -10,7 +10,7 @@
     text-align: center;
     height: 65vh;
     line-height: 160px;
-    background: #2e4057;
+    background: #FFF;
     overflow: hidden;
   }
   
@@ -21,27 +21,77 @@
   .ant-carousel .slick-dots {
     color: #99c24d
   }
-
+  .logoBackground {
+    background-color: $color5;
+    height: 600px;
+    padding: 24;
+    minHeight: 200;
+    boxShadow: 2px 1px 1px rgba(0, 0, 0, 0.2); 
+    verticalAlign: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .logoBack{
+    background-color: whitesmoke;
+    background-width: 100vw;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #logoBig {
+    max-width: 50%;
+    height: auto;
+    right: 0;
+  }
   .ant-carousel img {
     margin: auto;
   }
 
   .homeContent {
+    background-color: $color5;
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: auto;
     grid-template-areas: 
-    "left right"
+    "left right";
+    height: 600px;
+    
+    
   }
 
   .column-a {
+    height: 80%;
     grid-area: left;
-    padding: 5px;
+    padding: 25px 50px;
+    margin: 10px 40px;
+    margin-right: 0;
+    margin-top: 20px;
+    color: whitesmoke;
+    border-right: white solid 2.5px;
+    // background-color: #2E4057CC; 
+    h3 {
+      color: whitesmoke;
+      font-weight: bold;
+    }
+    
   }
 
   .column-b {
+    height: 80%;
     grid-area: right;
-    padding: 5px;
+    padding: 25px 50px;
+    margin: 10px 40px;
+    margin-left: 0;
+    margin-top: 20px;
+    color: whitesmoke;
+    border-left: white solid 2.5px;
+    h3 {
+      color: whitesmoke;
+      font-weight: bold;
+    }
+
   }
 
   .home-bullets {
