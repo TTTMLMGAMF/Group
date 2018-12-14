@@ -160,7 +160,7 @@ export class StartGame extends Component {
             <h1>
               Game Code: <Tag color="#2db7f5">{this.state.roomName}</Tag>{" "}
             </h1>
-            <h1>
+            {/* <h1>
               Question Timer (seconds):
               <InputNumber
                 min={10}
@@ -169,7 +169,7 @@ export class StartGame extends Component {
                 step={5}
                 onChange={this.handleTimeChange}
               />
-            </h1>
+            </h1> */}
           </Modal>
         </div>
       </div>
