@@ -133,12 +133,13 @@ io.on('connection', socket => {
     })
 
     socket.on('buzzer', data => {
-        let name = null
-        setTimeout(() => {
-            name = data.name
-        }, 2500);
-        !name ? io.to(data.room).emit('buzzer', data.name) :
-            console.log(data)
+        let name = data.name
+        name ?
+            io.to(data.room).emit('buzzer', data.name) :
+            setTimeout(() => {
+                name = data.name
+            }, 2500)
+        console.log(data)
     })
 })
 
