@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default class JoinGame extends Component {
     constructor() {
@@ -24,15 +24,15 @@ export default class JoinGame extends Component {
     handleColor
 
     render() {
-        return(
+        return (
             <div>
                 <div className='joinContainer'>
                     <div className='inputBox'>
                         <h1>Join the game</h1>
                         <p>What is your name:</p>
-                        <input/>
+                        <input />
                         <p>What is your room code:</p>
-                        <input onChange={(e) => {this.setState({room: e.target.value})}} />
+                        <input onChange={(e) => { this.setState({ room: e.target.value }) }} />
                         {/* <p>What is your favorite color?</p> */}
                         {/* <select onChange={}>
                             <option value={1}>Red</option>
@@ -41,8 +41,8 @@ export default class JoinGame extends Component {
                             <option value={4}>Green</option>
                             <option value={5}>Orange</option>
                         </select> */}
-                        {<Link to={`/buzzer/${this.state.roomCode}`} 
-                        target="_blank"><button>SUBMIT</button></Link>}
+                        {<Link to={`/buzzer/${this.state.roomCode}`}
+                            target="_blank"><button>SUBMIT</button></Link>}
                     </div>
                 </div>
 

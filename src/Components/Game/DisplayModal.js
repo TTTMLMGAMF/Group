@@ -29,7 +29,7 @@ class DisplayModal extends Component {
       countDown: this.props.countDown,
       room: this.props.room
     })
-    this.socket = io('http://localhost:4000');
+    this.socket = io("http://localhost:4000");
     this.joinRoom()
     this.socket.on('room joined', data => {
       this.joinSuccess()
@@ -78,13 +78,13 @@ class DisplayModal extends Component {
           centered={true}
           footer={null}
           width='80vw'
-          height='60vh'
+          // height='60vh'
           mask={true}
           centered={true}
           closable={false}
           zIndex={6}
           bodyStyle={{
-            height: '60vh',
+            // height: '60vh',
             width: '80vw',
             color: 'transparent',
             fontFamily: 'Luckiest Guy, cursive',
@@ -102,7 +102,7 @@ class DisplayModal extends Component {
             backgroundColor: '#048BA8',
             backgroundBlendMode: 'darken',
             // borderRadius: '25px',
-            padding: '5vw',
+            padding: '5vh',
             overFlow: 'hidden'
           }}
           style={{
