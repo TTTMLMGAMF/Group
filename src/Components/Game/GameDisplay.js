@@ -9,11 +9,8 @@ import sun from '../../scss/images/game_sun.png';
 import cloudSmall from '../../scss/images/game_cloud3.png';
 import cloudMed from '../../scss/images/game_cloud2.png';
 import cloudBig from '../../scss/images/game_cloud1.png';
-import gameTitle from '../../scss/images/game_title_box.png';
-import categoryTitle from '../../scss/images/game_categroy_titles.png';
-import yellowTeam from '../../scss/images/game_TeamScore_yellow.png';
-import blueTeam from '../../scss/images/game_TeamScore_blue.png';
-import redTeam from '../../scss/images/game_TeamScore_red.png';
+import trogdor from '../../scss/images/game_trogdor.png';
+
 
 
 
@@ -97,7 +94,7 @@ class GameDisplay extends Component {
       <div>
 
 
-        <div className="gdContainer">
+        <div className="gdBackground">
           <img id='sky' src={sky} alt='sky-background' />
           <div className='gameinfo'>
             <h1 id='gdgt'>{this.state.gameTitle}</h1>
@@ -109,44 +106,41 @@ class GameDisplay extends Component {
             <img id='cloudSmall' src={cloudSmall} alt='small-cloud illustration' />
             <img id='cloudMed' src={cloudMed} alt='Medium-cloud illustration' />
           </div>
-
-
-          <div className='gcColumnContainer'>
-
-            <div className="gdCategory">
-              {/* <DisplayModal question={qa} countDown={this.state.countDown} /> */}
-              <h1 className='theCategory'>{this.state.cOne}</h1>
-              {cOne.map((qa, i) => (
-                <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
-
-              ))}
-            </div>
-            <div className="gdCategory">
-
-              <h1>{this.state.cTwo}</h1>
-              {cTwo.map((qa, i) => (
-                <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
-
-              ))}
-            </div>
-            <div className="gdCategory">
-
-              <h1>{this.state.cThree}</h1>
-              {cThree.map((qa, i) => (
-                <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
-
-              ))}
-            </div>
-          </div>
-          <div className='gdTeamsContainer'>
-            {this.state.team.map((team, i) => (
-              <TeamDisplay key={i} team={team} />
-
-            ))}
-          </div>
-
+          <img id='trogdor' src={trogdor} alt='trogdor' />
 
         </div>
+
+        <div className='gdCategoryContainer'>
+
+          <div className="gdCategory">
+            {/* <DisplayModal question={qa} countDown={this.state.countDown} /> */}
+              <h1 className='catTitle'>{this.state.cOne}</h1>
+            {cOne.map((qa, i) => (
+              // className here is .gdBtn
+              <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
+            ))}
+          </div>
+          <div className="gdCategory">
+              <h1 className='catTitle'>{this.state.cTwo}</h1>
+            {cTwo.map((qa, i) => (
+              <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
+            ))}
+          </div>
+          <div className="gdCategory">
+              <h1 className='catTitle'>{this.state.cThree}</h1>
+            {cThree.map((qa, i) => (
+              <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
+            ))}
+          </div>
+        </div>
+        <div className='gdTeamsContainer'>
+          {this.state.team.map((team, i) => (
+            <TeamDisplay key={i} team={team} />
+
+          ))}
+        </div>
+
+
       </div>
     );
   }

@@ -18,7 +18,7 @@ export class StartGame extends Component {
     this.state = {
       visible: false,
       numOfTeams: 0,
-      value: 0, 
+      value: 0,
       teams: [],
       roomName: "",
       timer: 30000
@@ -45,7 +45,7 @@ export class StartGame extends Component {
         teams: this.state.teams,
         timer: this.state.timer,
         gameId: this.props.gameId,
-        gameTitle: this.props.gameTitle
+        gameTitle: this.props.gameName
       })
       .then(() =>
         this.props.history.push(`/gamecontrol/${this.state.roomName}`)

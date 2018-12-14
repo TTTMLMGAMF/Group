@@ -1,5 +1,4 @@
 .gcTeamBox {
-    z-index: 3;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -12,6 +11,7 @@
     border: 7.5px solid whitesmoke;
     outline: .25px riged #2E4057CC; 
     height: 12.5vh;
+    z-index: 4;
 
     .gcTeam1 {
       height: 100%;
@@ -20,6 +20,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      z-index: 4;
 
       .gcName {
         height: 100%;

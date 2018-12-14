@@ -44,7 +44,7 @@ class UserHome extends Component {
     console.log(game_id, game_name)
     axios.delete(`/api/game/${game_id}/${game_name}`)
     axios.get('/api/games')
-    .then(res =>{this.setState({games: res.data})})
+      .then(res => { this.setState({ games: res.data }) })
   };
 
   // const { Meta } = Card;
@@ -56,7 +56,7 @@ class UserHome extends Component {
     return (
       <div>
         <div className='uhMain'>
-        <SideDrawer />
+          <SideDrawer />
           <div className='sd'>
           </div>
           <div className='uhBody'>

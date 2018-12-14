@@ -53,7 +53,7 @@ app.get(`/api/accountInfo/:account_id`, endpointCtrl.retrieveAccountInfo)
 // app.get(`/api/game/:game_id`, endpointCtrl.getGame);
 
 app.post('/api/creategame', async (req, res) => {
-    // console.log('req.body: ',req.body);
+    console.log('req.body: ', req.body);
     const db = app.get("db");
     let qa = await db.get_QAs([req.body.gameId]);
     qa.map(question => { question.visible = false, question.disabled = false })
@@ -61,8 +61,9 @@ app.post('/api/creategame', async (req, res) => {
     let questionList = { qa };
 
     let categories = { cOne: qa[0].category, cTwo: qa[7].category, cThree: qa[12].category }
-    console.log(categories);
-    let game = { ...req.body, ...questionList, ...categories }
+    // console.log(categories);
+    let gameTitle = { gameTitle: req.body.gameTitle }
+    let game = { ...req.body, ...questionList, ...categories, ...gameTitle }
     // console.log(game);
     games[req.body.room + '_qa'] = cloneDeep(game)
     // games[req.body.room + '_qa'].room = req.body.room
@@ -105,6 +106,7 @@ io.on('connection', socket => {
         let i = games[data.state.room + '_qa'].qa.findIndex(id => id.question_answer_id === data.id)
         games[data.state.room + '_qa'].qa[i].visible = false
         io.to(data.state.room).emit('game state', games[data.state.room + '_qa'])
+        io.to(data.state.room).emit('show answer', false)
     })
 
     socket.on('handle score', data => {

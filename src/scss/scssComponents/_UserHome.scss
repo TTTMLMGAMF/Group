@@ -8,18 +8,19 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     position: absolute;
     top: 0;
-    // left: 200px;
+    left: 0;
     z-index: 2;
+    background-color: lightgray;
 }
 
 .uhBody {
     display: flex;
     flex-direction: column;
-    justify-content: spa;
+    // justify-content: ;
     align-items: center;
     height: 100%;
     width: 100%;
@@ -47,19 +48,12 @@
 }
 
 .gameCards {
-    width: 60%;
-    margin: 20px;
+    width: 80vw;
+    margin-left: 75px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    #card {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin: 5vw;
-        
+    flex-direction: row;
+    justify-content: space-evenly; 
 
-    }
 }
+

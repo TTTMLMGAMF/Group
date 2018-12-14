@@ -6,6 +6,7 @@ import SideDrawer from '../SideDrawer';
 import io from 'socket.io-client'
 import { connect } from 'react-redux'
 import { updateRoomName } from '../../ducks/reducer'
+import { addOrSub } from '../../tests/trentLogic';
 import '../../scss/App.scss'
 
 
@@ -61,7 +62,7 @@ class GameControl extends Component {
             state: this.state,
             i: i,
             id: id,
-            add: add
+            add: addOrSub(add)
         })
     }
 
@@ -73,12 +74,13 @@ class GameControl extends Component {
     }
 
     handleAdd = (i, id) => {
-        this.handleScore(i, id, true)
+        this.handleScore(i, id, "add")
         // this.handleCancel(id)
+        this.showAnswer();
     }
 
     handleMinus = (i, id) => {
-        this.handleScore(i, id, false)
+        this.handleScore(i, id, "sub")
     }
 
     handleCancel = (id) => {
@@ -111,14 +113,14 @@ class GameControl extends Component {
 
                     {/* <div className='gcGame'> */}
                     <h1>{this.state.gameTitle}</h1>
-                    {<Link to={`/gamedisplay/${this.state.room}`} target="_blank">OPEN</Link>}
+                    {<Link id='displayLink' to={`/gamedisplay/${this.state.room}`} target="_blank">CLICK HERE TO OPEN DISPLAY WINDOW</Link>}
                     <div className='gcColumnContainer'>
 
                         <div className="gcColumn">
 
                             <h2>{this.state.cOne}</h2>
                             {cOne.map((qa, i) => (
-                                <ControlModal key={i} category={this.state.cOne} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} />
+                                <ControlModal key={i} category={this.state.cOne} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} showAnswer={this.showAnswer}/>
 
                             ))}
                         </div>
@@ -126,7 +128,7 @@ class GameControl extends Component {
 
                             <h2>{this.state.cTwo}</h2>
                             {cTwo.map((qa, i) => (
-                                <ControlModal key={i} category={this.state.cTwo} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} />
+                                <ControlModal key={i} category={this.state.cTwo} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} showAnswer={this.showAnswer}/>
 
                             ))}
                         </div>
@@ -134,7 +136,7 @@ class GameControl extends Component {
 
                             <h2>{this.state.cThree}</h2>
                             {cThree.map((qa, i) => (
-                                <ControlModal key={i} category={this.state.cThree} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} />
+                                <ControlModal key={i} category={this.state.cThree} team={this.state.team} showModal={this.showModal} qa={qa} handleAdd={this.handleAdd} handleMinus={this.handleMinus} handleCancel={this.handleCancel} i={i} handleDisabled={this.handleDisabled} showAnswer={this.showAnswer}/>
 
                             ))}
                         </div>
