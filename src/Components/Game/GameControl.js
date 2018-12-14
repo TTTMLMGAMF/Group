@@ -1,37 +1,42 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import ControlModal from "./ControlModal";
-import TeamDisplay from "./TeamDisplay";
-import SideDrawer from "../SideDrawer";
-import io from "socket.io-client";
-import { connect } from "react-redux";
-import { updateRoomName } from "../../ducks/reducer";
-import { addOrSub } from "../../tests/trentLogic";
-import "../../scss/App.scss";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import ControlModal from './ControlModal';
+import TeamDisplay from './TeamDisplay';
+import SideDrawer from '../SideDrawer';
+import io from 'socket.io-client'
+import { connect } from 'react-redux'
+import { updateRoomName } from '../../ducks/reducer'
+import { addOrSub } from '../../tests/trentLogic';
+import '../../scss/App.scss'
+import { Tooltip } from 'antd';
+
 
 class GameControl extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
       gameName: "The Questions!",
       qa: [],
       team: [],
-      room: "things",
-      cOne: "",
-      cTwo: "",
-      cThree: ""
-    };
+      room: 'things',
+      cOne: '',
+      cTwo: '',
+      cThree: '',
+      name: '',
+      buzzer: []
+    }
     this.joinRoom = this.joinRoom.bind(this);
+
   }
+
 
   async componentDidMount() {
     await this.setState({
-      room: window.location.pathname.split("/")[2]
-    });
-    this.socket = io("http://localhost:4000");
-    await this.joinRoom();
-    await this.socket.on("game state", data => {
-      console.log(data);
+      room: window.location.pathname.split('/')[2],
+    })
+    this.socket = io('http://localhost:4000');
+    await this.joinRoom()
+    await this.socket.on('game state', data => {
       this.setState({
         qa: data.qa,
         team: data.teams,
@@ -39,17 +44,34 @@ class GameControl extends Component {
         cOne: data.cOne,
         cTwo: data.cTwo,
         cThree: data.cThree
-      });
-    });
+      })
+    })
+    await this.socket.on('buzzer', data => {
+      let buzzer = this.state.buzzer.slice(0)
+      buzzer.push(data)
+      console.log(buzzer)
+      this.setState({
+        buzzer: buzzer
+      })
+
+    })
+  }
+
+
+  remove() {
+    this.setState({
+      buzzer: []
+    })
   }
 
   joinRoom() {
     if (this.state.room) {
-      this.socket.emit("join room", {
+      this.socket.emit('join room', {
         room: this.state.room
-      });
+      })
     }
   }
+
 
   handleScore = (i, id, add) => {
     this.socket.emit("handle score", {
@@ -70,7 +92,7 @@ class GameControl extends Component {
   handleAdd = (i, id) => {
     this.handleScore(i, id, "add");
     // this.handleCancel(id)
-    this.showAnswer();
+    this.showAnswer(id);
   };
 
   handleMinus = (i, id) => {
@@ -82,6 +104,7 @@ class GameControl extends Component {
       state: this.state,
       id: id
     });
+    this.remove()
   };
 
   showAnswer = id => {
@@ -102,6 +125,9 @@ class GameControl extends Component {
           <SideDrawer />
         </div>
         <div className="gcControlContainer">
+
+          {this.state.buzzer[0] ? <div className='gcBuzzer' onClick={() => this.remove()}>{this.state.buzzer.map(e => <div>{e}</div>)}</div> : null}
+
           {/* <div className='gcGame'> */}
           <h1>{this.state.gameTitle}</h1>
           {

@@ -131,6 +131,16 @@ io.on('connection', socket => {
         io.to(data.state.room).emit('game state', newTeams)
         io.to(data.state.room).emit('show answer', true)
     })
+
+    socket.on('buzzer', data => {
+        let name = data.name
+        name ?
+            io.to(data.room).emit('buzzer', data.name) :
+            setTimeout(() => {
+                name = data.name
+            }, 2500)
+        console.log(data)
+    })
 })
 
 app.get('*', (req, res) => {

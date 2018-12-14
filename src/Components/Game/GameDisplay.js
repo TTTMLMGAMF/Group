@@ -27,7 +27,8 @@ class GameDisplay extends Component {
       cOne: '',
       cTwo: '',
       cThree: '',
-      showAnswer: false
+      showAnswer: false,
+      buzzer: []
     }
     this.joinRoom = this.joinRoom.bind(this);
   }
@@ -57,6 +58,25 @@ class GameDisplay extends Component {
       })
     })
 
+    await this.socket.on('buzzer', data => {
+      let buzzer = this.state.buzzer.slice(0)
+      buzzer.push(data)
+      console.log(buzzer)
+      this.setState({
+        buzzer: buzzer
+      })
+      setTimeout(() => {
+        this.remove()
+      }, 5000);
+
+    })
+
+  }
+
+  remove() {
+    this.setState({
+      buzzer: []
+    })
   }
 
   timer = () => {
@@ -92,6 +112,7 @@ class GameDisplay extends Component {
     console.log(this.state.cOne)
     return (
       <div>
+        {this.state.buzzer[0] ? <div className='gcBuzzer' onClick={() => this.remove()}>{this.state.buzzer.map(e => <div>{e}</div>)}</div> : null}
 
 
         <div className="gdBackground">
