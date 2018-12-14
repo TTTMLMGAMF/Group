@@ -54,11 +54,12 @@ class UserHome extends Component {
 
 
     return (
-      <div>
+      <div className='uhMainBody'>
         <div className='uhMain'>
           <SideDrawer />
           <div className='sd'>
           </div>
+
           <div className='uhBody'>
             <h1 id='uhHeader'>MY GAMES</h1>
             <GameList games={this.state.games} handleDelete={this.handleDelete} />
