@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Modal, Button, Input, message, Icon } from "antd";
 import "../../scss/App.scss";
-import Category from './Category';
+import { withRouter } from 'react-router-dom';
 import cloneDeep from 'lodash/cloneDeep';
 import axios from 'axios';
 import { connect } from 'react-redux';
@@ -114,6 +114,7 @@ class GameWizard extends Component {
     console.log(this.state.game_id);
     if (this.state.categoryNum === 3) {
       this.setState({ visible: false });
+      window.location.reload();
     }
   };
 
@@ -266,4 +267,5 @@ function mapStateToProps(state) {
   };
 }
 
+// export default withRouter(GameWizard);
 export default connect(mapStateToProps, { navCreateGame })(GameWizard)
