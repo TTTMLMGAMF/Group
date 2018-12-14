@@ -122,8 +122,10 @@ io.on('connection', socket => {
     })
 
     socket.on('show answer', data => {
-        // let e = games[data.state.room + '_qa'].qa.findIndex(id => id.question_answer_id === data.id)
-
+        let e = games[data.state.room + '_qa'].qa.findIndex(id => id.question_answer_id === data.id)
+        let newTeams = Object.assign({}, games[data.state.room + '_qa']);
+        newTeams.qa[e].disabled = true
+        io.to(data.state.room).emit('game state', newTeams)
         io.to(data.state.room).emit('show answer', true)
     })
 })
