@@ -131,6 +131,7 @@ class GameControl extends Component {
                   showAnswer={this.showAnswer}
                 />
               ))}
+
             </div>
             <div className="gcColumn">
               <h2>{this.state.cTwo}</h2>

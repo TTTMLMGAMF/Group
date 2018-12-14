@@ -99,6 +99,7 @@ class GameDisplay extends Component {
           <div className='gameinfo'>
             <h1 id='gdgt'>{this.state.gameTitle}</h1>
           </div>
+          <img id='trogdor' src={trogdor} alt='trogdor' />
           <img id='grass' src={grass} alt='grass-background' />
           <img id='sun' src={sun} alt='sun-background' />
           <div className='clouds'>
@@ -106,7 +107,6 @@ class GameDisplay extends Component {
             <img id='cloudSmall' src={cloudSmall} alt='small-cloud illustration' />
             <img id='cloudMed' src={cloudMed} alt='Medium-cloud illustration' />
           </div>
-          <img id='trogdor' src={trogdor} alt='trogdor' />
 
         </div>
 
@@ -114,20 +114,20 @@ class GameDisplay extends Component {
 
           <div className="gdCategory">
             {/* <DisplayModal question={qa} countDown={this.state.countDown} /> */}
-              <h1 className='catTitle'>{this.state.cOne}</h1>
+            <h1 className='catTitle'>{this.state.cOne}</h1>
             {cOne.map((qa, i) => (
               // className here is .gdBtn
               <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
             ))}
           </div>
           <div className="gdCategory">
-              <h1 className='catTitle'>{this.state.cTwo}</h1>
+            <h1 className='catTitle'>{this.state.cTwo}</h1>
             {cTwo.map((qa, i) => (
               <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
             ))}
           </div>
           <div className="gdCategory">
-              <h1 className='catTitle'>{this.state.cThree}</h1>
+            <h1 className='catTitle'>{this.state.cThree}</h1>
             {cThree.map((qa, i) => (
               <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
             ))}
