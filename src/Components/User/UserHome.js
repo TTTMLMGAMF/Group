@@ -40,9 +40,9 @@ class UserHome extends Component {
     });
   };
 
-  handleDelete = (game_id, game_name) => {
+  handleDelete = async (game_id, game_name) => {
     console.log(game_id, game_name)
-    axios.delete(`/api/game/${game_id}/${game_name}`)
+    await axios.delete(`/api/game/${game_id}/${game_name}`)
     axios.get('/api/games')
       .then(res => { this.setState({ games: res.data }) })
   };
