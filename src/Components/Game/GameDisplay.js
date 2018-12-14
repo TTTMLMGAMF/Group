@@ -10,6 +10,7 @@ import cloudSmall from '../../scss/images/game_cloud3.png';
 import cloudMed from '../../scss/images/game_cloud2.png';
 import cloudBig from '../../scss/images/game_cloud1.png';
 import trogdor from '../../scss/images/game_trogdor.png';
+import { Alert } from "antd";
 
 
 
@@ -55,6 +56,10 @@ class GameDisplay extends Component {
       this.setState({
         showAnswer: data
       })
+    })
+
+    await this.socket.on('buzzer', data => {
+      alert(data)
     })
 
   }

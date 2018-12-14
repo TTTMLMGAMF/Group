@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default class JoinGame extends Component {
     constructor() {
         super();
         this.state = {
-            roomCode: '',
+            room: '',
             name: '',
             value: 0
         }
@@ -24,11 +24,11 @@ export default class JoinGame extends Component {
     handleColor
 
     render() {
-        return(
+        return (
             <div>
                 <h1>Join this game's ish</h1>
-                <p>What is your name:<input/></p>
-                <p>What is your room code:<input onChange={(e) => {this.setState({room: e.target.value})}} /></p>
+                <p>What is your name:<input onChange={(e) => { this.setState({ name: e.target.value }) }} /></p>
+                <p>What is your room code:<input onChange={(e) => { this.setState({ room: e.target.value }) }} /></p>
                 {/* <p>What is your favorite color?</p> */}
                 {/* <select onChange={}>
                     <option value={1}>Red</option>
@@ -37,8 +37,8 @@ export default class JoinGame extends Component {
                     <option value={4}>Green</option>
                     <option value={5}>Orange</option>
                 </select> */}
-                {<Link to={`/buzzer/${this.state.roomCode}`} 
-                target="_blank"><button>Join Game</button></Link>}
+                {<Link to={`/buzzer/${this.state.room}/${this.state.name}`}
+                    target="_blank"><button>Join Game</button></Link>}
             </div>
         )
     }

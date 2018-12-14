@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 // import { Modal, Button, Card, Icon, Avatar, Form } from "antd";
-import StartGame from "./StartGame";
+// import StartGame from "./StartGame";
 import "../../scss/App.scss";
 import GameList from "./GameList";
-import GameWizard from './GameWizard';
+// import GameWizard from './GameWizard';
 import SideDrawer from './../SideDrawer';
 import axios from 'axios';
 // import { Card, Icon, Avatar } from 'antd';

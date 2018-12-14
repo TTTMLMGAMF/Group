@@ -25,7 +25,6 @@ class ControlModal extends Component {
 
     render() {
         const { visible, question_answer_id } = this.props.qa;
-        console.log(visible)
         return (
             <div>
 

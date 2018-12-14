@@ -160,3 +160,27 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#999999', end
         color: $color5;
     }
 }
+
+.gcBuzzer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 30%;
+    right: 10px;
+    position: absolute;
+    width: 175px;
+    padding: 10px;
+    background-color: $color3;
+    font-family: $font2;
+    font-size: 1em;
+    color: white;
+    border-radius: 25px;
+    z-index: 7;
+    background-blend-mode: darken;
+    div{
+        margin: 5px;
+    }
+
+
+}

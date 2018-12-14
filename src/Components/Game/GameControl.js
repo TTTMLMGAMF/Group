@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import { updateRoomName } from '../../ducks/reducer'
 import { addOrSub } from '../../tests/trentLogic';
 import '../../scss/App.scss'
+import { Tooltip } from 'antd';
 
 
 class GameControl extends Component {
@@ -20,7 +21,9 @@ class GameControl extends Component {
             room: 'things',
             cOne: '',
             cTwo: '',
-            cThree: ''
+            cThree: '',
+            name: '',
+            buzzer: []
         }
         this.joinRoom = this.joinRoom.bind(this);
 
@@ -34,7 +37,6 @@ class GameControl extends Component {
         this.socket = io('http://localhost:4000');
         await this.joinRoom()
         await this.socket.on('game state', data => {
-            console.log(data)
             this.setState({
                 qa: data.qa,
                 team: data.teams,
@@ -44,10 +46,23 @@ class GameControl extends Component {
                 cThree: data.cThree
             })
         })
+        await this.socket.on('buzzer', data => {
+            let buzzer = this.state.buzzer.slice(0)
+            buzzer.push(data)
+            console.log(buzzer)
+            this.setState({
+                buzzer: buzzer
+            })
+
+        })
     }
 
 
-
+    remove() {
+        this.setState({
+            buzzer: []
+        })
+    }
 
     joinRoom() {
         if (this.state.room) {
@@ -88,6 +103,7 @@ class GameControl extends Component {
             state: this.state,
             id: id
         })
+        this.remove()
     }
 
     showAnswer = (id) => {
@@ -102,14 +118,13 @@ class GameControl extends Component {
         let cOne = this.state.qa.filter(el => el.category_num === 1)
         let cTwo = this.state.qa.filter(el => el.category_num === 2)
         let cThree = this.state.qa.filter(el => el.category_num === 3)
-        console.log(this.props)
         return (
             <div>
-
                 <div className='sd'>
                     <SideDrawer />
                 </div>
                 <div className='gcControlContainer'>
+                    {this.state.buzzer[0] ? <Tooltip title='click to remove' className="gcBuzzer" onClick={() => this.remove()}>{this.state.buzzer.map(e => (<div>{e}</div>))}</Tooltip> : null}
 
                     {/* <div className='gcGame'> */}
                     <h1>{this.state.gameTitle}</h1>
