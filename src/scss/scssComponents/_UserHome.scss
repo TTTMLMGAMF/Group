@@ -1,29 +1,62 @@
-// .sd {
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-// }
+
+body{
+    background-color: lightgray;
+}
+
+.sd {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
 
 .uhMain {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 2;
-    background-color: lightgray;
+    // background-color: lightgray;
 }
+
+
+    .uhBody {
+        display: flex;
+        
+        flex-direction: column;
+        // justify-content: ;
+        align-items: center;
+        // background-color: lightgray;
+        
+    }
+    #uhHeader{
+        font-weight: bold;
+        font-size: 100px;
+        font-family: $font2;
+        padding-top: 5vh;
+        font-size: 10vw;
+        color: $color3;
+        text-shadow: 0 1px 0 #2E405780, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+
+        
+    }
+
 
 .uhBody {
     display: flex;
     flex-direction: column;
-    // justify-content: ;
+    // justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 100%;
+    position: absolute;
+    top: 0;
+    margin-left: 75px;
+    // height: 100%;
+    // width: 100%;
+    // border: 10px solid black;
     
 }
 #uhHeader{
@@ -33,8 +66,10 @@
     padding-top: 5vh;
     font-size: 10vw;
     color: $color3;
+    margin-left: 75px;
     
 }
+
 
 .uhBtns {
     width: 300px;
@@ -50,10 +85,11 @@
 .gameCards {
     width: 80vw;
     margin-left: 75px;
+    // position: absolute;
+    top: 0;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-evenly; 
-
 }
 

@@ -10,6 +10,7 @@ import cloudSmall from '../../scss/images/game_cloud3.png';
 import cloudMed from '../../scss/images/game_cloud2.png';
 import cloudBig from '../../scss/images/game_cloud1.png';
 import trogdor from '../../scss/images/game_trogdor.png';
+// import trogdorFlames from '../../scss/images/game_trogdor_flames.png';
 
 
 
@@ -27,7 +28,8 @@ class GameDisplay extends Component {
       cOne: '',
       cTwo: '',
       cThree: '',
-      showAnswer: false
+      showAnswer: false,
+      buzzer: []
     }
     this.joinRoom = this.joinRoom.bind(this);
   }
@@ -36,7 +38,7 @@ class GameDisplay extends Component {
     await this.setState({
       room: window.location.pathname.split('/')[2],
     })
-    this.socket = io()
+    this.socket = io("http://localhost:4000")
     await this.joinRoom()
     await this.socket.on('game state', data => {
       console.log("hit it")
@@ -57,6 +59,25 @@ class GameDisplay extends Component {
       })
     })
 
+    await this.socket.on('buzzer', data => {
+      let buzzer = this.state.buzzer.slice(0)
+      buzzer.push(data)
+      console.log(buzzer)
+      this.setState({
+        buzzer: buzzer
+      })
+      setTimeout(() => {
+        this.remove()
+      }, 5000);
+
+    })
+
+  }
+
+  remove() {
+    this.setState({
+      buzzer: []
+    })
   }
 
   timer = () => {
@@ -92,6 +113,7 @@ class GameDisplay extends Component {
     console.log(this.state.cOne)
     return (
       <div>
+        {this.state.buzzer[0] ? <div className='gcBuzzer' onClick={() => this.remove()}>{this.state.buzzer.map(e => <div>{e}</div>)}</div> : null}
 
 
         <div className="gdBackground">
@@ -99,6 +121,8 @@ class GameDisplay extends Component {
           <div className='gameinfo'>
             <h1 id='gdgt'>{this.state.gameTitle}</h1>
           </div>
+          <img id='trogdor' src={trogdor} alt='trogdor' />
+          {/* <img id='trogdorFlames' src={trogdorFlames} alt='trogdor-Flames' /> */}
           <img id='grass' src={grass} alt='grass-background' />
           <img id='sun' src={sun} alt='sun-background' />
           <div className='clouds'>
@@ -106,7 +130,6 @@ class GameDisplay extends Component {
             <img id='cloudSmall' src={cloudSmall} alt='small-cloud illustration' />
             <img id='cloudMed' src={cloudMed} alt='Medium-cloud illustration' />
           </div>
-          <img id='trogdor' src={trogdor} alt='trogdor' />
 
         </div>
 
@@ -114,20 +137,20 @@ class GameDisplay extends Component {
 
           <div className="gdCategory">
             {/* <DisplayModal question={qa} countDown={this.state.countDown} /> */}
-              <h1 className='catTitle'>{this.state.cOne}</h1>
+            <h1 className='catTitle'>{this.state.cOne}</h1>
             {cOne.map((qa, i) => (
               // className here is .gdBtn
               <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
             ))}
           </div>
           <div className="gdCategory">
-              <h1 className='catTitle'>{this.state.cTwo}</h1>
+            <h1 className='catTitle'>{this.state.cTwo}</h1>
             {cTwo.map((qa, i) => (
               <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
             ))}
           </div>
           <div className="gdCategory">
-              <h1 className='catTitle'>{this.state.cThree}</h1>
+            <h1 className='catTitle'>{this.state.cThree}</h1>
             {cThree.map((qa, i) => (
               <DisplayModal key={i} qa={qa} countDown={this.state.countDown} showAnswer={this.state.showAnswer} />
             ))}

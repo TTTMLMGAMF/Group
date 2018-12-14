@@ -25,7 +25,6 @@ class ControlModal extends Component {
 
     render() {
         const { visible, question_answer_id } = this.props.qa;
-        console.log(visible)
         return (
             <div>
 
@@ -56,7 +55,7 @@ class ControlModal extends Component {
                     }}
                     footer={
                         <div className='pointTracker'>
-                            <button onClick={() => this.props.showAnswer(question_answer_id)}>ANSWER</button>
+                            <button className='answerBtn'onClick={() => this.props.showAnswer(question_answer_id)}>ANSWER</button>
                             {this.props.team.map((team, i) => (
                                 <div className='ptTeam' key={i}>
                                     <h4>{team.teamName}</h4>

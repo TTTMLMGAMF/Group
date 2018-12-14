@@ -35,7 +35,7 @@
       }
 
       .gcScore {
-        width: 35%;
+        min-width: 35%;
         height: 100%;
         border-radius: 0 10px 10px 0;
         display: flex;
@@ -43,8 +43,8 @@
         font-family: $marker;
         color: $color5;
         text-align: left;
-        padding-left: 1em;
-        font-size: 1.5em;
+        padding: 1vw;
+        font-size: 2.5vw;
         background-color: whitesmoke;
         box-shadow: inset 0px 0px 20.5px 4px #00000099;
       }
