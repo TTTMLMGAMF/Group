@@ -10,6 +10,7 @@ import cloudSmall from '../../scss/images/game_cloud3.png';
 import cloudMed from '../../scss/images/game_cloud2.png';
 import cloudBig from '../../scss/images/game_cloud1.png';
 import trogdor from '../../scss/images/game_trogdor.png';
+// import trogdorFlames from '../../scss/images/game_trogdor_flames.png';
 
 
 
@@ -121,6 +122,7 @@ class GameDisplay extends Component {
             <h1 id='gdgt'>{this.state.gameTitle}</h1>
           </div>
           <img id='trogdor' src={trogdor} alt='trogdor' />
+          {/* <img id='trogdorFlames' src={trogdorFlames} alt='trogdor-Flames' /> */}
           <img id='grass' src={grass} alt='grass-background' />
           <img id='sun' src={sun} alt='sun-background' />
           <div className='clouds'>
