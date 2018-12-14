@@ -1,3 +1,4 @@
+const path = require('path');
 require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
@@ -13,6 +14,7 @@ const cloneDeep = require('clone-deep');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(express.static(`${_dirname}/../build`));
 
 const {
     SERVER_PORT,
@@ -126,3 +128,7 @@ io.on('connection', socket => {
         io.to(data.state.room).emit('show answer', true)
     })
 })
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
