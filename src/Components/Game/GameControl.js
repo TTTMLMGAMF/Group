@@ -34,7 +34,7 @@ class GameControl extends Component {
     await this.setState({
       room: window.location.pathname.split('/')[2],
     })
-    this.socket = io('http://localhost:4000');
+    this.socket = io();
     await this.joinRoom()
     await this.socket.on('game state', data => {
       this.setState({
