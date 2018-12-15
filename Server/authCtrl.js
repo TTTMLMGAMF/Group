@@ -29,15 +29,16 @@ module.exports = {
                 if (bcrypt.compareSync(password, user[0].account_pass)) {
                     delete user[0].account_pass;
                     req.session.user = user[0];
-                    // console.log('Look up here:', req.session.user)
+                    console.log('Look up here:', user[0])
                     res.status(200).send(user[0]);
                 } else {
                     res.status(401).send({ error: "Invalid Username or password." });
+                    // console.log(res)
                 }
             })
             .catch(err => {
                 res.status(500).send(err);
-                console.log(err)
+                // console.log(err)
             })
     },
     logout: (req, res) => {
