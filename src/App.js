@@ -8,6 +8,7 @@ import GameDisplay from './Components/Game/GameDisplay';
 import DisplayModal from './Components/Game/DisplayModal';
 import JoinGame from './Components/Game/JoinGame';
 import Buzzer from './Components/Game/Buzzer';
+// import About from './Components/Home/About';
 
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
           <Route path='/displayModal' component={DisplayModal} />
           <Route path='/joingame' component={JoinGame} />
           <Route path='/buzzer' component={Buzzer}/>
+          {/* <Route path='/about' component={About}/> */}
 
         </Switch>
       </BrowserRouter>
