@@ -29,7 +29,13 @@ class DisplayModal extends Component {
       countDown: this.props.countDown,
       room: this.props.room
     })
-    this.socket = io();
+
+    // this one is for development
+    // this.socket = io('http://localhost:4000');
+
+    // this one is for live site
+    this.socket = io()
+
     this.joinRoom()
     this.socket.on('room joined', data => {
       this.joinSuccess()
