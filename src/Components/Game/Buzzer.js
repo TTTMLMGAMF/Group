@@ -12,8 +12,14 @@ constructor () {
     render() {
         return(
             <div>
+                <div className='buzzerContainer'>
+                    <div className='buzzerBox'> 
+                        <h1>{this.state.name}</h1>
+                        <button>PUSH</button>
+                    </div>
+                </div>
                 <h1>{this.state.name}</h1>
-                <button>Smash it!</button>
+                <button>PUSH</button>
             </div>
         )
     }

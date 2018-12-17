@@ -64,8 +64,15 @@ class GameList
             </div>}
             actions={[
               <StartGame gameId={game.game_id} gameName={game.game_name} />,
-              // <button style={{backgroundColor: "transparent", border: "0px", paddingLeft: '0'}}><Icon type="edit" /></button>, 
-              <button style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }} onClick={() => this.props.handleDelete(game.game_id, game.game_name)}><Icon type="delete" /></button>]}
+              // <button style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }}><Icon type="edit" /></button>,
+              <button
+                style={{
+                  backgroundColor: "transparent",
+                  border: "0px",
+                  paddingLeft: '0',
+                  height: '40px',
+                  width: '150px'
+                }} onClick={() => this.props.handleDelete(game.game_id, game.game_name)}><Icon type="delete" /></button>]}
             hoverable>
             <Meta title={game.game_name}
               description={game.subject} />
