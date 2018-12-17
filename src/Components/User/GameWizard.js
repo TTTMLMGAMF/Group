@@ -1,30 +1,30 @@
 import React, { Component } from "react";
-import { Modal, Button, Input, message, Icon } from "antd";
+import { Modal, Button, Input, Icon } from "antd";
 import "../../scss/App.scss";
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 import cloneDeep from 'lodash/cloneDeep';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { navCreateGame } from '../../ducks/reducer';
-import {handleCancel} from '../../tests/ryanLogic';
+import { handleCancel } from '../../tests/ryanLogic';
 
-const props = {
-  name: "file",
-  action: "//jsonplaceholder.typicode.com/posts/",
-  headers: {
-    authorization: "authorization-text"
-  },
-  onChange(info) {
-    if (info.file.status !== "uploading") {
-      console.log(info.file, info.fileList);
-    }
-    if (info.file.status === "done") {
-      message.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === "error") {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  }
-};
+// const props = {
+//   name: "file",
+//   action: "//jsonplaceholder.typicode.com/posts/",
+//   headers: {
+//     authorization: "authorization-text"
+//   },
+//   onChange(info) {
+//     if (info.file.status !== "uploading") {
+//       console.log(info.file, info.fileList);
+//     }
+//     if (info.file.status === "done") {
+//       message.success(`${info.file.name} file uploaded successfully`);
+//     } else if (info.file.status === "error") {
+//       message.error(`${info.file.name} file upload failed.`);
+//     }
+//   }
+// };
 
 class GameWizard extends Component {
   constructor(props) {
@@ -91,8 +91,8 @@ class GameWizard extends Component {
     // If categoryNum === 1 hit post game
     this.state.categoryNum === 1
       ? axios
-          .post("/api/game", this.state)
-          .then(res => this.setState({ game_id: res.data[0].game_id }))
+        .post("/api/game", this.state)
+        .then(res => this.setState({ game_id: res.data[0].game_id }))
       : axios.put(`/api/game/` + this.state.game_id, this.state);
     // Else hit put game
     this.setState({

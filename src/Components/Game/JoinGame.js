@@ -30,9 +30,9 @@ export default class JoinGame extends Component {
                     <div className='inputBox'>
                         <h1>Join the game</h1>
                         <p>What is your name:</p>
-                        <input />
+                        <input onChange={(e) => { this.setState({ name: e.target.value }) }} />
                         <p>What is your room code:</p>
-                        <input onChange={(e) => { this.setState({ room: e.target.value }) }} />
+                        <input onChange={(e) => { this.setState({ roomCode: e.target.value }) }} />
                         {/* <p>What is your favorite color?</p> */}
                         {/* <select onChange={}>
                             <option value={1}>Red</option>
@@ -41,7 +41,7 @@ export default class JoinGame extends Component {
                             <option value={4}>Green</option>
                             <option value={5}>Orange</option>
                         </select> */}
-                        {<Link to={`/buzzer/${this.state.roomCode}`}
+                        {<Link to={`/buzzer/${this.state.roomCode}/${this.state.name}`}
                             target="_blank"><button>SUBMIT</button></Link>}
                     </div>
                 </div>

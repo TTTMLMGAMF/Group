@@ -16,7 +16,13 @@ export default class Buzzer extends Component {
             room: window.location.pathname.split('/')[2],
             name: window.location.pathname.split('/')[3]
         })
-        this.socket = io('http://localhost:4000');
+
+        // this one is for development
+        // this.socket = io('http://localhost:4000');
+
+        // this one is for live site
+        this.socket = io()
+
         this.joinRoom()
     }
 
