@@ -53,7 +53,7 @@
     h2{
         display: flex;
         justify-content: center;
-        font-size: 1.5vw;
+        font-size: 1.25vw;
         color: white;
         font-family: $font2;
         padding: 2vh;
@@ -156,7 +156,45 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#999999', end
 
     h4 {
         font-weight: bold;
-        font-size: .5vw;
+        font-size: 2.5vw;
         color: $color5;
     }
+}
+
+.gcBuzzer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 30%;
+    right: 10px;
+    position: absolute;
+    width: 175px;
+    padding: 10px;
+    background-color: $color3;
+    font-family: $font2;
+    font-size: 1em;
+    color: white;
+    border-radius: 25px;
+    z-index: 7;
+    background-blend-mode: darken;
+    div{
+        margin: 5px;
+    }
+
+
+}
+
+.answerBtn {
+    height: 9vh;
+    width: 9vh;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid $color1;
+    color: $color1;
+    font-weight: bold;
+    margin-top: 5.5vh;
+
 }
