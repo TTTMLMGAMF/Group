@@ -52,9 +52,11 @@ app.get(`/api/accountInfo/:account_id`, endpointCtrl.retrieveAccountInfo)
 // app.post(`/api/students`, endpointCtrl.addStudents);
 // app.get(`/api/game/:game_id`, endpointCtrl.getGame);
 
+//THIS IS WHERE WE ARE USING THE TRY/CATCH BLOCK TO FIX THE HOSTED VERSION ISSUE
 app.post('/api/creategame', async (req, res) => {
     console.log('req.body: ', req.body);
     const db = app.get("db");
+    try {
     let qa = await db.get_QAs([req.body.gameId]);
     qa.map(question => { question.visible = false, question.disabled = false })
     // console.log('questions:', qa)
@@ -68,6 +70,9 @@ app.post('/api/creategame', async (req, res) => {
     games[req.body.room + '_qa'] = cloneDeep(game)
     // games[req.body.room + '_qa'].room = req.body.room
     res.end()
+} catch(error) {
+    console.error(error)
+}
 })
 
 app.delete(`/api/game/:game_id/:game_name`, endpointCtrl.deleteGame);
