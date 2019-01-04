@@ -36,10 +36,10 @@ class GameControl extends Component {
     })
 
     // this one is for development
-    // this.socket = io('http://localhost:4000');
+    this.socket = io('http://localhost:4000');
 
     // this one is for live site
-    this.socket = io()
+    // this.socket = io()
 
     await this.joinRoom()
     await this.socket.on('game state', data => {
