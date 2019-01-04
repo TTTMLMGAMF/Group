@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Carousel, Layout, Menu, Affix, Button } from 'antd';
+import { Layout, Menu, Affix, Button } from 'antd';
 import Login from './login';
 import '../../scss/App.scss';
 import TeachToolsLogo from './../../scss/images/game_logo.png';
@@ -7,7 +7,7 @@ import TeachToolsLogo from './../../scss/images/game_logo.png';
 const { Header, Content, Footer } = Layout;
 
 class Home extends Component {
-  
+
     joinGame = () => {
         this.props.history.push('/joingame')
     }
@@ -20,7 +20,7 @@ class Home extends Component {
                     <Header>
                         <div>
                             <div className="logo" >
-                                <img style={{height: '55px', padding: '5px', margin: '5px 15px 0 5px', position: 'absolute', top: '0', left: '0'}}src={TeachToolsLogo} alt='logo'/>
+                                <img style={{ height: '55px', padding: '5px', margin: '5px 15px 0 5px', position: 'absolute', top: '0', left: '0' }} src={TeachToolsLogo} alt='logo' />
                             </div>
                             <Menu
                                 theme="dark"
@@ -28,16 +28,16 @@ class Home extends Component {
                                 defaultSelectedKeys={['2']}
                                 style={{ lineHeight: '64px' }}
                             >
-                                <Menu.Item style={{marginLeft: '35px'}} key="1">{<Login />}</Menu.Item>
+                                <Menu.Item style={{ marginLeft: '35px' }} key="1">{<Login />}</Menu.Item>
                                 {/* <Menu.Item key="2"> */}
-                                    <Button
-                                        type="primary"
-                                        ghost={true}
-                                        onClick={this.joinGame}
-                                    // background={}
-                                    // bodyStyle={()}
-                                    >
-                                        Join Game
+                                <Button
+                                    type="primary"
+                                    ghost={true}
+                                    onClick={this.joinGame}
+                                // background={}
+                                // bodyStyle={()}
+                                >
+                                    Join Game
                                     </Button>
                                 {/* </Menu.Item> */}
                             </Menu>
@@ -49,9 +49,9 @@ class Home extends Component {
                         <Breadcrumb.Item>Home</Breadcrumb.Item>
                     </Breadcrumb> */}
                     <div className='logoBackground'>
-                            <div className='logoBack'>
-                                <img id='logoBig' src={TeachToolsLogo} alt='Logo-background' />
-                            </div>
+                        <div className='logoBack'>
+                            <img id='logoBig' src={TeachToolsLogo} alt='Logo-background' />
+                        </div>
                         {/* <Carousel  autoplay>
                             <div><img src='https://cdn.pixabay.com/photo/2013/04/19/01/15/university-105709__340.jpg' alt="classroom" /></div>
                             <div><img src='https://www.lifewire.com/thmb/KBCk0Wz5ZI70_dvF9ZROsxSj3P4=/768x0/filters:no_upscale():max_bytes(150000):strip_icc()/rear-view-of-teenage-students-raising-hands-in-classroom-525409405-58adb2083df78c345bbc6d2f.jpg' alt="hands raised projector" /></div>

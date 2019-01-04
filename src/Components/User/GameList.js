@@ -60,7 +60,7 @@ class GameList
           <Card
             style={{ width: 300, margin: 15 }}
             cover={<div style={{ height: 150, overflow: 'hidden', display: 'flex', justifyContent: 'center' }}>
-              <img alt="game image" src={game.image} style={{ height: 200, alignSelf: "center" }} />
+              <img alt="game" src={game.image} style={{ height: 200, alignSelf: "center" }} />
             </div>}
             actions={[
               <StartGame gameId={game.game_id} gameName={game.game_name} />,

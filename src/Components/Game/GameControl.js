@@ -34,7 +34,13 @@ class GameControl extends Component {
     await this.setState({
       room: window.location.pathname.split('/')[2],
     })
-    this.socket = io('http://localhost:4000');
+
+    // this one is for development
+    // this.socket = io('http://localhost:4000');
+
+    // this one is for live site
+    this.socket = io()
+
     await this.joinRoom()
     await this.socket.on('game state', data => {
       this.setState({
@@ -157,7 +163,6 @@ class GameControl extends Component {
                   showAnswer={this.showAnswer}
                 />
               ))}
-
             </div>
             <div className="gcColumn">
               <h2>{this.state.cTwo}</h2>
