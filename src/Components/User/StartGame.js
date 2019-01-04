@@ -18,8 +18,9 @@ export class StartGame extends Component {
     this.state = {
       visible: false,
       numOfTeams: 0,
-      value: 0,
-      teams: [],
+      value: 2,
+      teams: [{ teamName: "Team 1", score: 0 },
+      { teamName: "Team 2", score: 0 }],
       roomName: "",
       timer: 30000
     };
