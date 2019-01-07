@@ -3,4 +3,11 @@
     height: 100vh;
     // width: 100px;
     position: fixed;
+    
+}
+
+@media(max-width: 500px) {
+    .menu-style {
+        width: 5vmin;
     }
+}
