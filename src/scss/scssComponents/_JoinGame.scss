@@ -15,7 +15,7 @@
     background-color: $color5;
     height: 300px;
     width: 300px;
-    border-radius: 25px;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -34,10 +34,11 @@
         margin-bottom: 0;
     }
     input{
-        border-radius: 25px;
+        border-radius: 5px;
         box-shadow: inset(-1px 1px 2px $color2);
         border: none;
         width: 80%;
+        text-indent: 1vmin;
     }
     button {
         font-family: $marker;
@@ -52,7 +53,7 @@
         background-color: $color5;
         height: 500px;
         width: 500px;
-        border-radius: 25px;
+        border-radius: 5px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -71,16 +72,17 @@
             margin-bottom: -20px;
         }
         input{
-            border-radius: 25px;
+            border-radius: 5px;
             box-shadow: inset(-1px 1px 2px $color2);
             border: none;
+            text-indent: 1vmin;
             
         }
         button {
             font-family: $marker;
             background-color: $color4;
             color: $color3;
-            border-radius: 25px;
+            border-radius: 5px;
             border: none;
         }
 

@@ -84,14 +84,11 @@ class Login extends Component {
             <div>
                 
                 <Button 
+                // className="loginBtn"
                 type="primary" 
                 ghost={true} 
                 onClick={this.showModal}
-                // background={}
-                // bodyStyle={()}
-                >
-                    Login
-                </Button>
+                >LOGIN</Button>
                 {/* <GameEdit/> */}
                 <Modal
                     title="Login"
