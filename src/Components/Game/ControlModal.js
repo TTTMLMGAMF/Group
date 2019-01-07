@@ -41,7 +41,7 @@ class ControlModal extends Component {
                     width='70vw'
                     bodyStyle={{
                         width: '70vw',
-                        fontSize: '2vw',
+                        fontSize: '2vmin',
                         justifyContent: 'center',
                         textAlign: 'center',
                         alignContent: 'middle',
@@ -55,13 +55,13 @@ class ControlModal extends Component {
                     }}
                     footer={
                         <div className='pointTracker'>
-                            <button className='answerBtn'onClick={() => this.props.showAnswer(question_answer_id)}>ANSWER</button>
+                            <button className='answerBtn'onClick={() => this.props.showAnswer(question_answer_id)}>SHOW ANSWER</button>
                             {this.props.team.map((team, i) => (
                                 <div className='ptTeam' key={i}>
                                     <h4>{team.teamName}</h4>
                                     <div>
-                                        <button key={i + 200} style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }} shape='circle' onClick={() => this.props.handleMinus(i, question_answer_id)} ><Icon style={{ fontSize: '5em', color: 'red' }} type="minus-circle" /></button>
-                                        <button key={i + 100} style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }} shape='circle' onClick={() => this.props.handleAdd(i, question_answer_id)} ><Icon style={{ fontSize: '5em', color: '#99C24D' }} type="plus-circle" /></button>
+                                        <button key={i + 200} style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }} shape='circle' onClick={() => this.props.handleMinus(i, question_answer_id)} ><Icon style={{ fontSize: '5vmin', color: 'red' }} type="minus-circle" /></button>
+                                        <button key={i + 100} style={{ backgroundColor: "transparent", border: "0px", paddingLeft: '0' }} shape='circle' onClick={() => this.props.handleAdd(i, question_answer_id)} ><Icon style={{ fontSize: '5vmin', color: '#99C24D' }} type="plus-circle" /></button>
                                         <div id='borderLine'></div>
                                     </div>
                                 </div>

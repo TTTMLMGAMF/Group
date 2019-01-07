@@ -1,52 +1,65 @@
 .gcTeamBox {
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    background-image: url('./images/background_texture3.png');
-    background-clip: border-box;
-    background-size: cover;
-    background-color: $color3;
-    background-blend-mode: darken;
-    border-radius: 10px;
-    border: 7.5px solid whitesmoke;
-    outline: .25px riged #2E4057CC; 
-    height: 12.5vh;
     z-index: 4;
-
+    
     .gcTeam1 {
-      height: 100%;
-      width: 20vw;
+      background-image: url('./images/background_texture3.png');
+      background-clip: border-box;
+      background-size: 25vmin;
+      background-color: $color3;
+      background-blend-mode: darken;
+      border: 1vmin solid whitesmoke;
+      border-radius: 15px;
+      // border: 1.5vmin solid whitesmoke;
+      height: 10vmin;
+      width: 30vmin;
       border-radius: 15px;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
       z-index: 4;
+      margin: 2vmin;
 
       .gcName {
-        height: 100%;
-        width: 45%;
-        border-radius: 10px 0 0 10px;
+        // height: 90%;
+        // width: 45%;
+        // border-radius: 15px 0 0 15px;
         display: flex;
         align-items: center;
+        // justify-content: flex-start;
+        text-align: left;
         font-family: $font2;
         color: whitesmoke;
-        font-size: 1.5em;
-        padding-left: 1em;
+        font-size: 2vmin;
+        padding-right: 5vmin;
+        // padding-left: 1vmin;
       }
 
       .gcScore {
-        min-width: 35%;
-        height: 100%;
-        border-radius: 0 10px 10px 0;
+        width: 10vmin;
+        // height: 120%;
+        height: 10vmin;
+
+        border-radius: 0 15px 15px 0;
         display: flex;
         align-items: center;
+        // justify-content: flex-end;
         font-family: $marker;
         color: $color5;
         text-align: left;
-        padding: 1vw;
-        font-size: 2.5vw;
+        padding-left: 1vmin;
+        font-size: 3vmin;
+        border-top: 1vmin solid whitesmoke;
+        border-right: 2vmin solid whitesmoke;
+        border-bottom: 1vmin solid whitesmoke;
+        margin-right: 0;
+        // overflow: hidden;
         background-color: whitesmoke;
-        box-shadow: inset 0px 0px 20.5px 4px #00000099;
+        // box-shadow: inset 0px 0px 20.5px 4px #00000099;
       }
     }
 }
