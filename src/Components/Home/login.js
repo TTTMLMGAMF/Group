@@ -4,7 +4,7 @@ import { Modal, Button, Form, Icon, Input, Alert } from 'antd';
 import '../../scss/App.scss';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
-import {showModal} from '../../tests/jeffLogic';
+import { showModal } from '../../tests/jeffLogic';
 
 const FormItem = Form.Item;
 
