@@ -142,6 +142,7 @@ class GameWizard extends Component {
             onCancel={this.handleCancel}
           >
             <h2>GAME TITLE:</h2>
+            
             <Input
               name="gameTitle"
               type="text"

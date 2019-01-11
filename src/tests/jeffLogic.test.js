@@ -13,7 +13,9 @@ describe('Tests Show Modal button', () => {
       test('if given truthy, return falsy', ()=> {
         expect(showModal('a string')).toBeFalsy()
       })
-      
+      test('If truthy, return falsy', () => {
+        expect(showModal(1)).toBeFalsy()
+    }) 
 })
 
 
