@@ -135,7 +135,6 @@ class GameWizard extends Component {
           <span>CREATE GAME</span>
         </button>
         <div>
-          {/* This is Ryan's */}
           <Modal
             title="GAME WIZARD"
             visible={this.state.visible}

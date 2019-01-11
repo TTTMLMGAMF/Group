@@ -1,24 +1,31 @@
 .sd{
-    position: absolute;
+    // position: absolute;
 }
-
+body {
+    background-color: $color5;
+}
 .gcControlContainer{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    // justify-content: space-between;
     background-color: $color5;
-    height: 100vh;
+    width: 100vw;
+    height: 100%;
+    padding-left: 11vw;
+    // position: relative;
+    // z-index: 1;
     h1 {
-        font-size: 3em;
-        margin: 10px;
-        color: white;
+        font-size: 8vmin;
+        margin: 1vmin;
+        color: whitesmoke;
         font-family: $font2;
     }
 
     #displayLink {
         color: $color1;
         font-family: $marker;
+        font-size: 3vmin;
     }
 }
 
@@ -35,10 +42,11 @@
 .gcColumnContainer{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    margin: 25px;
-    width: 60%;
-    height: 80vh;
+    justify-content: center;
+    // align-items: center;
+    margin: 2.5vmin;
+    // width: 60%;
+    // height: 80vh;
     // border: 1px red solid;
 }
 
@@ -47,71 +55,66 @@
     flex-direction: column;
     align-items: center;
     // background-color: white;
-    padding: 0 20px;
+    // padding: 0 20px;
 
     // font-size: 1.2em;
     h2{
         display: flex;
         justify-content: center;
-        font-size: 1.25vw;
-        color: white;
+        font-size: 3vmin;
+        color: whitesmoke;
         font-family: $font2;
-        padding: 2vh;
-        margin: 10px;
+        padding: 2vmin;
+        margin-top: 5vmin;
         // border: 2px white solid;
-        background-color: white;
-        border-radius: 10px;
-        width: 300px;
+        // background-color: white;
+        // border-radius: 10px;
+        // width: 300px;
         background-color: $color5;
         margin-top: -20px;
     }
 }
-
 .gcTeamsContainer{
-    margin-bottom: 5vh;
-    width: 90vw;
+    // margin-bottom: 5vh;
+    width: 80vw;
+    height: 10vmin;
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
+    // margin: 0 2vmin;
+    // align-items: space-around;
     position: relative;
     z-index: 5;
 }
 
 .gcBtn{
-    font-size: 1.2em;
+    font-size: 4vmin;
     font-weight: 800;
     padding: 30px;
-    margin: 5px;
+    margin: 1vmin;
     border: 0px solid $color2; 
     border-radius: 15px;
     background-color: $color2;
     color: $color1;
     font-family: $font2;
     text-shadow: -1px 1px 2px $color3;
-
-    background: $color2;
-// background: -moz-linear-gradient(top, rgb(255,255,255) 0%, rgb(246,246,246) 47%, rgb(199,197,199) 100%);
-// background: -webkit-gradient(left top, left bottom, color-stop(0%, rgb(255,255,255)), color-stop(47%, rgb(246,246,246)), color-stop(100%, rgb(199,197,199)));
-// background: -webkit-linear-gradient(top, rgb(255,255,255) 0%, rgb(246,246,246) 47%, rgb(199,197,199) 100%);
-// background: -o-linear-gradient(top, rgb(255,255,255) 0%, rgb(246,246,246) 47%, rgb(199,197,199) 100%);
-// background: -ms-linear-gradient(top, rgb(255,255,255) 0%, rgb(246,246,246) 47%, rgb(199,197,199) 100%);
-// background: linear-gradient(to bottom, rgb(255,255,255) 0%, rgb(246,246,246) 47%, rgb(199,197,199) 100%);
-// filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#c7c5c7', GradientType=0 );
     
+    background: $color2;
     &:active{
-    background-color: $color2;
+        background-color: $color2;
     }
     &:disabled{
         background: rgb(153,153,153);
         color: $color5;
         
-background: -moz-linear-gradient(top, rgb(153,153,153) 0%, rgb(145,145,145) 47%, rgb(122,117,122) 100%);
-background: -webkit-gradient(left top, left bottom, color-stop(0%, rgb(153,153,153)), color-stop(47%, rgb(145,145,145)), color-stop(100%, rgb(122,117,122)));
-background: -webkit-linear-gradient(top, rgb(153,153,153) 0%, rgb(145,145,145) 47%, rgb(122,117,122) 100%);
-background: -o-linear-gradient(top, rgb(153,153,153) 0%, rgb(145,145,145) 47%, rgb(122,117,122) 100%);
-background: -ms-linear-gradient(top, rgb(153,153,153) 0%, rgb(145,145,145) 47%, rgb(122,117,122) 100%);
-background: linear-gradient(to bottom, rgb(153,153,153) 0%, rgb(145,145,145) 47%, rgb(122,117,122) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#999999', endColorstr='#7a757a', GradientType=0 );
-
+        background: -moz-linear-gradient(top, rgb(153,153,153) 0%, rgb(145,145,145) 47%, rgb(122,117,122) 100%);
+        background: -webkit-gradient(left top, left bottom, color-stop(0%, rgb(153,153,153)), color-stop(47%, rgb(145,145,145)), color-stop(100%, rgb(122,117,122)));
+        background: -webkit-linear-gradient(top, rgb(153,153,153) 0%, rgb(145,145,145) 47%, rgb(122,117,122) 100%);
+        background: -o-linear-gradient(top, rgb(153,153,153) 0%, rgb(145,145,145) 47%, rgb(122,117,122) 100%);
+        background: -ms-linear-gradient(top, rgb(153,153,153) 0%, rgb(145,145,145) 47%, rgb(122,117,122) 100%);
+        background: linear-gradient(to bottom, rgb(153,153,153) 0%, rgb(145,145,145) 47%, rgb(122,117,122) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#999999', endColorstr='#7a757a', GradientType=0 );
+        
     }
 }
 
@@ -126,23 +129,25 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#999999', end
 .gcModalText {
     text-align: left;
     color: $color5;
-
+    
 }
 
 .pointTracker {
     width: 100%;
     height: 15vh;
+    padding: 5vmin;
     display: flex;
     // flex-direction: column;
     justify-content: space-evenly;
     // flex-wrap: nowrap;
     align-items: space-between;
     align-content: center;
+    // font-size: 1vmin;
     
     #borderLine {
-        border-right: 5px solid #2F2D2E;
+        // border-right: 5px solid #2F2D2E;
     }
-
+    
     
     
 }
@@ -152,8 +157,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#999999', end
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
-
-
+    
+    
     h4 {
         font-weight: bold;
         font-size: 2.5vw;
@@ -181,20 +186,130 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#999999', end
     div{
         margin: 5px;
     }
-
-
+    
+    
 }
 
 .answerBtn {
-    height: 9vh;
-    width: 9vh;
-    border-radius: 50%;
+    height: 5vmin;
+    width: 10vmin;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 5px solid $color1;
-    color: $color1;
+    // border: 5px solid $color1;
+    background-color: $color4;
+    color: whitesmoke;
     font-weight: bold;
-    margin-top: 5.5vh;
+    margin: 6vmin 0;
+    font-size: 1.5vmin;
+
+    
+}
+@media (max-width: 1100px){
+    .gcColumn{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // background-color: white;
+        // padding: 0 20px;
+    
+        // font-size: 1.2em;
+        h2{
+            display: flex;
+            justify-content: center;
+            font-size: 2.5vmin;
+            color: whitesmoke;
+            font-family: $font2;
+            padding: 2vmin;
+            margin-top: 5vmin;
+            // border: 2px white solid;
+            // background-color: white;
+            // border-radius: 10px;
+            // width: 300px;
+            background-color: $color5;
+            margin-top: -20px;
+        }
+    }
+}
+@media (max-width: 600px){
+    .gcColumn{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // background-color: white;
+        padding: 3vmin 0;
+    
+        // font-size: 1.2em;
+        h2{
+            display: flex;
+            justify-content: center;
+            font-size: 3vmin;
+            color: whitesmoke;
+            font-family: $font2;
+            padding: 1vmin;
+            // margin-top: .5vmin;
+            // border: 2px white solid;
+            // background-color: white;
+            // border-radius: 10px;
+            // width: 300px;
+            // background-color: $color5;
+            // margin-top: -20px;
+        }
+    }
+    .gcControlContainer{
+        padding-left: 21vmin;
+
+    }
+
+}
+@media (max-width: 350px){
+    .gcColumn{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // background-color: white;
+        padding: 3vmin 0;
+    
+        // font-size: 1.2em;
+        h2{
+            display: flex;
+            justify-content: center;
+            font-size: 1.5vmin;
+            color: whitesmoke;
+            font-family: $font2;
+            margin-top: 1vmin;
+            padding: 1vmin;
+            // margin-top: .5vmin;
+            // border: 2px white solid;
+            // background-color: white;
+            // border-radius: 10px;
+            // width: 300px;
+            // background-color: $color5;
+            // margin-top: -20px;
+        }
+    }
+    .gcControlContainer{
+        padding-left: 32vmin;
+        padding-right: 5vmin;
+        overflow: hidden;
+
+    }
+    .gcBtn{
+        font-size: 5vmin;
+        width: 1vmin;
+        height: 1vmin;
+        font-weight: 800;
+        padding: 30px;
+        margin: 1vmin;
+        border: 0px solid $color2; 
+        border-radius: 15px;
+        background-color: $color2;
+        color: $color1;
+        font-family: $font2;
+        text-shadow: -1px 1px 2px $color3;
+        
+        background: $color2;
+    }
 
 }
