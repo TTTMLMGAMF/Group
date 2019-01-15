@@ -31,10 +31,10 @@ class DisplayModal extends Component {
     })
 
     // this one is for development
-    // this.socket = io('http://localhost:4000');
+    this.socket = io('http://localhost:4000');
 
     // this one is for live site
-    this.socket = io()
+    // this.socket = io()
 
     this.joinRoom()
     this.socket.on('room joined', data => {
@@ -86,7 +86,6 @@ class DisplayModal extends Component {
           width='80vw'
           // height='60vh'
           mask={true}
-          centered={true}
           closable={false}
           zIndex={6}
           bodyStyle={{
@@ -108,8 +107,7 @@ class DisplayModal extends Component {
             backgroundColor: '#048BA8',
             backgroundBlendMode: 'darken',
             // borderRadius: '25px',
-            padding: '5vh',
-            overFlow: 'hidden'
+            padding: '5vh'
           }}
           style={{
             // backgroundColor: '#2E4057', 
