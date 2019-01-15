@@ -8,7 +8,6 @@ import { connect } from 'react-redux'
 import { updateRoomName } from '../../ducks/reducer'
 import { addOrSub } from '../../tests/trentLogic';
 import '../../scss/App.scss'
-import { Tooltip } from 'antd';
 
 
 class GameControl extends Component {
@@ -36,10 +35,10 @@ class GameControl extends Component {
     })
 
     // this one is for development
-    // this.socket = io('http://localhost:4000');
+    this.socket = io('http://localhost:4000');
 
     // this one is for live site
-    this.socket = io()
+    // this.socket = io()
 
     await this.joinRoom()
     await this.socket.on('game state', data => {

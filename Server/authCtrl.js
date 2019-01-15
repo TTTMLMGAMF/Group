@@ -32,8 +32,8 @@ module.exports = {
                     console.log('Look up here:', user[0])
                     res.status(200).send(user[0]);
                 } else {
-                    res.status(401).send({ error: "Invalid Username or password." });
-                    // console.log(res)
+                    res.status(401).send("Invalid username or password.");
+                    console.log('Test:', res)
                 }
             })
             .catch(err => {

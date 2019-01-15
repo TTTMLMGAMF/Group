@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Modal, Radio, Icon, InputNumber, Tag } from "antd";
+import { Modal, Radio, Icon, Tag } from "antd";
 import "../../scss/App.scss";
 import { withRouter } from "react-router-dom";
 // import { connect } from "http2";
